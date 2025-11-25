@@ -3,6 +3,7 @@ import { URL_BASE } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import DecreaseSVG from "@/assets/DecreaseSVG.astro";
 ---
 
 <Layout>
@@ -13,9 +14,9 @@ import Header from "@/components/Header.astro";
 			<p class="text-center text-2xl md:text-4xl text-gray-abbott">EL RITMO DE LA ARMONÍA EN CADA CICLO VITAL</p>
 			<div class="mt-8 relative">
 				<a href={`${URL_BASE}/menu`} class="py-3 px-8 font-bold text-2xl md:text-4xl bg-purple-abbott rounded-full text-white">EMPEZAR</a>
-
+				<DecreaseSVG class="w-12 h-auto rotate-125 absolute -right-[30%] top-[80%] transform -translate-y-1/2" />
 			</div>
-		</main>
+		</main>	
     <Footer />
   </div>
 </Layout>
