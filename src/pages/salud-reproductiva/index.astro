@@ -3,26 +3,35 @@ import { URL_BASE } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
-import WomanMenu from "@/components/WomanMenu.astro";
 ---
 
 <Layout>
   <div
     class="flex flex-col min-h-screen w-9xl max-w-full mx-auto overflow-clip bg-position-[75%] md:bg-right"
     style={`
-      background-image: url('${URL_BASE}/img/bgmain.webp');
+      background-image: url('${URL_BASE}/img/bg_salud_reproductiva.webp');
       background-size: cover;
     `}
   >
     <Header with="tuciclo" />
-    <main class="flex-1 p-4 grid grid-cols-1 md:grid-cols-3 gap-10">
-      <WomanMenu
-        titulo="SALUD REPRODUCTIVA"
-        subtitulo="Consejería en la elección de un método anticonceptivo"
-        womanImg="salud_reproductiva_1"
-        href="/salud-reproductiva"
-      />
-      
+    <main class="flex-1 p-4 flex max-w-7xl mx-auto w-full">
+      <div class="border-r border-purple-abbott">
+        <h1
+          class="text-purple-abbott font-bold text-center text-4xl"
+        >
+          RIT<span class="text-pink-abbott">MICA</span>
+        </h1>
+
+        <img
+          src={`${URL_BASE}/img/womans/salud_reproductiva_1.webp`}
+          alt="Salud Reproductiva"
+          class="w-full h-auto max-h-[600px]"
+        />
+      </div>
+      <section>
+        <div></div>
+        <div></div>
+      </section>
     </main>
     <Footer />
   </div>
