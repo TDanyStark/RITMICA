@@ -1,0 +1,26 @@
+---
+import { URL_BASE } from "@/config";
+interface Props {
+  titulo: string;
+  subtitulo: string;
+  womanImg: string;
+  href: string;
+}
+const { titulo, subtitulo, womanImg, href } = Astro.props;
+---
+
+<a class="cursor-pointer group" href={URL_BASE + href}>
+  <div class="group-hover:bg-purple-abbott group-hover:text-white transition-all bg-white/80 text-purple-abbott py-4 px-8 rounded-full min-h-[175px] flex flex-col justify-center">
+    <h2 class="text-center font-bold text-4xl">{titulo}</h2>
+    <p class="text-center text-2xl">
+      {subtitulo}
+    </p>
+  </div>
+  <div class="group-hover:-translate-y-10 group-hover:scale-110 transition-transform">
+    <img
+      src={`${URL_BASE}/img/womans/${womanImg}.webp`}
+      alt="Mujer sonriendo"
+      class="w-full h-auto max-h-[600px] object-contain mt-6"
+    />
+  </div>
+</a>
