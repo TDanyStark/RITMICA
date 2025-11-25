@@ -24,7 +24,7 @@ import HomeSVG from "@/assets/HomeSVG.astro";
           <h1
             class="text-purple-abbott font-bold text-center text-4xl md:text-6xl"
           >
-            RIT<span class="text-whitemd:text-pink-abbott">MICA</span>
+            RIT<span class="text-white md:text-pink-abbott">MICA</span>
           </h1>
 
           <img
@@ -50,14 +50,14 @@ import HomeSVG from "@/assets/HomeSVG.astro";
             class="flex-1 mt-12 text-4xl md:text-6xl md:pl-16 flex flex-col gap-10 text-center"
           >
             <a
-              href=""
+              href={`${URL_BASE}/salud-reproductiva/test`}
               class="group flex flex-col md:flex-row gap-6 items-center bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
             >
               <TestSVG />
               <span>TEST</span>
             </a>
             <a
-              href=""
+              href={`${URL_BASE}/salud-reproductiva/pautas`}
               class="group flex flex-col md:flex-row gap-6 items-center bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
             >
               <PautasSVG />
@@ -65,7 +65,9 @@ import HomeSVG from "@/assets/HomeSVG.astro";
             </a>
           </div>
           <div class="flex justify-end">
-            <HomeSVG />
+            <a href={`${URL_BASE}/menu`}>
+              <HomeSVG />
+            </a>
           </div>
         </section>
       </main>
