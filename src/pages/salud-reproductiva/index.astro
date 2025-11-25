@@ -5,6 +5,7 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import TestSVG from "@/assets/TestSVG.astro";
 import SaludSVG from "@/assets/SaludSVG.astro";
+import PautasSVG from "@/assets/Pautas.astro";
 ---
 
 <Layout>
@@ -58,11 +59,7 @@ import SaludSVG from "@/assets/SaludSVG.astro";
               href=""
               class="flex flex-col md:flex-row gap-6 items-center bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
             >
-              <img
-                src={`${URL_BASE}/img/svg/Pautas.svg`}
-                alt="Salud Reproductiva Icon"
-                class="w-16 h-auto"
-              />
+              <PautasSVG />
               <span>PAUTAS DE BIENESTAR</span>
             </a>
           </div>
