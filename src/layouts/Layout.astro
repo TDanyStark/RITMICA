@@ -1,5 +1,6 @@
 ---
-import '../styles/global.css'  
+import '../styles/global.css'
+import { URL_BASE } from "@/config";
 ---
 
 <!doctype html>
@@ -7,10 +8,10 @@ import '../styles/global.css'
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="icon" type="image/png" href={URL_BASE + "/favicon.png"} />
 		<title>RITMICA EL RITMO DE LA ARMONÍA EN CADA CICLO VITAL</title>
 	</head>
-	<body>
+	<body class="bg-white text-black font-brandon">
 		<slot />
 	</body>
 </html>
@@ -19,7 +20,9 @@ import '../styles/global.css'
 	html,
 	body {
 		margin: 0;
-		width: 100%;
-		height: 100%;
+		padding: 0;
+	}
+	* {
+		box-sizing: border-box;
 	}
 </style>

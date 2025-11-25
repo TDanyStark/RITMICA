@@ -1,0 +1,23 @@
+---
+import { URL_BASE } from "@/config";
+import TucicloSVG from "@/assets/TucicloSVG.astro";
+
+// recibe la prop "with" para cambiar el contenido del header
+interface Props {
+  with?: string;
+}
+const { with: withProp } = Astro.props;
+---
+
+<header class="p-4 flex items-center justify-between">
+  <img
+    src={URL_BASE + "/img/logos/abbott_black.webp"}
+    alt="Abbott Logo"
+    class="w-32 h-auto"
+  />
+  {
+    withProp === "tuciclo" ? (
+      <TucicloSVG class="w-36 md:w-48 h-auto" />
+    ) : null
+  }
+</header>
