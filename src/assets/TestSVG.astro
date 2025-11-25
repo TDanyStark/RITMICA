@@ -1,0 +1,81 @@
+---
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+interface Props {
+  class?: string;
+  strokeWidth?: number;
+  primaryColor?: string;
+  secondaryColor?: string;
+}
+
+const { 
+  class: classProp, 
+  strokeWidth = 10,
+  primaryColor = '#762A82',
+  secondaryColor = '#D786B4'
+} = Astro.props;
+---
+
+<svg
+  class={twMerge(clsx(classProp, 'w-12 md:w-16 h-auto'))}
+  width="500"
+  height="512"
+  viewBox="0 0 500 512"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M337.54 410.17L374.47 443.49L433.38 360.17"
+    stroke={secondaryColor}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path
+    d="M432.57 299.13C469.9 316.23 495.83 353.92 495.83 397.67C495.83 457.5 447.33 506 387.5 506C327.67 506 279.17 457.5 279.17 397.67C279.17 337.84 327.67 289.34 387.5 289.34V106"
+    stroke={primaryColor}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path
+    d="M156.83 347.67H84.83C84.0016 347.67 83.33 348.342 83.33 349.17V421.17C83.33 421.998 84.0016 422.67 84.83 422.67H156.83C157.658 422.67 158.33 421.998 158.33 421.17V349.17C158.33 348.342 157.658 347.67 156.83 347.67Z"
+    stroke={secondaryColor}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path
+    d="M156.83 214.33H84.83C84.0016 214.33 83.33 215.002 83.33 215.83V287.83C83.33 288.658 84.0016 289.33 84.83 289.33H156.83C157.658 289.33 158.33 288.658 158.33 287.83V215.83C158.33 215.002 157.658 214.33 156.83 214.33Z"
+    stroke={secondaryColor}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path
+    d="M156.83 81H84.83C84.0016 81 83.33 81.6716 83.33 82.5V154.5C83.33 155.328 84.0016 156 84.83 156H156.83C157.658 156 158.33 155.328 158.33 154.5V82.5C158.33 81.6716 157.658 81 156.83 81Z"
+    stroke={secondaryColor}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path
+    d="M387.5 109V104.578C387.5 103.248 386.97 101.972 386.027 101.034L288.963 4.45562C288.026 3.52335 286.758 3 285.436 3H8.505C5.74162 3 3.50225 5.24161 3.50502 8.00499L3.99499 496.505C3.99776 499.264 6.23552 501.5 8.99499 501.5H66"
+    stroke={primaryColor}
+    stroke-width={strokeWidth}></path>
+  <path d="M26.5 501.5H288" stroke={`url(#paint0_linear_${primaryColor.replace('#', '')})`} stroke-width={strokeWidth}
+  ></path>
+  <path
+    d="M286 3.5V98C286 100.761 288.204 103 290.966 103C306.299 103 353.801 103 386 103"
+    stroke={primaryColor}
+    stroke-width={strokeWidth}></path>
+  <defs>
+    <linearGradient
+      id={`paint0_linear_${primaryColor.replace('#', '')}`}
+      x1="26.5"
+      y1="502"
+      x2="288"
+      y2="502"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.6" stop-color={primaryColor}></stop>
+      <stop offset="1" stop-color={primaryColor} stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+</svg>
