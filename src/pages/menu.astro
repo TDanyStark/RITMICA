@@ -6,7 +6,13 @@ import Header from "@/components/Header.astro";
 ---
 
 <Layout>
-  <div class="flex flex-col h-screen bg-gray-500 w-9xl max-w-full mx-auto overflow-clip">
+  <div class="flex flex-col h-screen bg-gray-500 w-9xl max-w-full mx-auto overflow-clip"
+    style={`
+      background-image: url('${URL_BASE}/img/bgmain.webp');
+      background-size: cover;
+      background-position: center;
+    `}
+  >
     <Header with="tuciclo" />
     <main class="flex-1 p-4 flex flex-col items-center justify-center">
       
