@@ -7,34 +7,36 @@ import WomanMenu from "@/components/WomanMenu.astro";
 ---
 
 <Layout>
-  <div
-    class="flex flex-col min-h-screen w-9xl max-w-full mx-auto overflow-clip bg-position-[75%] md:bg-right"
+  <section
+    class="overflow-clip bg-position-[75%] md:bg-right"
     style={`
-      background-image: url('${URL_BASE}/img/bgmain.webp');
+      background-image: url('${URL_BASE}/img/bg_salud_reproductiva.webp');
       background-size: cover;
     `}
   >
-    <Header with="tuciclo" />
-    <main class="flex-1 p-4 grid grid-cols-1 md:grid-cols-3 gap-10">
-      <WomanMenu
-        titulo="SALUD REPRODUCTIVA"
-        subtitulo="Consejería en la elección de un método anticonceptivo"
-        womanImg="salud_reproductiva_1"
-        href="/salud-reproductiva"
-      />
-      <WomanMenu
-        titulo="SALUD ÍNTIMA"
-        subtitulo="Abordaje diagnóstico y terapéutico de las infecciones vaginales"
-        womanImg="salud_intima_1"
-        href="/salud-intima"
-      />
-      <WomanMenu
-        titulo="MENOPAUSIA"
-        subtitulo="Uso de terapia hormonal como estrategia para mejorar la calidad de vida en esta etapa"
-        womanImg="menopausia_1"
-        href="/menopausia"
-      />
-    </main>
-    <Footer />
-  </div>
+    <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
+      <Header with="tuciclo" />
+      <main class="flex-1 p-4 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <WomanMenu
+          titulo="SALUD REPRODUCTIVA"
+          subtitulo="Consejería en la elección de un método anticonceptivo"
+          womanImg="salud_reproductiva_1"
+          href="/salud-reproductiva"
+        />
+        <WomanMenu
+          titulo="SALUD ÍNTIMA"
+          subtitulo="Abordaje diagnóstico y terapéutico de las infecciones vaginales"
+          womanImg="salud_intima_1"
+          href="/salud-intima"
+        />
+        <WomanMenu
+          titulo="MENOPAUSIA"
+          subtitulo="Uso de terapia hormonal como estrategia para mejorar la calidad de vida en esta etapa"
+          womanImg="menopausia_1"
+          href="/menopausia"
+        />
+      </main>
+      <Footer />
+    </div>
+  </section>
 </Layout>

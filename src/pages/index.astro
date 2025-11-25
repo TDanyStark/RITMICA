@@ -7,16 +7,36 @@ import DecreaseSVG from "@/assets/DecreaseSVG.astro";
 ---
 
 <Layout>
-  <div class="flex flex-col h-screen bg-white w-9xl max-w-full mx-auto overflow-clip">
-    <Header />
-    <main class="flex-1 p-4 flex flex-col items-center justify-center">
-			<h1 class="text-purple-abbott font-bold text-center text-7xl md:text-[10rem] xl:text-[14rem]">RIT<span class="text-pink-abbott">MICA</span></h1>
-			<p class="text-center text-2xl md:text-4xl text-gray-abbott">EL RITMO DE LA ARMONÍA EN CADA CICLO VITAL</p>
-			<div class="mt-8 relative">
-				<a href={`${URL_BASE}/menu`} class="py-3 px-8 font-bold text-2xl md:text-4xl bg-purple-abbott rounded-full text-white">EMPEZAR</a>
-				<DecreaseSVG class="w-12 h-auto rotate-125 absolute -right-[30%] top-[80%] transform -translate-y-1/2" />
-			</div>
-		</main>	
-    <Footer />
-  </div>
+  <section
+    class="overflow-clip bg-position-[75%] md:bg-right"
+    style={`
+      background-image: url('${URL_BASE}/img/bg_salud_reproductiva.webp');
+      background-size: cover;
+    `}
+  >
+    <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
+      <Header />
+      <main class="flex-1 p-4 flex flex-col items-center justify-center">
+        <h1
+          class="text-purple-abbott font-bold text-center text-7xl md:text-[10rem] xl:text-[14rem]"
+        >
+          RIT<span class="text-pink-abbott">MICA</span>
+        </h1>
+        <p class="text-center text-2xl md:text-4xl text-gray-abbott">
+          EL RITMO DE LA ARMONÍA EN CADA CICLO VITAL
+        </p>
+        <div class="mt-8 relative">
+          <a
+            href={`${URL_BASE}/menu`}
+            class="py-3 px-8 font-bold text-2xl md:text-4xl bg-purple-abbott rounded-full text-white"
+            >EMPEZAR</a
+          >
+          <DecreaseSVG
+            class="w-12 h-auto rotate-125 absolute -right-[30%] top-[80%] transform -translate-y-1/2"
+          />
+        </div>
+      </main>
+      <Footer />
+    </div>
+  </section>
 </Layout>
