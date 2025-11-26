@@ -3,15 +3,14 @@ import { URL_BASE } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
-import TestSVG from "@/assets/TestSVG.astro";
-import SaludSVG from "@/assets/SaludSVG.astro";
 import PautasSVG from "@/assets/Pautas.astro";
 import HomeSVG from "@/assets/HomeSVG.astro";
+import Buttons from "@/components/salud-reproductiva/pautas/Buttons.astro";
 ---
 
 <Layout>
   <section
-    class="overflow-clip bg-right"
+    class="overflow-clip bg-position-[70%] md:bg-right"
     style={`
       background-image: url('${URL_BASE}/img/bg_salud_reproductiva.webp');
       background-size: cover;
@@ -19,8 +18,36 @@ import HomeSVG from "@/assets/HomeSVG.astro";
   >
     <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
       <Header with="tuciclo" />
+      <div
+        class="md:absolute right-0 md:top-16 bg-purple-abbott text-white text-center py-2 px-8 md:rounded-l-full text-sm md:text-base font-semibold"
+      >
+        <span class="font-normal mr-px">ANTICONCEPTIVOS</span> HORMONALES
+      </div>
       <main class="flex-1 p-4 flex flex-col md:flex-row gap-10 relative z-10">
+        <div class="md:border-r md:border-purple-abbott w-96 max-w-full">
+          <div class="flex items-center justify-center gap-4">
+            <PautasSVG />
+            <h1 class="text-purple-abbott text-3xl leading-5">
+              <span class="block font-bold text-5xl">PAUTAS</span> DE BIENESTAR
+            </h1>
+          </div>
 
+          <img
+            src={`${URL_BASE}/img/womans/salud_reproductiva_4.webp`}
+            alt="Salud Reproductiva"
+            class="w-full h-auto max-h-[300px] md:max-h-[600px] object-contain"
+          />
+        </div>
+        <div class="flex-1 flex flex-col justify-between gap-4">
+          <div class="flex-1 mt-4 border max-h-[649px] overflow-auto flex flex-col justify-center">
+            <Buttons />
+          </div>
+          <div class="flex justify-end">
+            <a href={`${URL_BASE}/menu`}>
+              <HomeSVG />
+            </a>
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
