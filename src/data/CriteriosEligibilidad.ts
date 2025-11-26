@@ -165,7 +165,52 @@ export const criterios: CriteriaNode[] = [
         children: [{
           label: "Índice de masa corporal ≥30 kg/m2",
           values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 }
-        }]
+        },
+        {
+          label: "Índice de masa corporal <30 kg/m2",
+          values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 }
+        }
+      ]
+      }
+    ]
+  },
+  {
+    label: "TRASTORNOS CARDIOVASCULARES",
+    open: false,
+    children: [
+      {
+        label: "Múltiples factores de riesgo de enfermedad cardivascular arterial (mayor edad, tabaquismo, diabetes e hipertensión)",
+        values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 }
+      },
+      {
+        label: "Hipertensión",
+        open: false,
+        children: [
+          {
+            label:
+              "Antecedentes de hipertensión, cuando NO se puede evaluar la tensión arterial (incluida la hipertensión en el embarazo)",
+            values: { AOC: 3, IM: 3, AVC: 3, PSP: 2, ISP: 2, IMP: 2 }
+          },
+          {
+            label:
+              "Hipertensión adecuadamente controlada, cuando SE PUEDE evaluar la tensión arterial",
+            values: { AOC: 3, IM: 3, AVC: 3, PSP: 1, ISP: 2, IMP: 1 }
+          },
+          {
+            label: "Tensión arterial elevada (medida de la manera adecuada)",
+            open: false,
+            children: [
+              {
+                label: "Sistólica 140-159 mm Hg o diastólica 90-99 mm Hg",
+                values: { AOC: 3, IM: 3, AVC: 3, PSP: 1, ISP: 2, IMP: 1 }
+              },
+              {
+                label: "Sistólica >=160 mm Hg o diastólica >=100 mm Hg",
+                values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 }
+              }
+            ]
+          }
+        ]
       }
     ]
   }
