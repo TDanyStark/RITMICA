@@ -33,3 +33,7 @@
 
   --width-9xl: 90rem;
 }
+
+button{
+  @apply cursor-pointer;
+}
