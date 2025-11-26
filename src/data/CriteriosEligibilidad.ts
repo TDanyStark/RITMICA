@@ -294,9 +294,9 @@ export const criterios: CriteriaNode[] = [
                   AOC: 4,
                   IM: 4,
                   AVC: 4,
-                  PSP: { I: 2, C: 3 },
+                  PSP: 2,
                   ISP: 3,
-                  IMP: { I: 2, C: 3 },
+                  IMP: 2,
                 },
               },
               {
@@ -305,9 +305,9 @@ export const criterios: CriteriaNode[] = [
                   AOC: 4,
                   IM: 4,
                   AVC: 4,
-                  PSP: { I: 2, C: 3 },
+                  PSP: 2,
                   ISP: 3,
-                  IMP: { I: 2, C: 3 },
+                  IMP: 2,
                 },
               },
             ],
@@ -319,7 +319,43 @@ export const criterios: CriteriaNode[] = [
           "Accidente cerebrovascular (antecedentes de accidente cerebrovascular)",
         values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
       },
-      
+      {
+        label: "Dislipidemias conocidas sin otros factores de riesgo cardiovascular",
+        open: false,
+        children: [
+          {
+            label: "Sin complicaciones",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Complicada",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+      {
+        label: "Lupus eritematoso sistémico",
+        open: false,
+        children: [
+          {
+            label: "Presencia de anticuerpos antifosfolipídicos positivos (o se desconoce si los presenta)",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 3, ISP: {I:3, C:3}, IMP: 3 },
+          },
+          {
+            label: "Trombocitopenia grave",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: {I:3, C:2}, IMP: 2 },
+          },
+          {
+            label: "Tratamiento inmunodepresor",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: {I:2, C:2}, IMP: 2 },
+          },
+          {
+            label: "Ninguna de las anteriores",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: {I:2, C:2}, IMP: 2 },
+          }
+        ],
+      },
+
     ],
   },
 ];
