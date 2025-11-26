@@ -39,11 +39,11 @@ import Buttons from "@/components/salud-reproductiva/pautas/Buttons.astro";
           />
         </div>
         <div class="flex-1 flex flex-col justify-between gap-4">
-          <div class="flex-1 mt-4 border max-h-[649px] overflow-auto flex flex-col justify-center">
+          <div class="contenedor_with_scroll flex-1 mt-4 border md:max-h-[649px] overflow-auto">
             <Buttons />
           </div>
           <div class="flex justify-end">
-            <a href={`${URL_BASE}/menu`}>
+            <a href={`${URL_BASE}/salud-reproductiva`} aria-label="Ir a Salud Reproductiva">
               <HomeSVG />
             </a>
           </div>
@@ -53,3 +53,19 @@ import Buttons from "@/components/salud-reproductiva/pautas/Buttons.astro";
     </div>
   </section>
 </Layout>
+
+<style>
+  .contenedor_with_scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .contenedor_with_scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .contenedor_with_scroll::-webkit-scrollbar-thumb {
+    background: var(--color-purple-abbott);
+    border-radius: 4px;
+  }
+</style>
