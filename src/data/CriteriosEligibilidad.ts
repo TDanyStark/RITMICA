@@ -16,7 +16,7 @@ type CriteriaNode = {
 
 export const criterios: CriteriaNode[] = [
   {
-    label: "Características personales y antecedentes reproductivos",
+    label: "CARACTERÍSTICAS PERSONALES Y ANTECEDENTES REPRODUCTIVOS",
     open: false,
     children: [
       {
@@ -597,7 +597,7 @@ export const criterios: CriteriaNode[] = [
     ],
   },
   {
-    label: "Infección por el VIH/sida",
+    label: "INFECCIÓN POR EL VIH/SIDA",
     open: false,
     children: [
       {
