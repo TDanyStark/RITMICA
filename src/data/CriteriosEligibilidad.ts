@@ -568,7 +568,74 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           }
         ]
+      },
+      {
+        label: "Infecciones de transmisión sexual (ITS)",
+        open: false,
+        children: [
+          {
+            label: "Cervicitis purulenta, clamidiasis o gonorrea actual",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Otras ITS (salvo la infección por el VIH y la hepatitis)",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Vaginitis (incluidas la infección por Trichomonas vaginalis y la vaginosis bacteriana)",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Aumento del riesgo de ITS",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
+        ]
       }
     ],
   },
+  {
+    label: "Infección por el VIH/sida",
+    open: false,
+    children: [
+      {
+        label: "Riesgo alto de infección por el VIH",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 2, IMP: 1 },
+      },
+      {
+        label: "Enfermedad clínica por el VIH asintomática o leve (estadio 1 o 2 de la OMS)",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Enfermedad clínica por el VIH grave o avanzada (estadio 3 o 4 de la OMS)",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Tratamiento antirretroviral",
+        open: false,
+        children: [
+          {
+            label: "Tratamiento con inhibidores nucleósidos de la transcriptasa inversa (INTI)**",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Efavirenz (EFV) o nevirapina (NVP)",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 1, IMP: 2 },
+          },
+          {
+            label: "Etravirina (ETR) o rilpivirina (RPV)",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Tratamiento con inhibidores de la proteasa (IP)",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 1, IMP: 2 },
+          },
+          {
+            label: "Tratamiento con inhibidores de la integrasa (raltegravir [RAL])",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
+        ]
+      },
+    ]
+  },
+  
 ];
