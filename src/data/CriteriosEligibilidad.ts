@@ -471,6 +471,104 @@ export const criterios: CriteriaNode[] = [
         label: "Dismenorrea grave",
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
       },
+      {
+        label: "Enfermedad trofoblástica gestacional",
+        open: false,
+        children: [
+          {
+            label: "Concentraciones de ß-hCG bajos o no detectables",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Concentraciones de ß-hCG persistentemente elevadas o enfermedad maligna",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
+        ]
+      },
+      {
+        label: "Ectropión del cuello uterino",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Neoplasia intraepitelial cervicouterina (NIC)",
+        values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 2, IMP: 2 },
+      },
+      {
+        label: "Cáncer cervicouterino",
+        values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 2, IMP: 2 },
+      },
+      {
+        label: "Enfermedad mamaria",
+        open: false,
+        children: [
+          {
+            label: "Tumoración no diagnosticada",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
+          },
+          {
+            label: "Enfermedad mamaria benigna",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Antecedentes familiares de cáncer",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
+        ]
+      },
+      {
+        label: "Cáncer de mama",
+        open: false,
+        children: [
+          {
+            label: "En curso",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 4, ISP: 4, IMP: 4 },
+          },
+          {
+            label: "En el pasado, sin evidencia de enfermedad durante un mínimo de 5 años",
+            values: { AOC: 3, IM: 3, AVC: 3, PSP: 3, ISP: 3, IMP: 3 },
+          }
+        ]
+      },
+      {
+        label: "Cáncer endometrial",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Cáncer de ovario",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Miomas uterinos",
+        open: false,
+        children: [
+          {
+            label: "Sin distorsión de la cavidad uterina",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Con distorsión de la cavidad uterina",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
+        ]
+      },
+      {
+        label: "Enfermedad inflamatoria pélvica (EIP)",
+        open: false,
+        children: [
+          {
+            label: "Con embarazo ulterior",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Sin embarazo ulterior",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "EIP actual",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
+        ]
+      }
     ],
   },
 ];
