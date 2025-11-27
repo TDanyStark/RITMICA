@@ -82,7 +82,6 @@ import { criterios } from "@/data/CriteriosEligibilidad";
         <div
         class="flex flex-col items-center justify-center text-purple-abbott opacity-50 group-hover:opacity-100 transition-opacity"
         >
-        <span class="text-xs font-bold uppercase mb-1">Detalles</span>
         <svg
             id="drawer-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -418,11 +417,12 @@ import { criterios } from "@/data/CriteriosEligibilidad";
 
   // Toggle All Logic
   const toggleAllBtn = document.getElementById("toggle-all-btn");
-  let allExpanded = false;
 
   if (toggleAllBtn) {
     toggleAllBtn.addEventListener("click", () => {
-        allExpanded = !allExpanded;
+        const allContents = document.querySelectorAll('[id^="content-"]');
+        // Check if ANY content is currently visible (expanded)
+        const anyExpanded = Array.from(allContents).some(content => !content.classList.contains("hidden"));
         
         const triggers = document.querySelectorAll(".accordion-trigger");
         triggers.forEach(btn => {
@@ -431,14 +431,16 @@ import { criterios } from "@/data/CriteriosEligibilidad";
             const icon = btn.querySelector(".icon");
             
             if (content && icon) {
-                if (allExpanded) {
-                    content.classList.remove("hidden");
-                    content.classList.add("flex");
-                    icon.style.transform = "rotate(180deg)";
-                } else {
+                if (anyExpanded) {
+                    // Collapse All
                     content.classList.add("hidden");
                     content.classList.remove("flex");
                     icon.style.transform = "rotate(0deg)";
+                } else {
+                    // Expand All
+                    content.classList.remove("hidden");
+                    content.classList.add("flex");
+                    icon.style.transform = "rotate(180deg)";
                 }
             }
         });
