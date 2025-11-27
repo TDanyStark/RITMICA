@@ -2,30 +2,42 @@
 import { criterios } from "@/data/CriteriosEligibilidad";
 ---
 
-<div class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2 relative">
-  <input
-    type="text"
-    id="search-input"
-    placeholder="Buscar criterio..."
-    class="w-full py-3 px-6 pr-12 rounded-xl md:rounded-full border-2 border-purple-abbott text-purple-abbott placeholder-purple-abbott/50 focus:outline-none focus:bg-white/50 bg-white/90 shadow-sm text-lg transition-all"
-  />
-  <button
-    id="clear-search"
-    class="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 text-purple-abbott hover:text-purple-900 transition-colors hidden"
-    aria-label="Borrar búsqueda"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
+<div class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2 relative flex items-center gap-2">
+  <div class="relative flex-1">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Buscar criterio..."
+      class="w-full py-3 px-6 pr-12 rounded-xl md:rounded-full border-2 border-purple-abbott text-purple-abbott placeholder-purple-abbott/50 focus:outline-none focus:bg-white/50 bg-white/90 shadow-sm text-lg transition-all"
+    />
+    <button
+      id="clear-search"
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-purple-abbott hover:text-purple-900 transition-colors hidden"
+      aria-label="Borrar búsqueda"
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"></path>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <button
+    id="toggle-all-btn"
+    class="bg-white/90 text-purple-abbott p-3 rounded-full shadow-sm border-2 border-purple-abbott hover:bg-purple-abbott hover:text-white transition-all"
+    aria-label="Expandir/Colapsar todo"
+    title="Expandir/Colapsar todo"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
     </svg>
   </button>
 </div>
@@ -56,24 +68,36 @@ import { criterios } from "@/data/CriteriosEligibilidad";
       >
     </div>
 
-    <div
-      class="flex flex-col items-center justify-center text-purple-abbott opacity-50 group-hover:opacity-100 transition-opacity"
-    >
-      <span class="text-xs font-bold uppercase mb-1">Detalles</span>
-      <svg
-        id="drawer-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 transition-transform duration-300"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 15l7-7 7 7"></path>
-      </svg>
+    <div class="flex items-center gap-4">
+        <div 
+            id="reset-test-btn"
+            class="p-2 text-purple-abbott hover:bg-purple-100 rounded-full cursor-pointer transition-colors"
+            title="Reiniciar Test"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+        </div>
+
+        <div
+        class="flex flex-col items-center justify-center text-purple-abbott opacity-50 group-hover:opacity-100 transition-opacity"
+        >
+        <span class="text-xs font-bold uppercase mb-1">Detalles</span>
+        <svg
+            id="drawer-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 transition-transform duration-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"></path>
+        </svg>
+        </div>
     </div>
   </button>
 
@@ -391,6 +415,58 @@ import { criterios } from "@/data/CriteriosEligibilidad";
     renderNodes(criterios, container);
     searchInput.focus();
   });
+
+  // Toggle All Logic
+  const toggleAllBtn = document.getElementById("toggle-all-btn");
+  let allExpanded = false;
+
+  if (toggleAllBtn) {
+    toggleAllBtn.addEventListener("click", () => {
+        allExpanded = !allExpanded;
+        
+        const triggers = document.querySelectorAll(".accordion-trigger");
+        triggers.forEach(btn => {
+            const contentId = btn.id.replace("btn-", "content-");
+            const content = document.getElementById(contentId);
+            const icon = btn.querySelector(".icon");
+            
+            if (content && icon) {
+                if (allExpanded) {
+                    content.classList.remove("hidden");
+                    content.classList.add("flex");
+                    icon.style.transform = "rotate(180deg)";
+                } else {
+                    content.classList.add("hidden");
+                    content.classList.remove("flex");
+                    icon.style.transform = "rotate(0deg)";
+                }
+            }
+        });
+    });
+  }
+
+  // Reset Logic
+  const resetTestBtn = document.getElementById("reset-test-btn");
+  
+  if (resetTestBtn) {
+    resetTestBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent drawer toggle
+        
+        // Clear state
+        formState = {};
+        
+        // Clear search
+        searchInput.value = "";
+        clearSearchBtn.classList.add("hidden");
+        
+        // Re-render (clears inputs)
+        container.innerHTML = "";
+        renderNodes(criterios, container);
+        
+        // Update drawer
+        updateDrawer();
+    });
+  }
 
   // Initial Render
   renderNodes(criterios, container);
