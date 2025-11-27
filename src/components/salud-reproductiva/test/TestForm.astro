@@ -2,12 +2,26 @@
 import { criterios } from "@/data/CriteriosEligibilidad";
 ---
 
+<div class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2">
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Buscar criterio..."
+    class="w-full py-3 px-6 rounded-xl md:rounded-full border-2 border-purple-abbott text-purple-abbott placeholder-purple-abbott/50 focus:outline-none focus:bg-white/50 bg-white/90 shadow-sm text-lg transition-all"
+  />
+</div>
+
 <div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4">
   <!-- Rendered via JS -->
 </div>
 
+<div id="response">
+  asdasdasd
+</div>
+
 <script is:inline define:vars={{criterios}}>
   const container = document.getElementById("form-container");
+  const searchInput = document.getElementById("search-input");
   let formState = {};
 
   // Helper to determine if a list of nodes should be a radio group
@@ -16,10 +30,35 @@ import { criterios } from "@/data/CriteriosEligibilidad";
     return nodes.every((node) => node.values && !node.children);
   }
 
+  function filterNodes(nodes, term) {
+    if (!term) return nodes;
+    
+    return nodes.map(node => {
+        const labelMatch = node.label.toLowerCase().includes(term.toLowerCase());
+        
+        if (node.children) {
+            const filteredChildren = filterNodes(node.children, term);
+            const hasMatchingChild = filteredChildren.length > 0;
+            
+            if (labelMatch) {
+                // Match on this category: Return it with ALL children (original), expanded
+                return { ...node, _forceOpen: true }; 
+            } else if (hasMatchingChild) {
+                // Match in descendants: Return with filtered children, expanded
+                return { ...node, children: filteredChildren, _forceOpen: true };
+            }
+        } else {
+            // Leaf node
+            if (labelMatch) return node;
+        }
+        return null;
+    }).filter(n => n !== null);
+  }
+
   function createButton(label, id, isExpanded) {
     const btn = document.createElement("button");
     btn.className =
-      "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
+      "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
     btn.id = id;
     
     const spanLabel = document.createElement("span");
@@ -124,7 +163,7 @@ import { criterios } from "@/data/CriteriosEligibilidad";
         const wrapper = document.createElement("div");
         wrapper.className = "w-full flex flex-col gap-4"; // Added gap for spacing
 
-        const { btn, icon } = createButton(node.label, `btn-${currentPath}`, false);
+        const { btn, icon } = createButton(node.label, `btn-${currentPath}`, node._forceOpen);
         
         const content = document.createElement("div");
         content.id = `content-${currentPath}`;
@@ -133,6 +172,11 @@ import { criterios } from "@/data/CriteriosEligibilidad";
         // "linea mas pegada al contenido" -> reduced pl (pl-3)
         // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
         content.className = "hidden flex-col gap-3 mt-4 pl-3 border-l-2 border-purple-abbott/30 ml-4 md:ml-8";
+
+        if (node._forceOpen) {
+            content.classList.remove("hidden");
+            content.classList.add("flex");
+        }
 
         btn.onclick = (e) => {
             e.stopPropagation();
@@ -163,6 +207,14 @@ import { criterios } from "@/data/CriteriosEligibilidad";
       }
     });
   }
+
+  searchInput.addEventListener("input", (e) => {
+      const term = e.target.value;
+      const filtered = filterNodes(criterios, term);
+      container.innerHTML = ""; // Clear
+      console.log(filtered);
+      renderNodes(filtered, container);
+  });
 
   // Initial Render
   renderNodes(criterios, container);
