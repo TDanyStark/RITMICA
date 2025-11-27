@@ -218,7 +218,7 @@ export const criterios: CriteriaNode[] = [
           {
             label: "Enfermedad vascular",
             values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 },
-          }
+          },
         ],
       },
       {
@@ -320,7 +320,8 @@ export const criterios: CriteriaNode[] = [
         values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
       },
       {
-        label: "Dislipidemias conocidas sin otros factores de riesgo cardiovascular",
+        label:
+          "Dislipidemias conocidas sin otros factores de riesgo cardiovascular",
         open: false,
         children: [
           {
@@ -338,24 +339,138 @@ export const criterios: CriteriaNode[] = [
         open: false,
         children: [
           {
-            label: "Presencia de anticuerpos antifosfolipídicos positivos (o se desconoce si los presenta)",
-            values: { AOC: 4, IM: 4, AVC: 4, PSP: 3, ISP: {I:3, C:3}, IMP: 3 },
+            label:
+              "Presencia de anticuerpos antifosfolipídicos positivos (o se desconoce si los presenta)",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 3, ISP: 3, IMP: 3 },
           },
           {
             label: "Trombocitopenia grave",
-            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: {I:3, C:2}, IMP: 2 },
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 3, IMP: 2 },
           },
           {
             label: "Tratamiento inmunodepresor",
-            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: {I:2, C:2}, IMP: 2 },
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
           },
           {
             label: "Ninguna de las anteriores",
-            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: {I:2, C:2}, IMP: 2 },
-          }
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 2, IMP: 2 },
+          },
         ],
       },
-
+    ],
+  },
+  {
+    label: "TRASTORNOS NEUROLÓGICOS",
+    open: false,
+    children: [
+      {
+        label: "Cefaleas",
+        open: false,
+        children: [
+          {
+            label: "No migrañosas (leves o intensas)",
+            values: {
+              AOC: { I: 1, C: 2 },
+              IM: { I: 1, C: 2 },
+              AVC: { I: 1, C: 2 },
+              PSP: { I: 1, C: 1 },
+              ISP: { I: 1, C: 1 },
+              IMP: { I: 1, C: 1 },
+            },
+          },
+          {
+            label: "Migraña",
+            open: false,
+            children: [
+              {
+                label: "Sin aura - Edad <35 años",
+                values: {
+                  AOC: { I: 2, C: 3 },
+                  IM: { I: 2, C: 3 },
+                  AVC: { I: 2, C: 3 },
+                  PSP: { I: 1, C: 2 },
+                  ISP: { I: 2, C: 2 },
+                  IMP: { I: 2, C: 2 },
+                },
+              },
+              {
+                label: "Sin aura - Edad >=35 años",
+                values: {
+                  AOC: { I: 3, C: 4 },
+                  IM: { I: 3, C: 4 },
+                  AVC: { I: 3, C: 4 },
+                  PSP: { I: 1, C: 2 },
+                  ISP: { I: 2, C: 2 },
+                  IMP: { I: 2, C: 2 },
+                },
+              },
+              {
+                label: "Con aura, a cualquier edad",
+                values: {
+                  AOC: { I: 4, C: 4 },
+                  IM: { I: 4, C: 4 },
+                  AVC: { I: 4, C: 4 },
+                  PSP: { I: 2, C: 3 },
+                  ISP: { I: 2, C: 3 },
+                  IMP: { I: 2, C: 3 },
+                },
+              },
+            ],
+          },
+          {
+            label: "Epilepsia",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "TRASTORNOS DEPRESIVOS",
+    open: false,
+    children: [
+      {
+        label: "Trastornos depresivos",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+    ],
+  },
+  {
+    label: "INFECCIONES Y TRASTORNOS DEL APARATO REPRODUCTOR",
+    open: false,
+    children: [
+      {
+        label: "Patrones de sangrado vaginal",
+        open: false,
+        children: [
+          {
+            label: "Patrón irregular sin sangrado profuso",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 2, ISP: 2, IMP: 2 },
+          },
+          {
+            label:
+              "Sangrado profuso o prolongado (incluidos los patrones regulares e irregulares)",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 2, ISP: 2, IMP: 2 },
+          },
+          {
+            label:
+              "Sangrado vaginal sin causa aparente (sospecha de una afección grave), antes de la evaluación",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 3, IMP: 3 },
+          },
+        ],
+      },
+      {
+        label: "Endometriosis",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Tumores benignos de ovario (incluidos los quistes)",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Dismenorrea grave",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
     ],
   },
 ];
