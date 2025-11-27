@@ -480,10 +480,11 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "Concentraciones de ß-hCG persistentemente elevadas o enfermedad maligna",
+            label:
+              "Concentraciones de ß-hCG persistentemente elevadas o enfermedad maligna",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Ectropión del cuello uterino",
@@ -512,8 +513,8 @@ export const criterios: CriteriaNode[] = [
           {
             label: "Antecedentes familiares de cáncer",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Cáncer de mama",
@@ -524,10 +525,11 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 4, IM: 4, AVC: 4, PSP: 4, ISP: 4, IMP: 4 },
           },
           {
-            label: "En el pasado, sin evidencia de enfermedad durante un mínimo de 5 años",
+            label:
+              "En el pasado, sin evidencia de enfermedad durante un mínimo de 5 años",
             values: { AOC: 3, IM: 3, AVC: 3, PSP: 3, ISP: 3, IMP: 3 },
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Cáncer endometrial",
@@ -548,8 +550,8 @@ export const criterios: CriteriaNode[] = [
           {
             label: "Con distorsión de la cavidad uterina",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Enfermedad inflamatoria pélvica (EIP)",
@@ -566,8 +568,8 @@ export const criterios: CriteriaNode[] = [
           {
             label: "EIP actual",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
-        ]
+          },
+        ],
       },
       {
         label: "Infecciones de transmisión sexual (ITS)",
@@ -582,15 +584,16 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "Vaginitis (incluidas la infección por Trichomonas vaginalis y la vaginosis bacteriana)",
+            label:
+              "Vaginitis (incluidas la infección por Trichomonas vaginalis y la vaginosis bacteriana)",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
             label: "Aumento del riesgo de ITS",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
   },
   {
@@ -602,11 +605,13 @@ export const criterios: CriteriaNode[] = [
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 2, IMP: 1 },
       },
       {
-        label: "Enfermedad clínica por el VIH asintomática o leve (estadio 1 o 2 de la OMS)",
+        label:
+          "Enfermedad clínica por el VIH asintomática o leve (estadio 1 o 2 de la OMS)",
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
       },
       {
-        label: "Enfermedad clínica por el VIH grave o avanzada (estadio 3 o 4 de la OMS)",
+        label:
+          "Enfermedad clínica por el VIH grave o avanzada (estadio 3 o 4 de la OMS)",
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
       },
       {
@@ -614,7 +619,8 @@ export const criterios: CriteriaNode[] = [
         open: false,
         children: [
           {
-            label: "Tratamiento con inhibidores nucleósidos de la transcriptasa inversa (INTI)**",
+            label:
+              "Tratamiento con inhibidores nucleósidos de la transcriptasa inversa (INTI)**",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
@@ -630,12 +636,210 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 1, IMP: 2 },
           },
           {
-            label: "Tratamiento con inhibidores de la integrasa (raltegravir [RAL])",
+            label:
+              "Tratamiento con inhibidores de la integrasa (raltegravir [RAL])",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
-        ]
+          },
+        ],
       },
-    ]
+    ],
+  },
+  {
+    label: "OTRAS INFECCIONES",
+    open: false,
+    children: [
+      {
+        label: "Esquistosomiasis",
+        open: false,
+        children: [
+          {
+            label: "Sin complicaciones",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label:
+              "Fibrosis hepática (si es grave, véase cirrosis, en la página siguiente)",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+      {
+        label: "Tuberculosis",
+        open: false,
+        children: [
+          {
+            label: "No pélvica",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Pélvica conocida",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+      {
+        label: "Malaria",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+    ],
+  },
+  {
+    label: "TRASTORNOS ENDOCRINOS",
+    open: false,
+    children: [
+      {
+        label: "Diabetes",
+        open: false,
+        children: [
+          {
+            label: "Antecedentes de diabetes gestacional",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Diabetes no vascular",
+            open: false,
+            children: [
+              {
+                label: "No insulinodependiente",
+                values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
+              },
+              {
+                label: "Insulinodependiente",
+                values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
+              },
+            ],
+          },
+          {
+            label: "Con daño en riñones, ojos o nervios",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 },
+          },
+          {
+            label: "Otro trastorno vascular o diabetes de >20 años de duración",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 },
+          },
+        ],
+      },
+      {
+        label: "Trastornos tiroideos",
+        open: false,
+        children: [
+          {
+            label: "Bocio simple",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Hipertiroidismo",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Hipotiroidismo",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "TRASTORNOS GASTROINTESTINALES",
+    open: false,
+    children: [
+      {
+        label: "Enfermedad de la vesícula biliar",
+        open: false,
+        children: [
+          {
+            label: "Sintomática",
+            open: false,
+            children: [
+              {
+                label: "Tratada con colecistectomía",
+                values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
+              },
+              {
+                label: "Tratamiento médico",
+                values: { AOC: 3, IM: 2, AVC: 3, PSP: 2, ISP: 2, IMP: 2 },
+              },
+              {
+                label: "Actual",
+                values: { AOC: 3, IM: 2, AVC: 3, PSP: 2, ISP: 2, IMP: 2 },
+              },
+            ],
+          },
+          {
+            label: "Asintomática",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
+          },
+        ],
+      },
+      {
+        label: "Antecedentes de colestasis",
+        open: false,
+        children: [
+          {
+            label: "Relacionada con el embarazo",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Relacionada con la toma de anticonceptivos hormonales",
+            values: { AOC: 3, IM: 2, AVC: 3, PSP: 2, ISP: 2, IMP: 2 },
+          },
+        ],
+      },
+      {
+        label: "Hepatitis viral",
+        children: [
+          {
+            label: "Aguda o activa",
+            values: {
+              AOC: { I: 4, C: 2 },
+              IM: { I: 3, C: 2 },
+              AVC: { I: 4, C: 2 },
+              PSP: 1,
+              ISP: 1,
+              IMP: 1,
+            },
+          },
+          {
+            label: "Estado de portador",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Crónica",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+      {
+        label: "Cirrósis",
+        children: [
+          {
+            label: "Leve (compensada)",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Grave (descompensada)",
+            values: { AOC: 4, IM: 3, AVC: 4, PSP: 3, ISP: 3, IMP: 3 },
+          },
+        ],
+      },
+      {
+        label: "Tumores hepáticos",
+        children: [
+          {
+            label: "Hiperplasia nodular focal",
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
+          },
+          {
+            label: "Adenoma hepatocelular",
+            values: { AOC: 4, IM: 3, AVC: 4, PSP: 3, ISP: 3, IMP: 3 },
+          },
+          {
+            label: "Maligno (hepatoma)",
+            values: { AOC: 4, IM: 4, AVC: 4, PSP: 3, ISP: 3, IMP: 3 },
+          },
+        ],
+      },
+    ],
   },
   
 ];
