@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import { URL_BASE } from "@/config";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -10,6 +11,7 @@ import { URL_BASE } from "@/config";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href={URL_BASE + "/favicon.png"} />
 		<title>RITMICA EL RITMO DE LA ARMONÍA EN CADA CICLO VITAL</title>
+		<ClientRouter />
 	</head>
 	<body class="bg-white text-black font-brandon">
 		<slot />

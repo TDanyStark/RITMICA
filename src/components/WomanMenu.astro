@@ -5,8 +5,9 @@ interface Props {
   subtitulo: string;
   womanImg: string;
   href: string;
+  transitionName: string;
 }
-const { titulo, subtitulo, womanImg, href } = Astro.props;
+const { titulo, subtitulo, womanImg, href, transitionName } = Astro.props;
 ---
 
 <a class="cursor-pointer group" href={URL_BASE + href}>
@@ -16,10 +17,11 @@ const { titulo, subtitulo, womanImg, href } = Astro.props;
       {subtitulo}
     </p>
   </div>
-  <div class="group-hover:-translate-y-10 group-hover:scale-110 transition-transform">
+  <div class="group-hover:-translate-y-10 group-hover:scale-110 transition-transform" >
     <img
       src={`${URL_BASE}/img/womans/${womanImg}.webp`}
       alt="Mujer sonriendo"
+      transition:name={transitionName}
       class="w-full h-auto max-h-[500px] object-contain mt-6"
     />
   </div>
