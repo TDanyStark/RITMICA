@@ -787,6 +787,7 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Hepatitis viral",
+        open: false,
         children: [
           {
             label: "Aguda o activa",
@@ -811,6 +812,7 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Cirrósis",
+        open: false,
         children: [
           {
             label: "Leve (compensada)",
@@ -824,6 +826,7 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Tumores hepáticos",
+        open: false,
         children: [
           {
             label: "Hiperplasia nodular focal",
@@ -841,5 +844,60 @@ export const criterios: CriteriaNode[] = [
       },
     ],
   },
-  
+  {
+    label: "ANEMIAS",
+    open: false,
+    children: [
+      {
+        label: "Talassemia",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Anemia drepanocítica",
+        values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
+      },
+      {
+        label: "Anemia ferropénica",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+      },
+    ],
+  },
+  {
+    label: "INTERACCIONES MEDICAMENTOSAS",
+    open: false,
+    children: [
+      {
+        label: "Tratamiento anticonvulsivante",
+        open: false,
+        children: [
+          {
+            label: "Algunos anticonvulsivantes (barbitúricos, carbamazepina, oxcarbazepina, fenitoína, primidona, topiramato)",
+            values: { AOC: 3, IM: 2, AVC: 3, PSP: 3, ISP: 1, IMP: 2 },
+          },
+          {
+            label: "Lamotrigina",
+            values: { AOC: 3, IM: 3, AVC: 3, PSP: 1, ISP: 1, IMP: 1 },
+          },
+        ],
+      },
+      {
+        label: "Tratamiento antimicrobiano",
+        open: false,
+        children: [
+          {
+            label: "Antibióticos de amplio espectro",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Antimicóticos y antiparasitarios",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
+            label: "Tratamiento con rifampicina y rifabutina",
+            values: { AOC: 3, IM: 2, AVC: 3, PSP: 3, ISP: 1, IMP: 2 },
+          },
+        ],
+      },
+    ],
+  },
 ];
