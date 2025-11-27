@@ -1,0 +1,170 @@
+---
+import { criterios } from "@/data/CriteriosEligibilidad";
+---
+
+<div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4">
+  <!-- Rendered via JS -->
+</div>
+
+<script is:inline define:vars={{criterios}}>
+  const container = document.getElementById("form-container");
+  let formState = {};
+
+  // Helper to determine if a list of nodes should be a radio group
+  function isRadioGroup(nodes) {
+    if (!nodes || nodes.length <= 1) return false;
+    return nodes.every((node) => node.values && !node.children);
+  }
+
+  function createButton(label, id, isExpanded) {
+    const btn = document.createElement("button");
+    btn.className =
+      "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
+    btn.id = id;
+    
+    const spanLabel = document.createElement("span");
+    spanLabel.textContent = label;
+    
+    const spanIcon = document.createElement("span");
+    spanIcon.className = "icon text-2xl transition-transform duration-300";
+    spanIcon.textContent = "▼";
+    if (isExpanded) spanIcon.style.transform = "rotate(180deg)";
+
+    btn.appendChild(spanLabel);
+    btn.appendChild(spanIcon);
+
+    return { btn, icon: spanIcon };
+  }
+
+  function createInputRow(node, path, type, groupName) {
+    const label = document.createElement("label");
+    label.className =
+      "text-purple-abbott py-2 px-8 text-left text-xl md:text-2xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
+
+    const inputContainer = document.createElement("div");
+    inputContainer.className = "relative flex items-center mt-1";
+
+    const input = document.createElement("input");
+    input.type = type;
+    input.className =
+      "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-purple-abbott checked:bg-purple-abbott transition-all bg-transparent";
+    
+    if (type === "checkbox") {
+        input.classList.add("rounded");
+    } else {
+        input.classList.add("rounded-full");
+    }
+
+    input.name = groupName || path; // Group name for radios, path for checkbox
+    input.value = JSON.stringify(node.values || {});
+    input.dataset.path = path;
+
+    const indicator = document.createElement("div");
+    indicator.className = "absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity";
+    
+    if (type === "radio") {
+        // Inner circle for radio
+        const dot = document.createElement("div");
+        dot.className = "w-2.5 h-2.5 bg-white rounded-full";
+        indicator.appendChild(dot);
+    } else {
+        // Checkmark for checkbox
+        indicator.innerHTML = `<svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`;
+    }
+
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(indicator);
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "flex-1 leading-tight";
+    textSpan.textContent = node.label;
+
+    label.appendChild(inputContainer);
+    label.appendChild(textSpan);
+
+    // Event Listener
+    input.addEventListener("change", (e) => {
+        const target = e.target;
+        let val = {};
+        try { val = JSON.parse(target.value); } catch(err) {}
+
+        if (type === "radio") {
+            formState[groupName] = {
+                path: path,
+                values: val,
+                type: 'radio'
+            };
+        } else {
+            if (target.checked) {
+                formState[path] = {
+                    values: val,
+                    type: 'checkbox'
+                };
+            } else {
+                delete formState[path];
+            }
+        }
+        console.log("Form State:", formState);
+    });
+
+    return label;
+  }
+
+  function renderNodes(nodes, parentContainer, parentPath = "", level = 0) {
+    if (!nodes) return;
+
+    const isGroupRadio = isRadioGroup(nodes);
+    const groupName = isGroupRadio ? `group-${parentPath}` : null;
+
+    nodes.forEach((node, index) => {
+      const currentPath = parentPath ? `${parentPath}-${index}` : `${index}`;
+      
+      // Case 1: Node is a Group (has children)
+      if (node.children) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "w-full flex flex-col gap-4"; // Added gap for spacing
+
+        const { btn, icon } = createButton(node.label, `btn-${currentPath}`, false);
+        
+        const content = document.createElement("div");
+        content.id = `content-${currentPath}`;
+        
+        // Apply border and indentation to all levels (Level 0 content = Level 1 items, etc.)
+        // "linea mas pegada al contenido" -> reduced pl (pl-3)
+        // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
+        content.className = "hidden flex-col gap-3 mt-4 pl-3 border-l-2 border-purple-abbott/30 ml-4 md:ml-8";
+
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            const isHidden = content.classList.contains("hidden");
+            if (isHidden) {
+                content.classList.remove("hidden");
+                content.classList.add("flex");
+                icon.style.transform = "rotate(180deg)";
+            } else {
+                content.classList.add("hidden");
+                content.classList.remove("flex");
+                icon.style.transform = "rotate(0deg)";
+            }
+        };
+
+        wrapper.appendChild(btn);
+        wrapper.appendChild(content);
+        parentContainer.appendChild(wrapper);
+
+        // Recurse
+        renderNodes(node.children, content, currentPath, level + 1);
+      } 
+      // Case 2: Node is a Leaf (has values)
+      else if (node.values) {
+        const type = isGroupRadio ? "radio" : "checkbox";
+        const row = createInputRow(node, currentPath, type, groupName);
+        parentContainer.appendChild(row);
+      }
+    });
+  }
+
+  // Initial Render
+  renderNodes(criterios, container);
+
+</script>
