@@ -8,8 +8,6 @@ type CriteriaValue = {
 };
 type CriteriaNode = {
   label: string;
-  open?: boolean;
-  check?: boolean;
   values?: CriteriaValue;
   children?: CriteriaNode[];
 };
@@ -17,11 +15,9 @@ type CriteriaNode = {
 export const criterios: CriteriaNode[] = [
   {
     label: "CARACTERÍSTICAS PERSONALES Y ANTECEDENTES REPRODUCTIVOS",
-    open: false,
     children: [
       {
         label: "Edad",
-        open: false,
         children: [
           {
             label: "De la menarquia a <40 años",
@@ -47,7 +43,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Número de partos",
-        open: false,
         children: [
           {
             label: "No ha tenido partos (nulípara)",
@@ -61,7 +56,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Lactancia materna",
-        open: false,
         children: [
           {
             label: "<6 semanas después del parto",
@@ -80,7 +74,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Posparto (mujeres que no amamantan)",
-        open: false,
         children: [
           {
             label: "<21 días",
@@ -108,7 +101,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Después de un aborto",
-        open: false,
         children: [
           {
             label: "En el primer trimestre",
@@ -126,7 +118,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Afección o circunstancia",
-        open: false,
         children: [
           {
             label: "Antecedentes de embarazo ectópico",
@@ -140,7 +131,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Tabaquismo",
-        open: false,
         children: [
           {
             label: "Edad <35 años",
@@ -148,7 +138,6 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Edad ≥35 años",
-            open: false,
             children: [
               {
                 label: "<15 cigarrillos al día",
@@ -164,7 +153,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Obesidad",
-        open: false,
         children: [
           {
             label: "Índice de masa corporal ≥30 kg/m2",
@@ -180,7 +168,6 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "TRASTORNOS CARDIOVASCULARES",
-    open: false,
     children: [
       {
         label:
@@ -189,7 +176,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Hipertensión",
-        open: false,
         children: [
           {
             label:
@@ -203,7 +189,6 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Tensión arterial elevada (medida de la manera adecuada)",
-            open: false,
             children: [
               {
                 label: "Sistólica 140-159 mm Hg o diastólica 90-99 mm Hg",
@@ -228,7 +213,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Trombosis venosa profunda (TVP)/ Embolia pulmonar (EP)",
-        open: false,
         children: [
           {
             label: "Antecedentes de TVP/EP",
@@ -249,7 +233,6 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Cirugía mayor",
-            open: false,
             children: [
               {
                 label: "Con inmovilización prolongada",
@@ -274,7 +257,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Trombosis venosa superficial",
-        open: false,
         children: [
           {
             label: "Venas varicosas (várices)",
@@ -286,7 +268,6 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Cardiopatía isquémica",
-            open: false,
             children: [
               {
                 label: "En curso",
@@ -322,7 +303,6 @@ export const criterios: CriteriaNode[] = [
       {
         label:
           "Dislipidemias conocidas sin otros factores de riesgo cardiovascular",
-        open: false,
         children: [
           {
             label: "Sin complicaciones",
@@ -336,7 +316,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Lupus eritematoso sistémico",
-        open: false,
         children: [
           {
             label:
@@ -361,11 +340,9 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "TRASTORNOS NEUROLÓGICOS",
-    open: false,
     children: [
       {
         label: "Cefaleas",
-        open: false,
         children: [
           {
             label: "No migrañosas (leves o intensas)",
@@ -380,7 +357,6 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Migraña",
-            open: false,
             children: [
               {
                 label: "Sin aura - Edad <35 años",
@@ -427,7 +403,6 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "TRASTORNOS DEPRESIVOS",
-    open: false,
     children: [
       {
         label: "Trastornos depresivos",
@@ -437,11 +412,9 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "INFECCIONES Y TRASTORNOS DEL APARATO REPRODUCTOR",
-    open: false,
     children: [
       {
         label: "Patrones de sangrado vaginal",
-        open: false,
         children: [
           {
             label: "Patrón irregular sin sangrado profuso",
@@ -473,7 +446,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Enfermedad trofoblástica gestacional",
-        open: false,
         children: [
           {
             label: "Concentraciones de ß-hCG bajos o no detectables",
@@ -500,7 +472,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Enfermedad mamaria",
-        open: false,
         children: [
           {
             label: "Tumoración no diagnosticada",
@@ -518,7 +489,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Cáncer de mama",
-        open: false,
         children: [
           {
             label: "En curso",
@@ -541,7 +511,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Miomas uterinos",
-        open: false,
         children: [
           {
             label: "Sin distorsión de la cavidad uterina",
@@ -555,7 +524,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Enfermedad inflamatoria pélvica (EIP)",
-        open: false,
         children: [
           {
             label: "Con embarazo ulterior",
@@ -573,7 +541,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Infecciones de transmisión sexual (ITS)",
-        open: false,
         children: [
           {
             label: "Cervicitis purulenta, clamidiasis o gonorrea actual",
@@ -598,7 +565,6 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "INFECCIÓN POR EL VIH/SIDA",
-    open: false,
     children: [
       {
         label: "Riesgo alto de infección por el VIH",
@@ -616,7 +582,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Tratamiento antirretroviral",
-        open: false,
         children: [
           {
             label:
@@ -646,11 +611,9 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "OTRAS INFECCIONES",
-    open: false,
     children: [
       {
         label: "Esquistosomiasis",
-        open: false,
         children: [
           {
             label: "Sin complicaciones",
@@ -665,7 +628,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Tuberculosis",
-        open: false,
         children: [
           {
             label: "No pélvica",
@@ -685,11 +647,9 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "TRASTORNOS ENDOCRINOS",
-    open: false,
     children: [
       {
         label: "Diabetes",
-        open: false,
         children: [
           {
             label: "Antecedentes de diabetes gestacional",
@@ -697,7 +657,6 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Diabetes no vascular",
-            open: false,
             children: [
               {
                 label: "No insulinodependiente",
@@ -721,7 +680,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Trastornos tiroideos",
-        open: false,
         children: [
           {
             label: "Bocio simple",
@@ -741,15 +699,12 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "TRASTORNOS GASTROINTESTINALES",
-    open: false,
     children: [
       {
         label: "Enfermedad de la vesícula biliar",
-        open: false,
         children: [
           {
             label: "Sintomática",
-            open: false,
             children: [
               {
                 label: "Tratada con colecistectomía",
@@ -773,7 +728,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Antecedentes de colestasis",
-        open: false,
         children: [
           {
             label: "Relacionada con el embarazo",
@@ -787,7 +741,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Hepatitis viral",
-        open: false,
         children: [
           {
             label: "Aguda o activa",
@@ -812,7 +765,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Cirrósis",
-        open: false,
         children: [
           {
             label: "Leve (compensada)",
@@ -826,7 +778,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Tumores hepáticos",
-        open: false,
         children: [
           {
             label: "Hiperplasia nodular focal",
@@ -846,7 +797,6 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "ANEMIAS",
-    open: false,
     children: [
       {
         label: "Talassemia",
@@ -864,11 +814,9 @@ export const criterios: CriteriaNode[] = [
   },
   {
     label: "INTERACCIONES MEDICAMENTOSAS",
-    open: false,
     children: [
       {
         label: "Tratamiento anticonvulsivante",
-        open: false,
         children: [
           {
             label: "Algunos anticonvulsivantes (barbitúricos, carbamazepina, oxcarbazepina, fenitoína, primidona, topiramato)",
@@ -882,7 +830,6 @@ export const criterios: CriteriaNode[] = [
       },
       {
         label: "Tratamiento antimicrobiano",
-        open: false,
         children: [
           {
             label: "Antibióticos de amplio espectro",
