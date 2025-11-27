@@ -2,13 +2,32 @@
 import { criterios } from "@/data/CriteriosEligibilidad";
 ---
 
-<div class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2">
+<div class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2 relative">
   <input
     type="text"
     id="search-input"
     placeholder="Buscar criterio..."
-    class="w-full py-3 px-6 rounded-xl md:rounded-full border-2 border-purple-abbott text-purple-abbott placeholder-purple-abbott/50 focus:outline-none focus:bg-white/50 bg-white/90 shadow-sm text-lg transition-all"
+    class="w-full py-3 px-6 pr-12 rounded-xl md:rounded-full border-2 border-purple-abbott text-purple-abbott placeholder-purple-abbott/50 focus:outline-none focus:bg-white/50 bg-white/90 shadow-sm text-lg transition-all"
   />
+  <button
+    id="clear-search"
+    class="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 text-purple-abbott hover:text-purple-900 transition-colors hidden"
+    aria-label="Borrar búsqueda"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
 </div>
 
 <div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4">
@@ -22,6 +41,7 @@ import { criterios } from "@/data/CriteriosEligibilidad";
 <script is:inline define:vars={{criterios}}>
   const container = document.getElementById("form-container");
   const searchInput = document.getElementById("search-input");
+  const clearSearchBtn = document.getElementById("clear-search");
   let formState = {};
 
   // Helper to determine if a list of nodes should be a radio group
@@ -210,10 +230,24 @@ import { criterios } from "@/data/CriteriosEligibilidad";
 
   searchInput.addEventListener("input", (e) => {
       const term = e.target.value;
+      
+      if (term.length > 0) {
+        clearSearchBtn.classList.remove("hidden");
+      } else {
+        clearSearchBtn.classList.add("hidden");
+      }
+
       const filtered = filterNodes(criterios, term);
       container.innerHTML = ""; // Clear
-      console.log(filtered);
       renderNodes(filtered, container);
+  });
+
+  clearSearchBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      clearSearchBtn.classList.add("hidden");
+      container.innerHTML = "";
+      renderNodes(criterios, container);
+      searchInput.focus();
   });
 
   // Initial Render

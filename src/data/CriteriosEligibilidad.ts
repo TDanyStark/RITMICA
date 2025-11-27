@@ -819,7 +819,8 @@ export const criterios: CriteriaNode[] = [
         label: "Tratamiento anticonvulsivante",
         children: [
           {
-            label: "Algunos anticonvulsivantes (barbitúricos, carbamazepina, oxcarbazepina, fenitoína, primidona, topiramato)",
+            label:
+              "Algunos anticonvulsivantes (barbitúricos, carbamazepina, oxcarbazepina, fenitoína, primidona, topiramato)",
             values: { AOC: 3, IM: 2, AVC: 3, PSP: 3, ISP: 1, IMP: 2 },
           },
           {
