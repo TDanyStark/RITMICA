@@ -1,4 +1,5 @@
 ---
+import { URL_BASE } from "@/config";
 import { criterios } from "@/data/CriteriosEligibilidad";
 ---
 
@@ -129,6 +130,10 @@ import { criterios } from "@/data/CriteriosEligibilidad";
     class="bg-gray-50 p-6 md:p-8 pb-10 max-h-[60vh] overflow-y-auto border-t border-gray-100"
   >
     <div class="max-w-4xl mx-auto">
+      <div id="detailed-results" class="grid grid-cols-1 gap-4 mb-8">
+        <!-- Detailed results injected via JS -->
+      </div>
+
       <h3 class="text-purple-abbott font-bold text-xl mb-6">
         Referencia de Métodos
       </h3>
@@ -200,6 +205,16 @@ import { criterios } from "@/data/CriteriosEligibilidad";
           <span class="text-sm">No use el método.</span>
         </div>
       </div>
+
+      <div class="mt-6">
+        <p class="text-xs">
+          <strong>Referencias:</strong> <strong>1.</strong> Departamento de Salud Reproductiva e Investigaciones Conexas de la Organización Mundial de la Salud (OMS/SSR) y Escuela de Salud Pública Bloomberg de la Universidad Johns Hopkins/Centro para Programas de Comunicación (CCP), Knowledge SUCCESS. Planificación familiar: Un manual mundial para proveedores, Edición 2022. Baltimore y Ginebra: CCP y OMS; 2022.
+        </p>
+
+        <a href='https://co.medicinespro.abbott/wp-content/uploads/2025/02/portafolio-2026.pdf' target="_blank" rel="noopener noreferrer" class="inline-block mt-4 py-2 px-6 rounded-full text-white bg-purple-abbott font-semibold">
+          Conozca el portafolio Abbott para elegir la mejor opción
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -215,447 +230,504 @@ import { criterios } from "@/data/CriteriosEligibilidad";
 </style>
 
 <script is:inline data-astro-rerun define:vars={{ criterios }}>
-  document.addEventListener("astro:page-load", () => {
-    const container = document.getElementById("form-container");
-    if (!container) return;
-    const searchInput = document.getElementById("search-input");
-    const clearSearchBtn = document.getElementById("clear-search");
-    let formState = {};
+  document.addEventListener(
+    "astro:page-load",
+    () => {
+      const container = document.getElementById("form-container");
+      if (!container) return;
+      const searchInput = document.getElementById("search-input");
+      const clearSearchBtn = document.getElementById("clear-search");
+      let formState = {};
 
-    // Helper to determine if a list of nodes should be a radio group
-    function isRadioGroup(nodes) {
-      if (!nodes || nodes.length <= 1) return false;
-      return nodes.every((node) => node.values && !node.children);
-    }
+      // Helper to determine if a list of nodes should be a radio group
+      function isRadioGroup(nodes) {
+        if (!nodes || nodes.length <= 1) return false;
+        return nodes.every((node) => node.values && !node.children);
+      }
 
-    function filterNodes(nodes, term) {
-      if (!term) return nodes;
+      function filterNodes(nodes, term) {
+        if (!term) return nodes;
 
-      return nodes
-        .map((node) => {
-          const labelMatch = node.label
-            .toLowerCase()
-            .includes(term.toLowerCase());
+        return nodes
+          .map((node) => {
+            const labelMatch = node.label
+              .toLowerCase()
+              .includes(term.toLowerCase());
 
-          if (node.children) {
-            const filteredChildren = filterNodes(node.children, term);
-            const hasMatchingChild = filteredChildren.length > 0;
+            if (node.children) {
+              const filteredChildren = filterNodes(node.children, term);
+              const hasMatchingChild = filteredChildren.length > 0;
 
-            if (labelMatch) {
-              // Match on this category: Return it with ALL children (original), expanded
-              return { ...node, _forceOpen: true };
-            } else if (hasMatchingChild) {
-              // Match in descendants: Return with filtered children, expanded
-              return { ...node, children: filteredChildren, _forceOpen: true };
+              if (labelMatch) {
+                // Match on this category: Return it with ALL children (original), expanded
+                return { ...node, _forceOpen: true };
+              } else if (hasMatchingChild) {
+                // Match in descendants: Return with filtered children, expanded
+                return {
+                  ...node,
+                  children: filteredChildren,
+                  _forceOpen: true,
+                };
+              }
+            } else {
+              // Leaf node
+              if (labelMatch) return node;
             }
-          } else {
-            // Leaf node
-            if (labelMatch) return node;
-          }
-          return null;
-        })
-        .filter((n) => n !== null);
-    }
-
-    function createButton(label, id, isExpanded) {
-      const btn = document.createElement("button");
-      btn.className =
-        "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
-      btn.id = id;
-
-      const spanLabel = document.createElement("span");
-      spanLabel.textContent = label;
-
-      const spanIcon = document.createElement("span");
-      spanIcon.className = "icon text-2xl transition-transform duration-300";
-      spanIcon.textContent = "▼";
-      if (isExpanded) spanIcon.style.transform = "rotate(180deg)";
-
-      btn.appendChild(spanLabel);
-      btn.appendChild(spanIcon);
-
-      return { btn, icon: spanIcon };
-    }
-
-    function createInputRow(node, path, type, groupName) {
-      const label = document.createElement("label");
-      label.className =
-        "text-white  md:text-purple-abbott py-2 px-8 text-left text-xl md:text-2xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
-
-      const inputContainer = document.createElement("div");
-      inputContainer.className = "relative flex items-center mt-1";
-
-      const input = document.createElement("input");
-      input.type = type;
-      input.className =
-        "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott transition-all bg-transparent";
-
-      if (type === "checkbox") {
-        input.classList.add("rounded");
-      } else {
-        input.classList.add("rounded-full");
+            return null;
+          })
+          .filter((n) => n !== null);
       }
 
-      input.name = groupName || path; // Group name for radios, path for checkbox
-      input.value = JSON.stringify(node.values || {});
-      input.dataset.path = path;
+      function createButton(label, id, isExpanded) {
+        const btn = document.createElement("button");
+        btn.className =
+          "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
+        btn.id = id;
 
-      const indicator = document.createElement("div");
-      indicator.className =
-        "absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity";
+        const spanLabel = document.createElement("span");
+        spanLabel.textContent = label;
 
-      if (type === "radio") {
-        // Inner circle for radio
-        const dot = document.createElement("div");
-        dot.className = "w-2.5 h-2.5 bg-white rounded-full";
-        indicator.appendChild(dot);
-      } else {
-        // Checkmark for checkbox
-        indicator.innerHTML = `<svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`;
+        const spanIcon = document.createElement("span");
+        spanIcon.className = "icon text-2xl transition-transform duration-300";
+        spanIcon.textContent = "▼";
+        if (isExpanded) spanIcon.style.transform = "rotate(180deg)";
+
+        btn.appendChild(spanLabel);
+        btn.appendChild(spanIcon);
+
+        return { btn, icon: spanIcon };
       }
 
-      inputContainer.appendChild(input);
-      inputContainer.appendChild(indicator);
+      function createInputRow(node, path, type, groupName) {
+        const label = document.createElement("label");
+        label.className =
+          "text-white  md:text-purple-abbott py-2 px-8 text-left text-xl md:text-2xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
 
-      const textSpan = document.createElement("span");
-      textSpan.className = "flex-1 leading-tight";
-      textSpan.textContent = node.label;
+        const inputContainer = document.createElement("div");
+        inputContainer.className = "relative flex items-center mt-1";
 
-      label.appendChild(inputContainer);
-      label.appendChild(textSpan);
+        const input = document.createElement("input");
+        input.type = type;
+        input.className =
+          "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott transition-all bg-transparent";
 
-      // Event Listener
-      input.addEventListener("change", (e) => {
-        const target = e.target;
-        let val = {};
-        try {
-          val = JSON.parse(target.value);
-        } catch (err) {}
+        if (type === "checkbox") {
+          input.classList.add("rounded");
+        } else {
+          input.classList.add("rounded-full");
+        }
+
+        input.name = groupName || path; // Group name for radios, path for checkbox
+        input.value = JSON.stringify(node.values || {});
+        input.dataset.path = path;
+
+        const indicator = document.createElement("div");
+        indicator.className =
+          "absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity";
 
         if (type === "radio") {
-          formState[groupName] = {
-            path: path,
-            values: val,
-            type: "radio",
-          };
+          // Inner circle for radio
+          const dot = document.createElement("div");
+          dot.className = "w-2.5 h-2.5 bg-white rounded-full";
+          indicator.appendChild(dot);
         } else {
-          if (target.checked) {
-            formState[path] = {
+          // Checkmark for checkbox
+          indicator.innerHTML = `<svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`;
+        }
+
+        inputContainer.appendChild(input);
+        inputContainer.appendChild(indicator);
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "flex-1 leading-tight";
+        textSpan.textContent = node.label;
+
+        label.appendChild(inputContainer);
+        label.appendChild(textSpan);
+
+        // Event Listener
+        input.addEventListener("change", (e) => {
+          const target = e.target;
+          let val = {};
+          try {
+            val = JSON.parse(target.value);
+          } catch (err) {}
+
+          if (type === "radio") {
+            formState[groupName] = {
+              path: path,
               values: val,
-              type: "checkbox",
+              type: "radio",
             };
           } else {
-            delete formState[path];
-          }
-        }
-        // console.log("Form State:", formState);
-        updateDrawer();
-      });
-
-      return label;
-    }
-
-    function renderNodes(nodes, parentContainer, parentPath = "", level = 0) {
-      if (!nodes) return;
-
-      const isGroupRadio = isRadioGroup(nodes);
-      const groupName = isGroupRadio ? `group-${parentPath}` : null;
-
-      nodes.forEach((node, index) => {
-        const currentPath = parentPath ? `${parentPath}-${index}` : `${index}`;
-
-        // Case 1: Node is a Group (has children)
-        if (node.children) {
-          const wrapper = document.createElement("div");
-          wrapper.className = "w-full flex flex-col gap-4"; // Added gap for spacing
-
-          const { btn, icon } = createButton(
-            node.label,
-            `btn-${currentPath}`,
-            node._forceOpen
-          );
-
-          const content = document.createElement("div");
-          content.id = `content-${currentPath}`;
-
-          // Apply border and indentation to all levels (Level 0 content = Level 1 items, etc.)
-          // "linea mas pegada al contenido" -> reduced pl (pl-3)
-          // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
-          content.className =
-            "hidden flex-col gap-3 mt-4 pl-3 border-l-2 border-purple-abbott/30 ml-4 md:ml-8";
-
-          if (node._forceOpen) {
-            content.classList.remove("hidden");
-            content.classList.add("flex");
-          }
-
-          btn.onclick = (e) => {
-            e.stopPropagation();
-            const isHidden = content.classList.contains("hidden");
-            if (isHidden) {
-              content.classList.remove("hidden");
-              content.classList.add("flex");
-              icon.style.transform = "rotate(180deg)";
+            if (target.checked) {
+              formState[path] = {
+                values: val,
+                type: "checkbox",
+              };
             } else {
-              content.classList.add("hidden");
-              content.classList.remove("flex");
-              icon.style.transform = "rotate(0deg)";
+              delete formState[path];
             }
-          };
+          }
+          // console.log("Form State:", formState);
+          updateDrawer();
+        });
 
-          wrapper.appendChild(btn);
-          wrapper.appendChild(content);
-          parentContainer.appendChild(wrapper);
-
-          // Recurse
-          renderNodes(node.children, content, currentPath, level + 1);
-        }
-        // Case 2: Node is a Leaf (has values)
-        else if (node.values) {
-          const type = isGroupRadio ? "radio" : "checkbox";
-          const row = createInputRow(node, currentPath, type, groupName);
-          parentContainer.appendChild(row);
-        }
-      });
-    }
-
-    searchInput.addEventListener("input", (e) => {
-      const term = e.target.value;
-
-      if (term.length > 0) {
-        clearSearchBtn.classList.remove("hidden");
-      } else {
-        clearSearchBtn.classList.add("hidden");
+        return label;
       }
 
-      const filtered = filterNodes(criterios, term);
-      container.innerHTML = ""; // Clear
-      renderNodes(filtered, container);
-    });
+      function renderNodes(nodes, parentContainer, parentPath = "", level = 0) {
+        if (!nodes) return;
 
-    clearSearchBtn.addEventListener("click", () => {
-      searchInput.value = "";
-      clearSearchBtn.classList.add("hidden");
-      container.innerHTML = "";
-      renderNodes(criterios, container);
-      searchInput.focus();
-    });
+        const isGroupRadio = isRadioGroup(nodes);
+        const groupName = isGroupRadio ? `group-${parentPath}` : null;
 
-    // Toggle All Logic
-    const toggleAllBtn = document.getElementById("toggle-all-btn");
+        nodes.forEach((node, index) => {
+          const currentPath = parentPath
+            ? `${parentPath}-${index}`
+            : `${index}`;
 
-    if (toggleAllBtn) {
-      toggleAllBtn.addEventListener("click", () => {
-        const allContents = document.querySelectorAll('[id^="content-"]');
-        // Check if ANY content is currently visible (expanded)
-        const anyExpanded = Array.from(allContents).some(
-          (content) => !content.classList.contains("hidden")
-        );
+          // Case 1: Node is a Group (has children)
+          if (node.children) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "w-full flex flex-col gap-4"; // Added gap for spacing
 
-        const triggers = document.querySelectorAll(".accordion-trigger");
-        triggers.forEach((btn) => {
-          const contentId = btn.id.replace("btn-", "content-");
-          const content = document.getElementById(contentId);
-          const icon = btn.querySelector(".icon");
+            const { btn, icon } = createButton(
+              node.label,
+              `btn-${currentPath}`,
+              node._forceOpen
+            );
 
-          if (content && icon) {
-            if (anyExpanded) {
-              // Collapse All
-              content.classList.add("hidden");
-              content.classList.remove("flex");
-              icon.style.transform = "rotate(0deg)";
-            } else {
-              // Expand All
+            const content = document.createElement("div");
+            content.id = `content-${currentPath}`;
+
+            // Apply border and indentation to all levels (Level 0 content = Level 1 items, etc.)
+            // "linea mas pegada al contenido" -> reduced pl (pl-3)
+            // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
+            content.className =
+              "hidden flex-col gap-3 mt-4 pl-3 border-l-2 border-purple-abbott/30 ml-4 md:ml-8";
+
+            if (node._forceOpen) {
               content.classList.remove("hidden");
               content.classList.add("flex");
-              icon.style.transform = "rotate(180deg)";
             }
+
+            btn.onclick = (e) => {
+              e.stopPropagation();
+              const isHidden = content.classList.contains("hidden");
+              if (isHidden) {
+                content.classList.remove("hidden");
+                content.classList.add("flex");
+                icon.style.transform = "rotate(180deg)";
+              } else {
+                content.classList.add("hidden");
+                content.classList.remove("flex");
+                icon.style.transform = "rotate(0deg)";
+              }
+            };
+
+            wrapper.appendChild(btn);
+            wrapper.appendChild(content);
+            parentContainer.appendChild(wrapper);
+
+            // Recurse
+            renderNodes(node.children, content, currentPath, level + 1);
+          }
+          // Case 2: Node is a Leaf (has values)
+          else if (node.values) {
+            const type = isGroupRadio ? "radio" : "checkbox";
+            const row = createInputRow(node, currentPath, type, groupName);
+            parentContainer.appendChild(row);
           }
         });
+      }
+
+      searchInput.addEventListener("input", (e) => {
+        const term = e.target.value;
+
+        if (term.length > 0) {
+          clearSearchBtn.classList.remove("hidden");
+        } else {
+          clearSearchBtn.classList.add("hidden");
+        }
+
+        const filtered = filterNodes(criterios, term);
+        container.innerHTML = ""; // Clear
+        renderNodes(filtered, container);
       });
-    }
 
-    // Reset Logic
-    const resetTestBtn = document.getElementById("reset-test-btn");
-
-    if (resetTestBtn) {
-      resetTestBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // Prevent drawer toggle
-
-        // Clear state
-        formState = {};
-
-        // Clear search
+      clearSearchBtn.addEventListener("click", () => {
         searchInput.value = "";
         clearSearchBtn.classList.add("hidden");
-
-        // Re-render (clears inputs)
         container.innerHTML = "";
         renderNodes(criterios, container);
-
-        // Update drawer
-        updateDrawer();
+        searchInput.focus();
       });
-    }
 
-    // Initial Render
-    renderNodes(criterios, container);
+      // Toggle All Logic
+      const toggleAllBtn = document.getElementById("toggle-all-btn");
 
-    // Drawer Logic
-    const drawerToggle = document.getElementById("drawer-toggle");
-    const resultsDrawer = document.getElementById("results-drawer");
-    const drawerIcon = document.getElementById("drawer-icon");
-    const resultsSummary = document.getElementById("results-summary");
+      if (toggleAllBtn) {
+        toggleAllBtn.addEventListener("click", () => {
+          const allContents = document.querySelectorAll('[id^="content-"]');
+          // Check if ANY content is currently visible (expanded)
+          const anyExpanded = Array.from(allContents).some(
+            (content) => !content.classList.contains("hidden")
+          );
 
-    if (drawerToggle) {
-      drawerToggle.addEventListener("click", () => {
-        const isClosed = resultsDrawer.classList.contains(
-          "translate-y-[calc(100%-5rem)]"
-        );
-        if (isClosed) {
-          // Open
-          resultsDrawer.classList.remove("translate-y-[calc(100%-5rem)]");
-          resultsDrawer.classList.add("translate-y-0");
-          drawerIcon.style.transform = "rotate(180deg)";
-        } else {
-          // Close
-          resultsDrawer.classList.remove("translate-y-0");
-          resultsDrawer.classList.add("translate-y-[calc(100%-5rem)]");
-          drawerIcon.style.transform = "rotate(0deg)";
-        }
-      });
-    }
+          const triggers = document.querySelectorAll(".accordion-trigger");
+          triggers.forEach((btn) => {
+            const contentId = btn.id.replace("btn-", "content-");
+            const content = document.getElementById(contentId);
+            const icon = btn.querySelector(".icon");
 
-    function getBadgeColor(num) {
-      switch (num) {
-        case 1:
-          return "bg-[#009A44]";
-        case 2:
-          return "bg-[#8BC53F]";
-        case 3:
-          return "bg-[#FDB913]";
-        case 4:
-          return "bg-[#E30613]";
-        default:
-          return "bg-gray-400";
+            if (content && icon) {
+              if (anyExpanded) {
+                // Collapse All
+                content.classList.add("hidden");
+                content.classList.remove("flex");
+                icon.style.transform = "rotate(0deg)";
+              } else {
+                // Expand All
+                content.classList.remove("hidden");
+                content.classList.add("flex");
+                icon.style.transform = "rotate(180deg)";
+              }
+            }
+          });
+        });
       }
-    }
 
-    function calculateScores() {
-      const methods = ["AOC", "IM", "AVC", "PSP", "ISP", "IMP"];
-      const result = {};
-      console.log(formState);
-      const selectedValues = Object.values(formState).map((s) => s.values);
+      // Reset Logic
+      const resetTestBtn = document.getElementById("reset-test-btn");
 
-      // If no selection, return null to show placeholder
-      if (selectedValues.length === 0) return null;
+      if (resetTestBtn) {
+        resetTestBtn.addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent drawer toggle
 
-      methods.forEach((method) => {
-        let maxI = 0;
-        let maxC = 0;
-        let hasN = false;
-        let hasValue = false;
+          // Clear state
+          formState = {};
 
-        selectedValues.forEach((valObj) => {
-          const val = valObj[method];
-          if (val === undefined) return;
+          // Clear search
+          searchInput.value = "";
+          clearSearchBtn.classList.add("hidden");
 
-          hasValue = true;
-          if (val === "N") {
-            hasN = true;
-          } else if (typeof val === "number") {
-            if (val > maxI) maxI = val;
-            if (val > maxC) maxC = val;
-          } else if (typeof val === "object" && val !== null) {
-            if (val.I > maxI) maxI = val.I;
-            if (val.C > maxC) maxC = val.C;
+          // Re-render (clears inputs)
+          container.innerHTML = "";
+          renderNodes(criterios, container);
+
+          // Update drawer
+          updateDrawer();
+        });
+      }
+
+      // Initial Render
+      renderNodes(criterios, container);
+
+      // Drawer Logic
+      const drawerToggle = document.getElementById("drawer-toggle");
+      const resultsDrawer = document.getElementById("results-drawer");
+      const drawerIcon = document.getElementById("drawer-icon");
+      const resultsSummary = document.getElementById("results-summary");
+
+      if (drawerToggle) {
+        drawerToggle.addEventListener("click", () => {
+          const isClosed = resultsDrawer.classList.contains(
+            "translate-y-[calc(100%-5rem)]"
+          );
+          if (isClosed) {
+            // Open
+            resultsDrawer.classList.remove("translate-y-[calc(100%-5rem)]");
+            resultsDrawer.classList.add("translate-y-0");
+            drawerIcon.style.transform = "rotate(180deg)";
+          } else {
+            // Close
+            resultsDrawer.classList.remove("translate-y-0");
+            resultsDrawer.classList.add("translate-y-[calc(100%-5rem)]");
+            drawerIcon.style.transform = "rotate(0deg)";
+          }
+        });
+      }
+
+      function getBadgeColor(num) {
+        switch (num) {
+          case 1:
+            return "bg-[#009A44]";
+          case 2:
+            return "bg-[#8BC53F]";
+          case 3:
+            return "bg-[#FDB913]";
+          case 4:
+            return "bg-[#E30613]";
+          default:
+            return "bg-gray-400";
+        }
+      }
+
+      function calculateScores() {
+        const methods = ["AOC", "IM", "AVC", "PSP", "ISP", "IMP"];
+        const result = {};
+        console.log(formState);
+        const selectedValues = Object.values(formState).map((s) => s.values);
+
+        // If no selection, return null to show placeholder
+        if (selectedValues.length === 0) return null;
+
+        methods.forEach((method) => {
+          let maxI = 0;
+          let maxC = 0;
+          let hasN = false;
+          let hasValue = false;
+
+          selectedValues.forEach((valObj) => {
+            const val = valObj[method];
+            if (val === undefined) return;
+
+            hasValue = true;
+            if (val === "N") {
+              hasN = true;
+            } else if (typeof val === "number") {
+              if (val > maxI) maxI = val;
+              if (val > maxC) maxC = val;
+            } else if (typeof val === "object" && val !== null) {
+              if (val.I > maxI) maxI = val.I;
+              if (val.C > maxC) maxC = val.C;
+            }
+          });
+
+          if (hasN) {
+            result[method] = "N";
+          } else if (hasValue) {
+            // If we found values, use the max found.
+            // If maxI is still 0 (e.g. only 'N' was found but handled above, or empty objects?),
+            // actually if hasValue is true and not N, we should have numbers.
+            // Unless the value was {I:0, C:0} which shouldn't happen.
+            // Default to 1 if for some reason we have a selection but no risk?
+            // Actually, if I select a condition that doesn't mention AOC, val is undefined.
+            // If I select a condition that has AOC: 1, maxI=1.
+            // If I select multiple, we take max.
+            // If maxI is 0, it means we only encountered undefineds? No, hasValue checks that.
+            result[method] = { I: maxI || 1, C: maxC || 1 };
+          } else {
+            // No selection touched this method. Default to 1?
+            // If the user has selected *something*, usually we assume 1 for everything else unless specified.
+            result[method] = { I: 1, C: 1 };
           }
         });
 
-        if (hasN) {
-          result[method] = "N";
-        } else if (hasValue) {
-          // If we found values, use the max found.
-          // If maxI is still 0 (e.g. only 'N' was found but handled above, or empty objects?),
-          // actually if hasValue is true and not N, we should have numbers.
-          // Unless the value was {I:0, C:0} which shouldn't happen.
-          // Default to 1 if for some reason we have a selection but no risk?
-          // Actually, if I select a condition that doesn't mention AOC, val is undefined.
-          // If I select a condition that has AOC: 1, maxI=1.
-          // If I select multiple, we take max.
-          // If maxI is 0, it means we only encountered undefineds? No, hasValue checks that.
-          result[method] = { I: maxI || 1, C: maxC || 1 };
-        } else {
-          // No selection touched this method. Default to 1?
-          // If the user has selected *something*, usually we assume 1 for everything else unless specified.
-          result[method] = { I: 1, C: 1 };
-        }
-      });
-
-      return result;
-    }
-
-    function updateDrawer() {
-      const scores = calculateScores();
-      resultsSummary.innerHTML = "";
-
-      if (!scores) {
-        resultsSummary.innerHTML =
-          '<span class="text-gray-400 italic">Selecciona criterios para ver resultados...</span>';
-        return;
+        return result;
       }
 
-      const sortedEntries = Object.entries(scores)
-        .filter(([_, score]) => score !== "N")
-        .sort((a, b) => {
-          const valA = Math.max(a[1].I, a[1].C);
-          const valB = Math.max(b[1].I, b[1].C);
-          return valA - valB;
-        });
+      function updateDrawer() {
+        const scores = calculateScores();
+        resultsSummary.innerHTML = "";
 
-      sortedEntries.forEach(([method, score]) => {
-        const wrapper = document.createElement("div");
-        wrapper.className = "flex flex-col items-center min-w-[3rem]";
+        const detailedResultsContainer =
+          document.getElementById("detailed-results");
+        if (detailedResultsContainer) detailedResultsContainer.innerHTML = "";
 
-        const badge = document.createElement("div");
-        // Base classes
-        badge.className =
-          "w-10 h-10 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-lg mb-1 transition-colors";
+        const methodNames = {
+          AOC: "Anticonceptivos orales combinados",
+          IM: "Inyectables mensuales",
+          AVC: "Anillo vaginal combinado",
+          PSP: "Píldoras de solo progestágeno",
+          ISP: "Inyectables de solo progestágeno",
+          IMP: "Implantes",
+        };
 
-        let text = "";
-        let colorClass = "";
-
-        if (score.I === score.C) {
-          text = score.I;
-          colorClass = getBadgeColor(score.I);
-        } else {
-          text = `${score.I}|${score.C}`;
-          const maxVal = Math.max(score.I, score.C);
-          colorClass = getBadgeColor(maxVal);
-          badge.classList.add("text-sm");
+        if (!scores) {
+          resultsSummary.innerHTML =
+            '<span class="text-gray-400 italic">Selecciona criterios para ver resultados...</span>';
+          if (detailedResultsContainer) {
+            detailedResultsContainer.innerHTML =
+              '<p class="text-gray-500 italic text-center py-4">Selecciona criterios para ver tus resultados detallados.</p>';
+          }
+          return;
         }
 
-        // Add color class
-        // We use the exact strings that are present in the HTML to ensure Tailwind picks them up
-        if (colorClass === "bg-[#009A44]") badge.classList.add("bg-[#009A44]");
-        else if (colorClass === "bg-[#8BC53F]")
-          badge.classList.add("bg-[#8BC53F]");
-        else if (colorClass === "bg-[#FDB913]")
-          badge.classList.add("bg-[#FDB913]");
-        else if (colorClass === "bg-[#E30613]")
-          badge.classList.add("bg-[#E30613]");
-        else badge.classList.add("bg-gray-400");
+        const sortedEntries = Object.entries(scores)
+          .filter(([_, score]) => score !== "N")
+          .sort((a, b) => {
+            const valA = Math.max(a[1].I, a[1].C);
+            const valB = Math.max(b[1].I, b[1].C);
+            return valA - valB;
+          });
 
-        badge.textContent = text;
+        sortedEntries.forEach(([method, score]) => {
+          const wrapper = document.createElement("div");
+          wrapper.className = "flex flex-col items-center min-w-[3rem]";
 
-        const label = document.createElement("span");
-        label.className = "text-xs font-bold text-purple-abbott";
-        label.textContent = method;
+          const badge = document.createElement("div");
+          // Base classes
+          badge.className =
+            "w-10 h-10 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-lg mb-1 transition-colors";
 
-        wrapper.appendChild(badge);
-        wrapper.appendChild(label);
-        resultsSummary.appendChild(wrapper);
-      });
-    }
-  }, { once: true });
+          let text = "";
+          let colorClass = "";
+
+          if (score.I === score.C) {
+            text = score.I;
+            colorClass = getBadgeColor(score.I);
+          } else {
+            text = `${score.I}|${score.C}`;
+            const maxVal = Math.max(score.I, score.C);
+            colorClass = getBadgeColor(maxVal);
+            badge.classList.add("text-sm");
+          }
+
+          // Add color class
+          // We use the exact strings that are present in the HTML to ensure Tailwind picks them up
+          if (colorClass === "bg-[#009A44]")
+            badge.classList.add("bg-[#009A44]");
+          else if (colorClass === "bg-[#8BC53F]")
+            badge.classList.add("bg-[#8BC53F]");
+          else if (colorClass === "bg-[#FDB913]")
+            badge.classList.add("bg-[#FDB913]");
+          else if (colorClass === "bg-[#E30613]")
+            badge.classList.add("bg-[#E30613]");
+          else badge.classList.add("bg-gray-400");
+
+          badge.textContent = text;
+
+          const label = document.createElement("span");
+          label.className = "text-xs font-bold text-purple-abbott";
+          label.textContent = method;
+
+          wrapper.appendChild(badge);
+          wrapper.appendChild(label);
+          resultsSummary.appendChild(wrapper);
+
+          // Detailed Result Item
+          if (detailedResultsContainer) {
+            const detailRow = document.createElement("div");
+            detailRow.className =
+              "flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100";
+
+            const detailBadge = document.createElement("div");
+            detailBadge.className = `w-16 h-16 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-2xl shrink-0 ${colorClass}`;
+            detailBadge.textContent = text;
+
+            const detailInfo = document.createElement("div");
+            detailInfo.className = "flex flex-col";
+
+            const detailTitle = document.createElement("span");
+            detailTitle.className = "font-bold text-purple-abbott text-xl";
+            detailTitle.textContent = `${method}`;
+
+            const detailDesc = document.createElement("span");
+            detailDesc.className = "text-gray-600";
+            detailDesc.textContent = methodNames[method] || "";
+
+            detailInfo.appendChild(detailTitle);
+            detailInfo.appendChild(detailDesc);
+
+            detailRow.appendChild(detailBadge);
+            detailRow.appendChild(detailInfo);
+            detailedResultsContainer.appendChild(detailRow);
+          }
+        });
+      }
+    },
+    { once: true }
+  );
 </script>
