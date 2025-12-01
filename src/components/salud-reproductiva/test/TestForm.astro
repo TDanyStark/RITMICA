@@ -1,6 +1,7 @@
 ---
 import { URL_BASE } from "@/config";
 import { criterios } from "@/data/CriteriosEligibilidad";
+import { testScenarios } from "./test-scenarios";
 ---
 
 <div
@@ -229,7 +230,7 @@ import { criterios } from "@/data/CriteriosEligibilidad";
   }
 </style>
 
-<script is:inline data-astro-rerun define:vars={{ criterios }}>
+<script is:inline data-astro-rerun define:vars={{ criterios, testScenarios }}>
   document.addEventListener(
     "astro:page-load",
     () => {
@@ -727,6 +728,65 @@ import { criterios } from "@/data/CriteriosEligibilidad";
           }
         });
       }
+
+      // --- HERRAMIENTAS DE TESTING ---
+      window.ritmicaTest = {
+        getState: () => JSON.parse(JSON.stringify(formState)),
+        loadState: (newState) => {
+          formState = JSON.parse(JSON.stringify(newState));
+          
+          // Sincronizar UI
+          // Primero desmarcar todo
+          const allInputs = container.querySelectorAll('input[data-path]');
+          allInputs.forEach(input => input.checked = false);
+
+          // Luego marcar lo necesario
+          allInputs.forEach(input => {
+             const path = input.dataset.path;
+             const groupName = input.name;
+             if (input.type === 'checkbox') {
+                if (formState[path]) input.checked = true;
+             } else if (input.type === 'radio') {
+                const groupState = formState[groupName];
+                if (groupState && groupState.path === path) input.checked = true;
+             }
+          });
+          updateDrawer();
+          console.log("Estado de prueba cargado. Verifica el drawer.");
+        },
+        selectOption: (text) => {
+           const labels = Array.from(container.querySelectorAll('label'));
+           const label = labels.find(l => l.textContent.toLowerCase().includes(text.toLowerCase()));
+           if(label) {
+             const input = label.querySelector('input');
+             if(input) {
+                input.click();
+                console.log(`Seleccionado: ${text}`);
+             }
+           } else {
+             console.warn(`Opción no encontrada: ${text}`);
+           }
+        },
+        scenarios: testScenarios,
+        runScenario: (id) => {
+            const scenario = testScenarios.find(s => s.id === id);
+            if(scenario) {
+                console.log(`%cEjecutando escenario ${id}: ${scenario.name}`, "color: #6b21a8; font-weight: bold; font-size: 1.2em;");
+                console.log(`%c${scenario.description}`, "color: #555; font-style: italic;");
+                window.ritmicaTest.loadState(scenario.state);
+            } else {
+                console.error("Escenario no encontrado");
+            }
+        },
+        listScenarios: () => {
+            console.table(testScenarios.map(s => ({id: s.id, name: s.name, description: s.description})));
+        }
+      };
+      
+      console.log("%c🔧 Ritmica Testing Tools", "background: #6b21a8; color: white; padding: 4px; border-radius: 4px; font-weight: bold;");
+      console.log("Usa window.ritmicaTest.listScenarios() para ver los casos disponibles.");
+      console.log("Usa window.ritmicaTest.runScenario(id) para ejecutar uno.");
+
     },
     { once: true }
   );
