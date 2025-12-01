@@ -1,0 +1,190 @@
+<div
+  id="results-drawer"
+  class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.15)] z-50 mx-2 rounded-t-3xl transition-all duration-300 transform translate-y-[calc(100%-5rem)]"
+>
+  <!-- Handle / Summary Bar -->
+  <button
+    id="drawer-toggle"
+    class="w-full h-20 flex items-center justify-between px-4 md:px-8 bg-white rounded-t-3xl relative z-20 focus:outline-none group"
+  >
+    <div
+      class="flex items-center gap-2 md:gap-4 overflow-x-auto no-scrollbar flex-1 pr-4"
+      id="results-summary"
+    >
+      <!-- Results will be injected here -->
+      <span class="text-gray-400 italic"
+        >Selecciona criterios para ver resultados...</span
+      >
+    </div>
+
+    <div class="flex items-center gap-2 px-2">
+      <div
+        id="reset-test-btn"
+        class="text-purple-abbott hover:bg-purple-100 rounded-full cursor-pointer transition-colors"
+        title="Reiniciar Test"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+          ></path>
+        </svg>
+      </div>
+
+      <div
+        class="flex flex-col items-center justify-center text-purple-abbott opacity-50 group-hover:opacity-100 transition-opacity"
+      >
+        <svg
+          id="drawer-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 transition-transform duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"></path>
+        </svg>
+      </div>
+    </div>
+  </button>
+
+  <!-- Expanded Content -->
+  <div
+    class="contenedor_with_scroll_2 bg-gray-50 p-6 md:p-8 pb-10 max-h-[60vh] overflow-y-auto border-t border-gray-100"
+  >
+    <div class="max-w-4xl mx-auto">
+      <div id="detailed-results" class="grid grid-cols-1 gap-4 mb-8">
+        <!-- Detailed results injected via JS -->
+      </div>
+
+      <h3 class="text-purple-abbott font-bold text-xl mb-6">
+        Referencia de Métodos
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm">
+          <span class="font-bold text-purple-abbott">AOC</span>
+          <span class="text-sm text-gray-600"
+            >Anticonceptivos orales combinados</span
+          >
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm">
+          <span class="font-bold text-purple-abbott">IM</span>
+          <span class="text-sm text-gray-600">Inyectables mensuales</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm">
+          <span class="font-bold text-purple-abbott">AVC</span>
+          <span class="text-sm text-gray-600">Anillo vaginal combinado</span>
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm">
+          <span class="font-bold text-purple-abbott">PSP</span>
+          <span class="text-sm text-gray-600"
+            >Píldoras de solo progestágeno</span
+          >
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm">
+          <span class="font-bold text-purple-abbott">ISP</span>
+          <span class="text-sm text-gray-600"
+            >Inyectables de solo progestágeno</span
+          >
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-white shadow-sm">
+          <span class="font-bold text-purple-abbott">IMP</span>
+          <span class="text-sm text-gray-600">Implantes</span>
+        </div>
+      </div>
+
+      <h3 class="text-purple-abbott font-bold text-xl mt-8 mb-4">Categorías</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-full bg-[#009A44] text-white flex items-center justify-center font-bold"
+          >
+            1
+          </div>
+          <span class="text-sm">Use el método en cualquier circunstancia.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-full bg-[#8BC53F] text-white flex items-center justify-center font-bold"
+          >
+            2
+          </div>
+          <span class="text-sm">En general, use el método.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-full bg-[#FDB913] text-white flex items-center justify-center font-bold"
+          >
+            3
+          </div>
+          <span class="text-sm">En general, no se recomienda el método.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-full bg-[#E30613] text-white flex items-center justify-center font-bold"
+          >
+            4
+          </div>
+          <span class="text-sm">No use el método.</span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <p class="text-xs">
+          <strong>Referencias:</strong>
+          <strong>1.</strong> Departamento de Salud Reproductiva e Investigaciones
+          Conexas de la Organización Mundial de la Salud (OMS/SSR) y Escuela de Salud
+          Pública Bloomberg de la Universidad Johns Hopkins/Centro para Programas
+          de Comunicación (CCP), Knowledge SUCCESS. Planificación familiar: Un manual
+          mundial para proveedores, Edición 2022. Baltimore y Ginebra: CCP y OMS;
+          2022.
+        </p>
+
+        <a
+          href="https://co.medicinespro.abbott/wp-content/uploads/2025/02/portafolio-2026.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block mt-4 py-2 px-6 rounded-full text-white bg-purple-abbott font-semibold"
+        >
+          Conozca el portafolio Abbott para elegir la mejor opción
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .contenedor_with_scroll_2::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .contenedor_with_scroll_2::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .contenedor_with_scroll_2::-webkit-scrollbar-thumb {
+    background: var(--color-purple-abbott);
+    border-radius: 4px;
+  }
+</style>
