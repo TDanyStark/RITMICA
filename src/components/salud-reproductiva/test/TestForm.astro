@@ -76,6 +76,17 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       const clearSearchBtn = document.getElementById("clear-search");
       let formState = {};
 
+      // Unificado: mapa de métodos -> nombre legible. Usar `Object.keys(METHOD_MAP)`
+      // cuando se necesite la lista de métodos.
+      const METHOD_MAP = {
+        AOC: "Anticonceptivos orales combinados",
+        IM: "Inyectables mensuales",
+        AVC: "Anillo vaginal combinado",
+        PSP: "Píldoras de solo progestágeno",
+        ISP: "Inyectables de solo progestágeno",
+        IMP: "Implantes",
+      };
+
       // Helper to determine if a list of nodes should be a radio group
       function isRadioGroup(nodes) {
         if (!nodes || nodes.length <= 1) return false;
@@ -402,10 +413,10 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       }
 
       function calculateScores() {
-        const methods = ["AOC", "IM", "AVC", "PSP", "ISP", "IMP"];
+        const methods = Object.keys(METHOD_MAP);
         const result = {};
-        console.log(formState);
         const selectedValues = Object.values(formState).map((s) => s.values);
+
 
         // If no selection, return null to show placeholder
         if (selectedValues.length === 0) return null;
@@ -463,14 +474,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           document.getElementById("detailed-results");
         if (detailedResultsContainer) detailedResultsContainer.innerHTML = "";
 
-        const methodNames = {
-          AOC: "Anticonceptivos orales combinados",
-          IM: "Inyectables mensuales",
-          AVC: "Anillo vaginal combinado",
-          PSP: "Píldoras de solo progestágeno",
-          ISP: "Inyectables de solo progestágeno",
-          IMP: "Implantes",
-        };
+        const methodNames = METHOD_MAP;
 
         if (!scores) {
           resultsSummary.innerHTML =
@@ -514,15 +518,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
           // Add color class
           // We use the exact strings that are present in the HTML to ensure Tailwind picks them up
-          if (colorClass === "bg-[#009A44]")
-            badge.classList.add("bg-[#009A44]");
-          else if (colorClass === "bg-[#8BC53F]")
-            badge.classList.add("bg-[#8BC53F]");
-          else if (colorClass === "bg-[#FDB913]")
-            badge.classList.add("bg-[#FDB913]");
-          else if (colorClass === "bg-[#E30613]")
-            badge.classList.add("bg-[#E30613]");
-          else badge.classList.add("bg-gray-400");
+          badge.classList.add(colorClass);
 
           badge.textContent = text;
 
