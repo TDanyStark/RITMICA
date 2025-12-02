@@ -1,0 +1,78 @@
+---
+import { URL_BASE } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import TestSVG from "@/assets/TestSVG.astro";
+import SaludSVG from "@/assets/SaludSVG.astro";
+import PautasSVG from "@/assets/Pautas.astro";
+import HomeSVG from "@/assets/HomeSVG.astro";
+---
+
+<Layout>
+  <section
+    class="overflow-clip bg-right"
+    style={`
+      background-image: url('${URL_BASE}/img/bg_salud_intima.webp');
+      background-size: cover;
+    `}
+  >
+    <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
+      <Header with="tuciclo" />
+      <main class="flex-1 p-4 flex flex-col md:flex-row gap-10 relative z-10">
+        <div class="md:border-r md:border-purple-abbott w-96 max-w-full">
+          <h1
+            class="text-purple-abbott font-bold text-center text-4xl md:text-6xl"
+          >
+            RIT<span class="text-white md:text-pink-abbott">MICA</span>
+          </h1>
+
+          <img
+            src={`${URL_BASE}/img/womans/salud_intima_2.webp`}
+            alt="Salud Intima"
+            transition:name="salud-intima-transition"
+            class="w-full h-auto max-h-[300px] md:max-h-[600px] object-contain"
+          />
+        </div>
+        <section class="flex-1 flex flex-col justify-between gap-10">
+          <div class="flex flex-col md:flex-row items-center gap-4">
+            <SaludSVG />
+            <div class="text-center md:text-left text-purple-abbott">
+              <h2 class="text-4xl md:text-6xl uppercase font-bold">
+                Salud reproductiva
+              </h2>
+              <p class="text-2xl md:text-3xl">
+                Criterios de elegibilidad para el uso de anticonceptivos
+                hormonales
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex-1 mt-12 text-4xl md:text-6xl md:px-16 flex flex-col gap-10 text-center"
+          >
+            <a
+              href={`${URL_BASE}/salud-intima/test`}
+              class="group flex flex-col md:flex-row gap-6 items-center md:text-left bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
+            >
+              <TestSVG />
+              <span>TEST</span>
+            </a>
+            <a
+              href={`${URL_BASE}/salud-intima/pautas`}
+              class="group flex flex-col md:flex-row gap-6 items-center md:text-left bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
+            >
+              <PautasSVG />
+              <span>PAUTAS DE BIENESTAR</span>
+            </a>
+          </div>
+          <div class="flex justify-end">
+            <a href={`${URL_BASE}/menu`}>
+              <HomeSVG />
+            </a>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </section>
+</Layout>

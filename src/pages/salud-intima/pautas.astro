@@ -1,0 +1,124 @@
+---
+import { URL_BASE } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import PautasSVG from "@/assets/Pautas.astro";
+import HomeSVG from "@/assets/HomeSVG.astro";
+import Buttons from "@/components/salud-reproductiva/pautas/Buttons.astro";
+---
+
+<Layout>
+  <section
+    class="overflow-clip bg-position-[70%] md:bg-right"
+    style={`
+      background-image: url('${URL_BASE}/img/bg_salud_reproductiva.webp');
+      background-size: cover;
+    `}
+  >
+    <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
+      <Header with="tuciclo" />
+      <div
+        class="md:absolute right-0 md:top-16 bg-purple-abbott text-white text-center py-2 px-8 md:rounded-l-full text-sm md:text-base font-semibold"
+      >
+        INFECCIONES <span class="font-normal mr-px">VAGINALES</span>
+      </div>
+      <main class="flex-1 p-4 flex flex-col md:flex-row gap-10 relative z-10">
+        <div class="md:border-r md:border-purple-abbott w-96 max-w-full">
+          <div class="flex items-center justify-center gap-4">
+            <PautasSVG />
+            <h1 class="text-purple-abbott text-3xl leading-5">
+              <span class="block font-bold text-5xl">PAUTAS</span> DE BIENESTAR
+            </h1>
+          </div>
+
+          <img
+            src={`${URL_BASE}/img/womans/salud_intima_4.webp`}
+            alt="Salud intima"
+            class="w-full h-auto max-h-[300px] md:max-h-[600px] object-contain"
+          />
+        </div>
+        <section class="flex-1 flex flex-col justify-between gap-4">
+          <div
+            class="contenedor_with_scroll flex-1 mt-6 md:max-h-[649px] overflow-auto"
+          >
+            <h2
+              class="text-purple-abbott font-bold text-3xl md:text-5xl text-center md:text-left"
+            >
+              PAUTAS DE BIENESTAR <span class="block font-light"
+                >Y CUIDADO ÍNTIMO</span
+              >
+            </h2>
+            <div class="mt-4 text-xl md:text-2xl">
+              <h3 class="font-bold">
+                Puntos clave para mantener la salud vulvar, vaginal y perineal:
+              </h3>
+              <ul class="list-inside list-disc mt-4 lista_1">
+                <li>
+                  Es fundamental educar a las mujeres sobre la anatomía y
+                  fisiología femeninas, así como en el lenguaje adecuado para
+                  referirse a la vulva y la vagina, con el fin de lograr
+                  conversaciones asertivas sobre los síntomas vulvares,
+                  vaginales y sexuales.
+                </li>
+                <li>
+                  En la conversación debe abordarse el tema de los procedimientos estéticos íntimos y la depilación completa de la vulva, informando sobre el incremento del riesgo de sufrir infecciones que conlleva estas prácticas.
+                </li>
+                <li>
+                  Entre los puntos para enseñar a las mujeres se incluyen:
+                  <ul class="list-disc list-outside ml-10 list_2">
+                    <li>
+                      La vulva está protegida contra las infecciones por el escudo vulvar, que es el conjunto de sistemas protectores compuesto por la microbiota, el vello púbico y las células epiteliales queratinizadas.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  La vagina está protegida por la microbiota, un pH ácido, el moco y el sistema inmunitario vaginal.
+                </li>
+                <li>
+                  Uno de los factores que influyen en la salud íntima es la zona perianal debido a su potencial para influir en la microbiota local, de modo que las correctas prácticas de higiene son esenciales para evitar infecciones recurrentes por Candida, vaginosis bacteriana, infecciones urinarias, vaginitis por E. coli y cistitis poscoital.
+                </li>
+                <li>
+                  La higiene adecuada incluye lavar la vulva una vez al día, máximo 2, con un jabón hipoalergénico y suave, así como la limpieza inmediata después de la evacuación intestinal, de adelante hacia atrás.
+                </li>
+                <li>
+                  Es importante que los productos de higiene tengan los componentes adecuados con el fin de evitar desequilibrios en el pH y la microbiota.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <a href={`${URL_BASE}/salud-intima`} aria-label="Ir a Salud Intima">
+              <HomeSVG />
+            </a>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contenedor_with_scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .contenedor_with_scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .contenedor_with_scroll::-webkit-scrollbar-thumb {
+    background: var(--color-purple-abbott);
+    border-radius: 4px;
+  }
+
+  .lista_1 li::marker {
+    color: var(--color-purple-abbott);
+
+  }
+  .list_2 li::marker {
+    color: var(--color-pink-abbott);
+  }
+</style>
