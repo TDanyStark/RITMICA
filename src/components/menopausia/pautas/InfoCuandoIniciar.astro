@@ -1,7 +1,202 @@
+---
+import { URL_BASE } from "@/config";
+---
+
 <div id="info-cuando-iniciar" class="info-content hidden">
-  <h2 class="text-2xl font-bold mb-4">CUÁNDO INICIAR LA TERAPIA HORMONAL</h2>
-  <p>
-    Contenido sobre cuándo iniciar la terapia hormonal y consideraciones
-    previas.
+  <!-- tabla para CUÁNDO INICIAR - formato similar a InfoEtapasConceptos -->
+  <div class="overflow-x-auto mt-6 border border-purple-abbott rounded-lg">
+    <table class="w-full border-collapse text-sm bg-white rounded-lg">
+      <tbody>
+        <tr class="align-top">
+          <th
+            class="px-6 py-6 border-r border-purple-abbott text-purple-abbott font-bold w-1/3 text-left"
+            >SÍNTOMAS MOLESTOS (SVM / CLIMATÉRICOS):</th
+          >
+          <td class="px-6 py-6 border-b border-purple-abbott"
+            >Iniciar THM en mujeres que se encuentren dentro de los 10 años del
+            comienzo de la menopausia natural o que sean menores de 60 años.</td
+          >
+        </tr>
+        <tr class="align-top">
+          <th
+            class="px-6 py-6 border-t border-r border-purple-abbott text-purple-abbott font-bold text-left"
+            >INSUFICIENCIA OVÁRICA PREMATURA (IOP):</th
+          >
+          <td class="px-6 py-6 border-t border-b border-purple-abbott"
+            >Iniciar TRH independientemente de la presencia de síntomas
+            climatéricos, ya que los beneficios multimodales superan claramente
+            el riesgo. Debe continuarse hasta la edad prevista de la menopausia
+            natural.</td
+          >
+        </tr>
+        <tr class="align-top">
+          <th
+            class="px-6 py-6 border-t border-r border-purple-abbott text-purple-abbott font-bold text-left"
+            >PROTECCIÓN ÓSEA:</th
+          >
+          <td class="px-6 py-6 border-t border-purple-abbott"
+            >En mujeres sin síntomas, menores de 60 años, se puede considerar la
+            THM para la protección ósea.</td
+          >
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- nueva tabla -->
+  <div class="overflow-x-auto mt-6 border border-purple-abbott rounded-lg">
+    <table class="border-collapse text-sm bg-white rounded-lg">
+      <thead>
+        <tr>
+          <th
+            class="bg-purple-abbott text-white px-6 py-3 text-left font-bold rounded-tl-lg min-w-48"
+            >HISTORIA CLÍNICA</th
+          >
+          <th class="bg-purple-abbott text-white border-l px-6 py-3 text-left font-bold min-w-48"
+            >PRUEBAS DE SANGRE</th
+          >
+          <th class="bg-purple-abbott text-white border-l px-6 py-3 text-left font-bold"
+            >ASPECTOS ADICIONALES</th
+          >
+          <th
+            class="bg-purple-abbott text-white border-l px-6 py-3 text-left font-bold rounded-tr-lg"
+            >SEGUIMIENTO</th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-6 py-6 border-r border-purple-abbott align-top">
+            <ul class="list-disc ml-5 text-sm">
+              <li>
+                Síntomas de la menopausia (síntomas vasomotores, trastornos del
+                sueño, trastornos del estado de ánimo)
+              </li>
+              <li>Comorbilidades</li>
+              <li>
+                Características del ciclo menstrual (patrones de sangrado,
+                regularidad)
+              </li>
+              <li>Medicamentos (pasados y actuales) y suplementos</li>
+              <li>
+                Factores relacionados con el estilo de vida, incluidos los
+                determinantes sociales de la salud
+              </li>
+              <li>
+                Historia personal con énfasis en el historial obstétrico,
+                paridad, modo de parto, cirugías (ginecológicas), enfermedad
+                cardiovascular, osteoporosis, cánceres
+              </li>
+            </ul>
+          </td>
+          <td class="px-6 py-6 border-r border-purple-abbott align-top">
+            <p class="font-bold mb-2">Hemograma completo</p>
+            <ul class="list-disc ml-5 text-sm lista_1">
+              <li>Glucosa en sangre en ayunas</li>
+              <li>Función renal</li>
+              <li>Función hepática</li>
+              <li>Perfil lipídico</li>
+            </ul>
+            <p class="font-semibold mt-3">Opcionales:</p>
+            <ul class="list-disc ml-5 text-sm lista_1">
+              <li>FSH (&lt;45 años)</li>
+              <li>Función tiroidea</li>
+              <li>Vitamina D</li>
+            </ul>
+          </td>
+          <td class="px-6 py-6 border-r border-purple-abbott align-top">
+            <p class="font-bold mb-2">Peso/altura</p>
+            <ul class="list-disc ml-5 text-sm">
+              <li>Circunferencia de la cintura</li>
+              <li>Presión sanguínea</li>
+            </ul>
+            <p class="font-semibold mt-3">Si está indicado:</p>
+            <ul class="list-disc ml-5 text-sm lista_1">
+              <li>Examen pélvico/mamario</li>
+              <li>Examen de tiroides</li>
+              <li>Mamografía</li>
+              <li>Densitometría ósea</li>
+              <li>Papanicolaou/detección del virus del papiloma humano</li>
+            </ul>
+          </td>
+          <td class="px-6 py-6 align-top">
+            <ul class="list-disc ml-5 text-sm">
+              <li>
+                Revisión después de 3 meses y posteriormente cada 1-2 años:
+              </li>
+              <li>Evaluación de los síntomas</li>
+              <li>Presión arterial</li>
+              <li>
+                Cambios en el estado de salud (perfil de riesgos/beneficios)
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-10 text-xl space-y-4">
+    <div
+      class="flex items-center flex-col md:flex-row gap-4 p-8 bg-pink-abbott text-white rounded-lg"
+    >
+      <img
+        src={`${URL_BASE}/img/items/enfoque.webp`}
+        alt="Logo enfoque"
+        class="h-20"
+      />
+      <div>
+        <strong class="block">Enfoque holístico:</strong>
+        <p>
+          El manejo no debe centrarse solo en la terapia hormonal, sino también
+          en el estado de salud general y los factores psicosociales. Se debe
+          aconsejar sobre el estilo de vida (dieta, ejercicio, sueño, manejo del
+          estrés).
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="flex items-center flex-col md:flex-row gap-4 p-8 bg-pink-abbott text-white rounded-lg"
+    >
+      <img
+        src={`${URL_BASE}/img/items/tomadedesiciones.webp`}
+        alt="Logo enfoque"
+        class="h-20"
+      />
+      <div>
+        <strong class="block">Toma de decisiones compartida:</strong>
+        <p>
+          La mujer debe estar bien informada sobre los beneficios y riesgos del
+          tratamiento y otras opciones para individualizar la decisión.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="flex items-center flex-col md:flex-row gap-4 p-8 bg-pink-abbott text-white rounded-lg"
+    >
+      <img
+        src={`${URL_BASE}/img/items/reevaluacion.webp`}
+        alt="Logo enfoque"
+        class="h-20"
+      />
+      <div>
+        <strong class="block">Reevaluación del tratamiento:</strong>
+        <p>
+          Los efectos de la THM para los síntomas deben reevaluarse después de 3
+          meses. Si la respuesta es inadecuada o hay efectos adversos, se debe
+          reevaluar la dosis y la formulación.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4 text-xs">
+  <p class="mt-2">
+    <strong>Referencias: 1.</strong> Lumsden MA, Dekkers OM, Faubion SS, et al. European
+    society of endocrinology clinical practice guideline for evaluation and management
+    of menopause and the perimenopause. Eur J Endocrinol. 2025 Sep 30;193(4):G49-G81.
   </p>
 </div>
