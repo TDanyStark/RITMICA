@@ -63,36 +63,37 @@ import InfoBeneficios from "./InfoBeneficios.astro";
   <InfoRecomendaciones />
   <InfoBeneficios />
 
-<script>
-  const menu = document.getElementById("main-menu");
-  const contentArea = document.getElementById("content-area");
-  const backBtn = document.getElementById("btn-back");
-  const buttons = document.querySelectorAll(".menu-btn");
-  const contents = document.querySelectorAll(".info-content");
+  <script>
+    const menu = document.getElementById("main-menu");
+    const contentArea = document.getElementById("content-area");
+    const backBtn = document.getElementById("btn-back");
+    const buttons = document.querySelectorAll(".menu-btn");
+    const contents = document.querySelectorAll(".info-content");
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.id.replace("btn-", "info-");
-      const content = document.getElementById(id);
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.id.replace("btn-", "info-");
+        const content = document.getElementById(id);
 
-      if (content) {
-        menu?.classList.add("hidden");
-        contentArea?.classList.remove("hidden");
-        contentArea?.classList.add("flex", "flex-col");
+        if (content) {
+          menu?.classList.add("hidden");
+          contentArea?.classList.remove("hidden");
+          contentArea?.classList.add("flex", "flex-col");
 
-        // Hide all contents first
-        contents.forEach((c) => c.classList.add("hidden"));
-        // Show selected content
-        content.classList.remove("hidden");
-      }
+          // Hide all contents first
+          contents.forEach((c) => c.classList.add("hidden"));
+          // Show selected content
+          content.classList.remove("hidden");
+        }
+      });
     });
-  });
 
-  backBtn?.addEventListener("click", () => {
-    contentArea?.classList.add("hidden");
-    contentArea?.classList.remove("flex", "flex-col");
-    menu?.classList.remove("hidden");
-    // Hide all contents
-    contents.forEach((c) => c.classList.add("hidden"));
-  });
-</script>
+    backBtn?.addEventListener("click", () => {
+      contentArea?.classList.add("hidden");
+      contentArea?.classList.remove("flex", "flex-col");
+      menu?.classList.remove("hidden");
+      // Hide all contents
+      contents.forEach((c) => c.classList.add("hidden"));
+    });
+  </script>
+</div>
