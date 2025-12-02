@@ -1,3 +1,7 @@
+---
+import { URL_BASE } from "@/config";
+---
+
 <div id="info-etapas-conceptos" class="info-content hidden">
   <h2 class="text-2xl font-bold mb-4 text-purple-abbott">
     ETAPAS DE LA MENOPAUSIA / CONCEPTOS CLAVE
@@ -215,5 +219,20 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="mt-10">
+    <div class="flex items-center flex-col md:flex-row gap-4 p-8 bg-purple-abbott text-white rounded-lg">
+      <img src={`${URL_BASE}/img/items/THM.webp`} alt="Logo THM" class="h-24" />
+      <p class="text-2xl">
+        <strong>THM (terapia hormonal para la menopausia):</strong> administrada para tratar los síntomas de la menopausia. Se puede comenzar antes de la menopausia y continuar durante muchos años después de esta.
+      </p>
+    </div>
+    <div class="flex items-center flex-col md:flex-row gap-4 p-8 bg-purple-abbott text-white rounded-lg mt-6">
+      <img src={`${URL_BASE}/img/items/TRH.webp`} alt="Logo TRH" class="h-24" />
+      <p class="text-2xl">
+        <strong>TRH (terapia de reemplazo hormonal):</strong>  administrada a mujeres jóvenes con insuficiencia ovárica prematura o menopausia temprana, para restaurar los niveles de estrógeno a los rangos premenopáusicos y prevenir complicaciones relacionadas con la deficiencia estrogénica. 
+      </p>
+    </div>
   </div>
 </div>
