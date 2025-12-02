@@ -1,0 +1,117 @@
+---
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
+interface Props {
+  class?: string;
+  strokeWidth?: number;
+  primaryColor?: string;
+  secondaryColor?: string;
+}
+
+const {
+  class: classProp,
+  strokeWidth = 10,
+  primaryColor = "#762A82",
+  secondaryColor = "#D786B4",
+} = Astro.props;
+
+const centerShift = 444 / 2 - 207.708;
+---
+
+<svg
+  class={twMerge(clsx(classProp, "w-16 md:w-24 h-auto"))}
+  width="444"
+  height="511"
+  viewBox="0 0 444 520"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M222.69 395.23V509.16"
+    stroke={primaryColor}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <path
+    d="M288 333L221 396"
+    stroke={`url(#paint0_linear_${primaryColor.replace("#", "")})`}
+    stroke-width={strokeWidth}></path>
+  <path
+    d="M157 333L224 396"
+    stroke={`url(#paint1_linear_${primaryColor.replace("#", "")})`}
+    stroke-width={strokeWidth}></path>
+  <g transform={`translate(${centerShift} 0)`}> 
+    <path
+      d="M207.708 278.685C233.741 278.685 254.861 257.842 254.861 232.126C254.861 195.433 224.747 177.76 207.708 143.96C190.67 177.8 160.556 195.433 160.556 232.126C160.556 257.842 181.676 278.685 207.708 278.685Z"
+      stroke={secondaryColor}
+      stroke-width={strokeWidth}
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+    <path
+      d="M149.976 255.148L258.586 190.44"
+      stroke={secondaryColor}
+      stroke-width={strokeWidth}
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </g>
+
+  <path
+    d="M377.999 2.93121C377.961 1.27479 376.588 -0.0372025 374.931 0.000788764C373.275 0.03878 371.963 1.41237 372.001 3.06879L375 3L377.999 2.93121ZM407.649 510.566L406.715 513.416L412.416 515.285L413.351 512.434L410.5 511.5L407.649 510.566ZM433 245.5L435.925 244.835L435.917 244.8L435.909 244.766L433 245.5ZM375 3L372.001 3.06879C373.258 57.8939 381.317 93.0548 392.331 127.416C403.353 161.806 417.117 194.839 430.091 246.234L433 245.5L435.909 244.766C422.882 193.161 408.897 159.444 398.044 125.584C387.182 91.6952 379.242 57.1061 377.999 2.93121L375 3ZM433 245.5L430.075 246.165C443.194 303.841 437.645 369.879 428.731 421.679C424.28 447.543 419.004 469.784 414.841 485.555C412.76 493.439 410.959 499.703 409.679 503.991C409.039 506.134 408.53 507.784 408.181 508.895C408.007 509.45 407.873 509.871 407.783 510.151C407.738 510.291 407.704 510.396 407.682 510.466C407.67 510.5 407.662 510.526 407.657 510.543C407.654 510.551 407.652 510.557 407.651 510.561C407.65 510.563 407.65 510.564 407.649 510.565C407.649 510.566 407.649 510.566 410.5 511.5C413.351 512.434 413.351 512.433 413.352 512.432C413.352 512.43 413.353 512.428 413.354 512.425C413.355 512.42 413.358 512.413 413.361 512.403C413.367 512.383 413.377 512.354 413.389 512.317C413.413 512.242 413.449 512.13 413.496 511.984C413.59 511.692 413.728 511.259 413.906 510.691C414.263 509.554 414.78 507.878 415.428 505.707C416.725 501.364 418.544 495.038 420.643 487.086C424.84 471.185 430.157 448.769 434.644 422.696C443.605 370.621 449.306 303.659 435.925 244.835L433 245.5Z"
+    fill={`url(#paint2_linear_${primaryColor.replace("#", "")})`}
+    stroke={primaryColor}
+    stroke-width={strokeWidth - 4}
+    stroke-linejoin="round"></path>
+  <path
+    d="M66.0007 2.93073C66.0389 1.27431 67.4127 -0.0374586 69.0692 0.000799903C70.7256 0.0390585 72.0373 1.41286 71.9991 3.06927L68.9999 3L66.0007 2.93073ZM36.2735 509.06L37.2138 511.909L31.5162 513.789L30.5759 510.94L33.4247 510L36.2735 509.06ZM10.8771 245.3L7.9528 244.63L7.96076 244.596L7.96954 244.561L10.8771 245.3ZM68.9999 3L71.9991 3.06927C70.7389 57.6291 62.6623 92.8658 51.6265 127.305C40.5794 161.779 26.787 194.89 13.7846 246.039L10.8771 245.3L7.96954 244.561C21.0222 193.214 35.0385 159.408 45.9127 125.474C56.7983 91.5033 64.7556 56.8381 66.0007 2.93073L68.9999 3ZM10.8771 245.3L13.8013 245.97C0.655721 303.357 6.21584 369.066 15.1483 420.612C19.6083 446.349 24.8954 468.48 29.0665 484.173C31.1517 492.018 32.9572 498.251 34.2397 502.518C34.8809 504.651 35.3912 506.292 35.7404 507.397C35.9149 507.95 36.0492 508.368 36.1393 508.647C36.1844 508.787 36.2184 508.891 36.2409 508.96C36.2522 508.995 36.2606 509.02 36.2661 509.037C36.2688 509.045 36.2708 509.051 36.272 509.055C36.2726 509.057 36.273 509.058 36.2733 509.059C36.2735 509.06 36.2735 509.06 33.4247 510C30.5759 510.94 30.5755 510.939 30.575 510.938C30.5745 510.936 30.5738 510.934 30.5729 510.931C30.5712 510.926 30.5687 510.919 30.5655 510.909C30.5591 510.889 30.5497 510.861 30.5375 510.823C30.513 510.748 30.477 510.638 30.43 510.492C30.3359 510.201 30.1977 509.77 30.0191 509.205C29.6619 508.074 29.1432 506.406 28.4936 504.245C27.1945 499.923 25.3712 493.627 23.2678 485.714C19.0618 469.89 13.7328 447.583 9.2364 421.636C0.255998 369.814 -5.45771 303.174 7.9528 244.63L10.8771 245.3Z"
+    fill={`url(#paint3_linear_${primaryColor.replace("#", "")})`}
+    stroke={primaryColor}
+    stroke-width={strokeWidth - 4}
+    stroke-linejoin="round"></path>
+  <defs>
+    <linearGradient
+      id={`paint0_linear_${primaryColor.replace("#", "")}`}
+      x1="254.646"
+      y1="333.129"
+      x2="254.646"
+      y2="395.421"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color={primaryColor} stop-opacity="0"></stop>
+      <stop offset="0.2" stop-color={primaryColor}></stop>
+    </linearGradient>
+    <linearGradient
+      id={`paint1_linear_${primaryColor.replace("#", "")}`}
+      x1="190.354"
+      y1="333.129"
+      x2="190.354"
+      y2="395.421"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color={primaryColor} stop-opacity="0"></stop>
+      <stop offset="0.2" stop-color={primaryColor}></stop>
+    </linearGradient>
+    <linearGradient
+      id={`paint2_linear_${primaryColor.replace("#", "")}`}
+      x1="408.39"
+      y1="0.999999"
+      x2="408.39"
+      y2="485"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.8" stop-color={primaryColor}></stop>
+      <stop offset="1" stop-color={primaryColor} stop-opacity="0"></stop>
+    </linearGradient>
+    <linearGradient
+      id={`paint3_linear_${primaryColor.replace("#", "")}`}
+      x1="35.539"
+      y1="1.99511"
+      x2="35.539"
+      y2="483.629"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.8" stop-color={primaryColor}></stop>
+      <stop offset="1" stop-color={primaryColor} stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+</svg>

@@ -4,16 +4,16 @@ import Layout from "@/layouts/Layout.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import TestSVG from "@/assets/TestSVG.astro";
-import SaludSVG from "@/assets/SaludSVG.astro";
 import PautasSVG from "@/assets/Pautas.astro";
 import HomeSVG from "@/assets/HomeSVG.astro";
+import MenopausiaSVG from "@/assets/MenopausiaSVG.astro";
 ---
 
 <Layout>
   <section
     class="overflow-clip bg-right"
     style={`
-      background-image: url('${URL_BASE}/img/bg_salud_reproductiva.avif');
+      background-image: url('${URL_BASE}/img/bg_menopausia.avif');
       background-size: cover;
     `}
   >
@@ -28,22 +28,21 @@ import HomeSVG from "@/assets/HomeSVG.astro";
           </h1>
 
           <img
-            src={`${URL_BASE}/img/womans/salud_reproductiva_2.webp`}
-            alt="Salud Reproductiva"
-            transition:name="salud-reproductiva-transition"
+            src={`${URL_BASE}/img/womans/menopausia_2.webp`}
+            alt="Menopausia"
+            transition:name="menopausia-transition"
             class="w-full h-auto max-h-[300px] md:max-h-[600px] object-contain"
           />
         </div>
         <section class="flex-1 flex flex-col justify-between gap-10">
           <div class="flex flex-col md:flex-row items-center gap-4">
-            <SaludSVG />
+            <MenopausiaSVG />
             <div class="text-center md:text-left text-purple-abbott">
               <h2 class="text-4xl md:text-6xl uppercase font-bold">
-                Salud reproductiva
+                Menopausia
               </h2>
               <p class="text-2xl md:text-3xl">
-                Criterios de elegibilidad para el uso de anticonceptivos
-                hormonales
+                Guía para el diagnóstico y tratamiento de las infecciones vaginales
               </p>
             </div>
           </div>
@@ -51,14 +50,14 @@ import HomeSVG from "@/assets/HomeSVG.astro";
             class="flex-1 mt-12 text-4xl md:text-6xl md:px-16 flex flex-col gap-10 text-center"
           >
             <a
-              href={`${URL_BASE}/salud-reproductiva/test`}
+              href={`${URL_BASE}/menopausia/test`}
               class="group flex flex-col md:flex-row gap-6 items-center md:text-left bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
             >
               <TestSVG />
               <span>TEST</span>
             </a>
             <a
-              href={`${URL_BASE}/salud-reproductiva/pautas`}
+              href={`${URL_BASE}/menopausia/pautas`}
               class="group flex flex-col md:flex-row gap-6 items-center md:text-left bg-white text-purple-abbott py-4 px-10 rounded-2xl hover:scale-105 hover:bg-purple-abbott hover:text-white transition-all duration-300"
             >
               <PautasSVG />
