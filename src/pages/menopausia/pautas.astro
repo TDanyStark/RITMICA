@@ -10,11 +10,8 @@ import Buttons from "@/components/menopausia/pautas/Buttons.astro";
 
 <Layout>
   <section
-    class="overflow-clip bg-position-[70%] md:bg-right"
-    style={`
-      background-image: url('${URL_BASE}/img/bg_menopausia.avif');
-      background-size: cover;
-    `}
+    class="overflow-clip bg-position-[70%] md:bg-right bg-repeat md:bg-no-repeat md:bg-cover salud-bg"
+    style={`--salud-bg: url('${URL_BASE}/img/bg_menopausia.avif')`}
   >
     <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
       <Header with="tuciclo" />
@@ -77,5 +74,20 @@ import Buttons from "@/components/menopausia/pautas/Buttons.astro";
   }
   .list_2 li::marker {
     color: var(--color-pink-abbott);
+  }
+
+    /* Salud section responsive background: pink on mobile, image on desktop */
+  .salud-bg {
+    background: var(--color-pink-abbott);
+  }
+
+  @media (min-width: 768px) {
+    .salud-bg {
+      background-image: var(--salud-bg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: right;
+      background-color: transparent;
+    }
   }
 </style>
