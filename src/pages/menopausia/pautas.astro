@@ -1,0 +1,81 @@
+---
+import { URL_BASE } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import PautasSVG from "@/assets/Pautas.astro";
+import HomeSVG from "@/assets/HomeSVG.astro";
+import Buttons from "@/components/menopausia/pautas/Buttons.astro";
+---
+
+<Layout>
+  <section
+    class="overflow-clip bg-position-[70%] md:bg-right"
+    style={`
+      background-image: url('${URL_BASE}/img/bg_menopausia.avif');
+      background-size: cover;
+    `}
+  >
+    <div class="flex w-9xl max-w-full mx-auto flex-col min-h-screen">
+      <Header with="tuciclo" />
+      <div
+        class="md:absolute right-0 md:top-16 bg-purple-abbott text-white text-center py-2 px-8 md:rounded-l-full text-sm md:text-base font-semibold"
+      >
+        MENOPAUSIA
+      </div>
+      <main class="flex-1 p-4 flex flex-col md:flex-row gap-10 relative z-10">
+        <div class="md:border-r md:border-purple-abbott w-96 max-w-full">
+          <div class="flex items-center justify-center gap-4">
+            <PautasSVG />
+            <h1 class="text-purple-abbott text-3xl leading-5">
+              <span class="block font-bold text-5xl">PAUTAS</span> DE BIENESTAR
+            </h1>
+          </div>
+
+          <img
+            src={`${URL_BASE}/img/womans/menopausia_4.webp`}
+            alt="Menopausia bienestar y cuidado íntimo"
+            class="w-full h-auto max-h-[300px] md:max-h-[600px] object-contain"
+          />
+        </div>
+        <section class="flex-1 flex flex-col justify-between gap-4">
+          <div
+            class="contenedor_with_scroll flex-1 mt-6 md:max-h-[649px] overflow-auto"
+          >
+            <Buttons />
+          </div>
+          <div class="flex justify-end">
+            <a href={`${URL_BASE}/menopausia`} aria-label="Ir a Menopausia">
+              <HomeSVG />
+            </a>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contenedor_with_scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .contenedor_with_scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .contenedor_with_scroll::-webkit-scrollbar-thumb {
+    background: var(--color-purple-abbott);
+    border-radius: 4px;
+  }
+
+  .lista_1 li::marker {
+    color: var(--color-purple-abbott);
+
+  }
+  .list_2 li::marker {
+    color: var(--color-pink-abbott);
+  }
+</style>
