@@ -4,14 +4,28 @@ import Button from "@/components/Button.astro";
 // Add specific content components here if you want to replace the placeholders below
 ---
 
-<div id="main-menu" class="h-full flex flex-col justify-center gap-3 max-w-4xl mx-auto md:p-4 w-full">
-  <Button idbtn="btn-orales-combinados" label="ORALES COMBINADOS"/>
-  <Button idbtn="btn-orales-progestina" label="ORALES DE SOLO PROGESTINA"/>
-  <Button idbtn="btn-inyectables-combinados" label="INYECTABLES COMBINADOS"/>
-  <Button idbtn="btn-inyectables-progestina" label="INYECTABLES DE SOLO PROGESTINA"/>
-  <Button idbtn="btn-anillo-vaginal" label="ANILLO VAGINAL"/>
-  <Button idbtn="btn-implante-subdermico" label="IMPLANTE SUBDÉRMICO"/>
-  <Button idbtn="btn-anticonceptivos-emergencia" label="ANTICONCEPTIVOS DE EMERGENCIA"/>
+<div
+  id="main-menu"
+  class="h-full flex flex-col justify-center gap-3 max-w-4xl mx-auto md:p-4 w-full"
+>
+  <Button
+    idbtn="btn-etapas-conceptos"
+    label="ETAPAS DE LA MENOPAUSIA / CONCEPTOS CLAVE"
+  />
+  <Button idbtn="btn-sintomas" label="SÍNTOMAS" />
+  <Button
+    idbtn="btn-cuando-iniciar"
+    label="CUÁNDO INICIAR LA TERAPIA HORMONAL / CONSIDERACIONES ANTES DE INICIAR"
+  />
+  <Button
+    idbtn="btn-tipo-pacientes"
+    label="TIPO DE PACIENTES EN LAS QUE ESTÁ INDICADA LA TERAPIA HORMONAL"
+  />
+  <Button
+    idbtn="btn-recomendaciones"
+    label="RECOMENDACIONES PARA MUJERES CON CONDICIONES ESPECÍFICAS"
+  />
+  <Button idbtn="btn-beneficios" label="BENEFICIOS DE LA TERAPIA HORMONAL" />
 </div>
 
 <div id="content-area" class="hidden flex-1 md:p-4 w-full">
@@ -37,19 +51,43 @@ import Button from "@/components/Button.astro";
     </button>
   </div>
 
-  <!-- <InfoOralesCombinados />
+  <!-- Placeholder content sections for each menu item. Replace with real components as needed. -->
+  <div id="info-etapas-conceptos" class="info-content hidden">
+    <h2 class="text-2xl font-bold mb-4">
+      ETAPAS DE LA MENOPAUSIA / CONCEPTOS CLAVE
+    </h2>
+    <p>Contenido general sobre etapas de la menopausia y conceptos clave.</p>
+  </div>
+  
+  <div id="info-sintomas" class="info-content hidden">
+    <h2 class="text-2xl font-bold mb-4">SÍNTOMAS</h2>
+    <p>Contenido sobre los síntomas de la menopausia.</p>
+  </div>
 
-  <InfoOralesSoloProgestina />
+  <div id="info-cuando-iniciar" class="info-content hidden">
+    <h2 class="text-2xl font-bold mb-4">CUÁNDO INICIAR LA TERAPIA HORMONAL</h2>
+    <p>
+      Contenido sobre cuándo iniciar la terapia hormonal y consideraciones
+      previas.
+    </p>
+  </div>
 
-  <InfoInyectablesCombinados />
+  <div id="info-tipo-pacientes" class="info-content hidden">
+    <h2 class="text-2xl font-bold mb-4">TIPO DE PACIENTES</h2>
+    <p>
+      Contenido sobre los tipos de pacientes indicadas para terapia hormonal.
+    </p>
+  </div>
 
-  <InfoInyectablesSoloProgestina />
+  <div id="info-recomendaciones" class="info-content hidden">
+    <h2 class="text-2xl font-bold mb-4">RECOMENDACIONES</h2>
+    <p>Recomendaciones para mujeres con condiciones específicas.</p>
+  </div>
 
-  <InfoAnilloVaginal />
-
-  <InfoImplanteSubdermico />
-
-  <InfoAnticonceptivosEmergencia /> -->
+  <div id="info-beneficios" class="info-content hidden">
+    <h2 class="text-2xl font-bold mb-4">BENEFICIOS</h2>
+    <p>Beneficios de la terapia hormonal.</p>
+  </div>
 </div>
 
 <script>
