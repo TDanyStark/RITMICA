@@ -21,7 +21,7 @@ export const criterios: CriteriaNode[] = [
         children: [
           {
             label: "De la menarquia a <40 años",
-            values: { AOC: 1, IM: 1, AVC: 1, PSP: "N", ISP: "N", IMP: "N" },
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 2, IMP: 1 },
           },
           {
             label: "De la menarquia a <18 años",
@@ -29,11 +29,7 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "≥40 años",
-            values: { AOC: 2, IM: 2, AVC: 2, PSP: "N", ISP: "N", IMP: "N" },
-          },
-          {
-            label: "18 a 45 años",
-            values: { AOC: "N", IM: "N", AVC: "N", PSP: 1, ISP: 1, IMP: 1 },
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
             label: ">45 años",
@@ -532,7 +528,7 @@ export const criterios: CriteriaNode[] = [
         ],
       },
       {
-        label: "Enfermedad inflamatoria pélvica (EIP)",
+        label: "Enfermedad pélvica inflamatoria (EPI)",
         children: [
           {
             label: "Con embarazo ulterior",
@@ -543,7 +539,7 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "EIP actual",
+            label: "EPI actual",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
         ],
