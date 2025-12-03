@@ -149,6 +149,10 @@ export const criterios: CriteriaNode[] = [
               },
             ],
           },
+          {
+            label: "No fumadora",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          }
         ],
       },
       {
@@ -161,7 +165,7 @@ export const criterios: CriteriaNode[] = [
           {
             label: "Índice de masa corporal <30 kg/m2",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          },
+          }
         ],
       },
     ],
@@ -394,9 +398,14 @@ export const criterios: CriteriaNode[] = [
             ],
           },
           {
+            label: "No presenta",
+            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+          },
+          {
             label: "Epilepsia",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
+          
         ],
       },
     ],
