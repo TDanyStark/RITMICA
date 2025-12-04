@@ -96,14 +96,14 @@ export const condicionesMenopausia: CondicionesMenopausia = [
               "THM solo estrógeno oral": 2,
               "THM solo estrógeno trans": 2,
               Tibolona: {
-                C:{
+                C: {
                   val: 2,
-                  condition: "<55"
+                  condition: "<55",
                 },
-                I:{
+                I: {
                   val: 1,
-                  condition: ">55"
-                }
+                  condition: ">55",
+                },
               },
               "THM local": 1,
             },
@@ -116,14 +116,14 @@ export const condicionesMenopausia: CondicionesMenopausia = [
               "THM solo estrógeno oral": 2,
               "THM solo estrógeno trans": 2,
               Tibolona: {
-                C:{
+                C: {
                   val: 2,
-                  condition: "<55"
+                  condition: "<55",
                 },
-                I:{
+                I: {
                   val: 1,
-                  condition: ">55"
-                }
+                  condition: ">55",
+                },
               },
               "THM local": 1,
             },
@@ -137,44 +137,44 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             label: "<5 años",
             values: {
               "THM combinada oral": {
-                C:{
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
-              "THM combinada trans":{
-                C:{
+              "THM combinada trans": {
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
-              "THM solo estrógeno oral":{
-                C:{
+              "THM solo estrógeno oral": {
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
-              "THM solo estrógeno trans":{
-                C:{
+              "THM solo estrógeno trans": {
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
               Tibolona: 2,
               "THM local": 1,
@@ -184,44 +184,44 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             label: ">5 años",
             values: {
               "THM combinada oral": {
-                C:{
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
-              "THM combinada trans":{
-                C:{
+              "THM combinada trans": {
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
-              "THM solo estrógeno oral":{
-                C:{
+              "THM solo estrógeno oral": {
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
-              "THM solo estrógeno trans":{
-                C:{
+              "THM solo estrógeno trans": {
+                C: {
                   val: 2,
-                  condition: "(continuación de la THM)"
+                  condition: "(continuación de la THM)",
                 },
-                I:{
+                I: {
                   val: 3,
-                  condition: "(inicio de la THM y >10 años de menopausia)"
-                }
+                  condition: "(inicio de la THM y >10 años de menopausia)",
+                },
               },
               Tibolona: 2,
               "THM local": 1,
@@ -277,17 +277,20 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         values: {
           "THM combinada oral": {
             val: "NA",
-            condition: "Si fuese necesaria la THM, utilizar la vía transdérmica",
+            condition:
+              "Si fuese necesaria la THM, utilizar la vía transdérmica",
           },
           "THM combinada trans": 3,
           "THM solo estrógeno oral": {
             val: "NA",
-            condition: "Si fuese necesaria la THM, utilizar la vía transdérmica",
+            condition:
+              "Si fuese necesaria la THM, utilizar la vía transdérmica",
           },
           "THM solo estrógeno trans": 3,
           Tibolona: {
             val: "NA",
-            condition: "Si fuese necesaria la THM, utilizar la vía transdérmica",
+            condition:
+              "Si fuese necesaria la THM, utilizar la vía transdérmica",
           },
           "THM local": 1,
         },
@@ -327,23 +330,46 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             values: {
               "THM combinada oral": {
                 val: 3,
-                condition: "Puede considerarse la administración de un antiagregante",
+                condition:
+                  "Puede considerarse la administración de un antiagregante",
               },
               "THM combinada trans": {
-                I: { val: 2, condition: "inicio – la migraña aparece antes de la THM" },
-                C: { val: 3, condition: "continuación – la migraña aparece después de la THM" },
+                I: {
+                  val: 2,
+                  condition: "inicio – la migraña aparece antes de la THM",
+                },
+                C: {
+                  val: 3,
+                  condition:
+                    "continuación – la migraña aparece después de la THM",
+                },
               },
               "THM solo estrógeno oral": {
                 val: 3,
-                condition: "Puede considerarse la administración de un antiagregante",
+                condition:
+                  "Puede considerarse la administración de un antiagregante",
               },
               "THM solo estrógeno trans": {
-                I: { val: 2, condition: "inicio – la migraña aparece antes de la THM" },
-                C: { val: 3, condition: "continuación – la migraña aparece después de la THM" },
+                I: {
+                  val: 2,
+                  condition: "inicio – la migraña aparece antes de la THM",
+                },
+                C: {
+                  val: 3,
+                  condition:
+                    "continuación – la migraña aparece después de la THM",
+                },
               },
               Tibolona: {
-                I: { val: 2, condition: "inicio – la migraña aparece antes de la THM" },
-                C: { val: 3, condition: "continuación – la migraña aparece después de la THM" },
+                I: {
+                  val: 2,
+                  condition: "inicio – la migraña aparece antes de la THM",
+                },
+                C: {
+                  val: 3,
+                  condition:
+                    "continuación – la migraña aparece después de la THM",
+                },
               },
               "THM local": 1,
             },
@@ -362,5 +388,202 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         },
       },
     ],
-  }
+  },
+  {
+    label: "FUMA",
+    values: {
+      "THM combinada oral": 3,
+      "THM combinada trans": 2,
+      "THM solo estrógeno oral": 3,
+      "THM solo estrógeno trans": 2,
+      Tibolona: "NA",
+      "THM local": 1,
+    },
+  },
+  {
+    label: "ALTERACIONES METABÓLICAS RELACIONADAS CON EL SÍNDROME METABÓLICO",
+    children: [
+      {
+        label: "Diabetes mellitus",
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": { val: 1, condition: "evidencia limitada" },
+          "THM solo estrógeno oral": {
+            val: 1,
+            condition: "evidencia limitada",
+          },
+          "THM solo estrógeno trans": {
+            val: 1,
+            condition: "evidencia limitada",
+          },
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Hipercolesterolemia",
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Hipercolesterolemia y diabetes",
+        values: {
+          "THM combinada oral": { val: 1, condition: "evidencia limitada" },
+          "THM combinada trans": { val: 1, condition: "evidencia limitada" },
+          "THM solo estrógeno oral": {
+            val: 1,
+            condition: "evidencia limitada",
+          },
+          "THM solo estrógeno trans": {
+            val: 1,
+            condition: "evidencia limitada",
+          },
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "IMC entre 25-30 kg/m2",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 1,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "IMC >30 kg/m2",
+        values: {
+          "THM combinada oral": 3,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+    ],
+  },
+  {
+    label: "ENFERMEDADES DIGESTIVAS",
+    children: [
+      {
+        label: "Enfermedad inflamatoria intestinal",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 1,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Antecedentes de hepatitis C",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Hepatitis aguda",
+        children: [
+          {
+            label: "Grave",
+            values: {
+              "THM combinada oral": 4,
+              "THM combinada trans": 4,
+              "THM solo estrógeno oral": 4,
+              "THM solo estrógeno trans": 4,
+              Tibolona: "NA",
+              "THM local": 1,
+            },
+          },
+          {
+            label: "Leve",
+            values: {
+              "THM combinada oral": 3,
+              "THM combinada trans": 3,
+              "THM solo estrógeno oral": 2,
+              "THM solo estrógeno trans": 2,
+              Tibolona: "NA",
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Cirrosis",
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 4,
+          "THM solo estrógeno oral": 4,
+          "THM solo estrógeno trans": 4,
+          Tibolona: 4,
+          "THM local": 1,
+        },
+      },
+    ],
+  },
+  {
+    label: "CÁNCER DE MAMA",
+    children: [
+      {
+        label: "Receptores hormonales negativos",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 3,
+          "THM local": 2,
+        },
+      },
+      {
+        label: "Receptores hormonales positivos",
+        values: {
+          "THM combinada oral": 3,
+          "THM combinada trans": 3,
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": 3,
+          Tibolona: 4,
+          "THM local": 2,
+        },
+      },
+      {
+        label: "Portadora BRCA1",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Portadora BRCA2",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+    ],
+  },
 ];

@@ -18,7 +18,12 @@ export type DualVal = {
   I: NestedVal;
 };
 
-export type Value = number | "NA" | DualVal | NestedVal;
+export type DualValConditionOnly = {
+  condicion1: NestedVal;
+  condicion2: NestedVal;
+};
+
+export type Value = number | "NA" | DualVal | NestedVal | DualValConditionOnly;
 
 export type ValuesMap = Partial<Record<TreatmentName, Value>>;
 
