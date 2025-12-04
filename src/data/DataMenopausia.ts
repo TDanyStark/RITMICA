@@ -258,4 +258,100 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
     ],
   },
+  {
+    label: "RIESGO TROMBÓTICO",
+    children: [
+      {
+        label: "TVP/EP sin anticoagulación",
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 3,
+          "THM solo estrógeno oral": 4,
+          "THM solo estrógeno trans": 3,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "TVP/EP con anticoagulación de acción directa",
+        values: {
+          "THM combinada oral": "NA",
+          "THM combinada trans": 3,
+          "THM solo estrógeno oral": "NA",
+          "THM solo estrógeno trans": 3,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Trombofilia asintomática",
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+    ],
+  },
+  {
+    label: "TRANSTORNOS NEUROLÓGICOS",
+    children: [
+      {
+        label: "Migraña",
+        children: [
+          {
+            label: "Sin aura",
+            values: {
+              "THM combinada oral": 2,
+              "THM combinada trans": 2,
+              "THM solo estrógeno oral": 2,
+              "THM solo estrógeno trans": 2,
+              Tibolona: "NA",
+              "THM local": 1,
+            },
+          },
+          {
+            label: "Con aura",
+            values: {
+              "THM combinada oral": {
+                val: 3,
+                condition: "Puede considerarse la administración de un antiagregante",
+              },
+              "THM combinada trans": {
+                I: { val: 2, condition: "inicio – la migraña aparece antes de la THM" },
+                C: { val: 3, condition: "continuación – la migraña aparece después de la THM" },
+              },
+              "THM solo estrógeno oral": {
+                val: 3,
+                condition: "Puede considerarse la administración de un antiagregante",
+              },
+              "THM solo estrógeno trans": {
+                I: { val: 2, condition: "inicio – la migraña aparece antes de la THM" },
+                C: { val: 3, condition: "continuación – la migraña aparece después de la THM" },
+              },
+              Tibolona: {
+                I: { val: 2, condition: "inicio – la migraña aparece antes de la THM" },
+                C: { val: 3, condition: "continuación – la migraña aparece después de la THM" },
+              },
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Cefalea tensional",
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": "NA",
+          "THM solo estrógeno trans": "NA",
+          Tibolona: 1,
+          "THM local": 1,
+        },
+      },
+    ],
+  }
 ];

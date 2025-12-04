@@ -18,7 +18,7 @@ export type DualVal = {
   I: NestedVal;
 };
 
-export type Value = number | "NA" | DualVal;
+export type Value = number | "NA" | DualVal | NestedVal;
 
 export type ValuesMap = Partial<Record<TreatmentName, Value>>;
 
