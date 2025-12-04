@@ -62,8 +62,10 @@ import InfoBeneficios from "./InfoBeneficios.astro";
   <InfoTipoPacientes />
   <InfoRecomendaciones />
   <InfoBeneficios />
+</div>
 
-  <script>
+<script data-astro-rerun is:inline>
+  document.addEventListener("astro:page-load", () => {
     const menu = document.getElementById("main-menu");
     const contentArea = document.getElementById("content-area");
     const backBtn = document.getElementById("btn-back");
@@ -95,5 +97,5 @@ import InfoBeneficios from "./InfoBeneficios.astro";
       // Hide all contents
       contents.forEach((c) => c.classList.add("hidden"));
     });
-  </script>
-</div>
+  });
+</script>

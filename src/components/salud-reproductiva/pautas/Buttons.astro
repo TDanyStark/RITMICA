@@ -9,14 +9,23 @@ import InfoImplanteSubdermico from "./InfoImplanteSubdermico.astro";
 import InfoAnticonceptivosEmergencia from "./InfoAnticonceptivosEmergencia.astro";
 ---
 
-<div id="main-menu" class="h-full flex flex-col justify-center gap-3 max-w-4xl mx-auto md:p-4 w-full px-2">
-  <Button idbtn="btn-orales-combinados" label="ORALES COMBINADOS"/>
-  <Button idbtn="btn-orales-progestina" label="ORALES DE SOLO PROGESTINA"/>
-  <Button idbtn="btn-inyectables-combinados" label="INYECTABLES COMBINADOS"/>
-  <Button idbtn="btn-inyectables-progestina" label="INYECTABLES DE SOLO PROGESTINA"/>
-  <Button idbtn="btn-anillo-vaginal" label="ANILLO VAGINAL"/>
-  <Button idbtn="btn-implante-subdermico" label="IMPLANTE SUBDÉRMICO"/>
-  <Button idbtn="btn-anticonceptivos-emergencia" label="ANTICONCEPTIVOS DE EMERGENCIA"/>
+<div
+  id="main-menu"
+  class="h-full flex flex-col justify-center gap-3 max-w-4xl mx-auto md:p-4 w-full px-2"
+>
+  <Button idbtn="btn-orales-combinados" label="ORALES COMBINADOS" />
+  <Button idbtn="btn-orales-progestina" label="ORALES DE SOLO PROGESTINA" />
+  <Button idbtn="btn-inyectables-combinados" label="INYECTABLES COMBINADOS" />
+  <Button
+    idbtn="btn-inyectables-progestina"
+    label="INYECTABLES DE SOLO PROGESTINA"
+  />
+  <Button idbtn="btn-anillo-vaginal" label="ANILLO VAGINAL" />
+  <Button idbtn="btn-implante-subdermico" label="IMPLANTE SUBDÉRMICO" />
+  <Button
+    idbtn="btn-anticonceptivos-emergencia"
+    label="ANTICONCEPTIVOS DE EMERGENCIA"
+  />
 </div>
 
 <div id="content-area" class="hidden flex-1 md:p-4 w-full">
@@ -57,36 +66,38 @@ import InfoAnticonceptivosEmergencia from "./InfoAnticonceptivosEmergencia.astro
   <InfoAnticonceptivosEmergencia />
 </div>
 
-<script>
-  const menu = document.getElementById("main-menu");
-  const contentArea = document.getElementById("content-area");
-  const backBtn = document.getElementById("btn-back");
-  const buttons = document.querySelectorAll(".menu-btn");
-  const contents = document.querySelectorAll(".info-content");
+<script data-astro-rerun is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const menu = document.getElementById("main-menu");
+    const contentArea = document.getElementById("content-area");
+    const backBtn = document.getElementById("btn-back");
+    const buttons = document.querySelectorAll(".menu-btn");
+    const contents = document.querySelectorAll(".info-content");
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.id.replace("btn-", "info-");
-      const content = document.getElementById(id);
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.id.replace("btn-", "info-");
+        const content = document.getElementById(id);
 
-      if (content) {
-        menu?.classList.add("hidden");
-        contentArea?.classList.remove("hidden");
-        contentArea?.classList.add("flex", "flex-col");
+        if (content) {
+          menu?.classList.add("hidden");
+          contentArea?.classList.remove("hidden");
+          contentArea?.classList.add("flex", "flex-col");
 
-        // Hide all contents first
-        contents.forEach((c) => c.classList.add("hidden"));
-        // Show selected content
-        content.classList.remove("hidden");
-      }
+          // Hide all contents first
+          contents.forEach((c) => c.classList.add("hidden"));
+          // Show selected content
+          content.classList.remove("hidden");
+        }
+      });
     });
-  });
 
-  backBtn?.addEventListener("click", () => {
-    contentArea?.classList.add("hidden");
-    contentArea?.classList.remove("flex", "flex-col");
-    menu?.classList.remove("hidden");
-    // Hide all contents
-    contents.forEach((c) => c.classList.add("hidden"));
+    backBtn?.addEventListener("click", () => {
+      contentArea?.classList.add("hidden");
+      contentArea?.classList.remove("flex", "flex-col");
+      menu?.classList.remove("hidden");
+      // Hide all contents
+      contents.forEach((c) => c.classList.add("hidden"));
+    });
   });
 </script>
