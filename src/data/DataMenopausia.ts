@@ -1,4 +1,6 @@
-export const condicionesMenopausia = [
+import type { CondicionesMenopausia } from "./types";
+
+export const condicionesMenopausia: CondicionesMenopausia = [
   {
     label: "EDAD Y DURACION",
     children: [
