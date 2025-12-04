@@ -725,10 +725,26 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       {
         label: "Cáncer de endometrio",
         values: {
-          "THM combinada oral": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
-          "THM combinada trans": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
-          "THM solo estrógeno oral": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
-          "THM solo estrógeno trans": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
+          "THM combinada oral": {
+            val: 2,
+            condition:
+              "menor recurrencia con THM combinada que con THM solo estrógenos",
+          },
+          "THM combinada trans": {
+            val: 2,
+            condition:
+              "menor recurrencia con THM combinada que con THM solo estrógenos",
+          },
+          "THM solo estrógeno oral": {
+            val: 2,
+            condition:
+              "menor recurrencia con THM combinada que con THM solo estrógenos",
+          },
+          "THM solo estrógeno trans": {
+            val: 2,
+            condition:
+              "menor recurrencia con THM combinada que con THM solo estrógenos",
+          },
           Tibolona: 2,
           "THM local": 1,
         },
@@ -749,8 +765,16 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         values: {
           "THM combinada oral": 1,
           "THM combinada trans": 1,
-          "THM solo estrógeno oral": { val: 1, condition: "parece evidenciarse mejor resultado con solo estrógenos" },
-          "THM solo estrógeno trans": { val: 1, condition: "parece evidenciarse mejor resultado con solo estrógenos" },
+          "THM solo estrógeno oral": {
+            val: 1,
+            condition:
+              "parece evidenciarse mejor resultado con solo estrógenos",
+          },
+          "THM solo estrógeno trans": {
+            val: 1,
+            condition:
+              "parece evidenciarse mejor resultado con solo estrógenos",
+          },
           Tibolona: "NA",
           "THM local": 1,
         },
@@ -781,6 +805,268 @@ export const condicionesMenopausia: CondicionesMenopausia = [
   },
   {
     label: "MEDICAMENTOS / INTERACCIONES MEDICAMENTOSAS",
-    children: []
-  }
+    children: [
+      {
+        label: "Antihipertensivos",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 1, condition: "Con drospirenona" },
+            condicion2: {
+              val: 2,
+              condition:
+                "Puede alterar el control de la TA y requerirse ajuste de dosis",
+            },
+          },
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": {
+            val: 2,
+            condition:
+              "Puede alterar el control de la TA y requerirse ajuste de dosis",
+          },
+          "THM solo estrógeno trans": 1,
+          Tibolona: {
+            val: 2,
+            condition:
+              "Puede alterar el control de la TA y requerirse ajuste de dosis",
+          },
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Estatinas",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "tiende a aumentar los TG, LDL y CT",
+            },
+          },
+          "THM combinada trans": {
+            val: 1,
+            condition: "modifica menos el perfil lipídico",
+          },
+          "THM solo estrógeno oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "tiende a aumentar los TG, LDL y CT",
+            },
+          },
+          "THM solo estrógeno trans": {
+            val: 1,
+            condition: "modifica menos el perfil lipídico",
+          },
+          Tibolona: {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "tiende a aumentar los TG, LDL y CT",
+            },
+          },
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Ansiolíticos / hipnóticos",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans": 1,
+              Tibolona: {
+                condicion1: { val: 1, condition: "" },
+                condicion2: {
+                  val: 2,
+                  condition: "2 (con midazolam)",
+                },
+              },
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Analgésicos / antiinflamatorios",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans": 1,
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Antidepresivos",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans": 1,
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Inhibidores de la aromatasa",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 4,
+              "THM combinada trans": 4,
+              "THM solo estrógeno oral": 4,
+              "THM solo estrógeno trans": 4,
+              Tibolona: 4,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Antidiabéticos orales",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans": 1,
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Insulina",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans": 1,
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Hormonas tiroideas",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans": 1,
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Broncodilatadores",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": "1 (con teofilina oral ajustar dosis)",
+              "THM combinada trans": 1,
+              "THM solo estrógeno oral": "1 (con teofilina oral ajustar dosis)",
+              "THM solo estrógeno trans": 1,
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Anticoagulantes",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 1,
+              "THM combinada trans":
+                "2 (se puede requerir ajustar la dosis de Warfarina)",
+              "THM solo estrógeno oral": 1,
+              "THM solo estrógeno trans":
+                "2 (se puede requerir ajustar la dosis de Warfarina)",
+              Tibolona: 1,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "SERMs",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 4,
+              "THM combinada trans": 4,
+              "THM solo estrógeno oral": 4,
+              "THM solo estrógeno trans": 4,
+              Tibolona: 4,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+      {
+        label: "Corticoides",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 2,
+              "THM combinada trans": 2,
+              "THM solo estrógeno oral": 2,
+              "THM solo estrógeno trans": 2,
+              Tibolona: 2,
+              "THM local": 2,
+            },
+          },
+        ],
+      },
+      {
+        label: "Antiepilépticos",
+        children: [
+          {
+            label: "Interacción",
+            values: {
+              "THM combinada oral": 4,
+              "THM combinada trans": 3,
+              "THM solo estrógeno oral": 4,
+              "THM solo estrógeno trans": 3,
+              Tibolona: 4,
+              "THM local": 1,
+            },
+          },
+        ],
+      },
+    ],
+  },
 ];
