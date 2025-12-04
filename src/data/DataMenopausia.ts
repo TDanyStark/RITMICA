@@ -390,6 +390,123 @@ export const condicionesMenopausia: CondicionesMenopausia = [
     ],
   },
   {
+    label: "ENFERMEDAD CARDIOVASCULAR",
+    children: [
+      {
+        label: "Ictus",
+        values: {
+          "THM combinada oral": 3,
+          "THM combinada trans": {
+            condicion1: {
+              val: 3,
+              condition: "",
+            },
+            condicion2: {
+              val: 2,
+              condition:
+                "Paciente que por edad sea tributaria de THM y que su ictus no sea 2º a arterioesclerosis, o bien el ictus sea hemorrágico y su estudio coronario / troncos supraaórticos sean normales y presente otros FR (diabetes mal controlada, tabaquismo, HTA mal controlada, trombofilia, insuficiencia cardiaca)",
+            },
+          },
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": {
+            condicion1: {
+              val: 3,
+              condition: "",
+            },
+            condicion2: {
+              val: 2,
+              condition:
+                "Paciente que por edad sea tributaria de THM y que su ictus no sea 2º a arterioesclerosis, o bien el ictus sea hemorrágico y su estudio coronario / troncos supraaórticos sean normales y presente otros FR (diabetes mal controlada, tabaquismo, HTA mal controlada, trombofilia, insuficiencia cardiaca)",
+            },
+          },
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Infarto agudo de miocardio",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 3, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "sin causa isquémica del IAM ni otros FR",
+            },
+          },
+          "THM combinada trans": {
+            condicion1: { val: 3, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "sin causa isquémica del IAM ni otros FR",
+            },
+          },
+          "THM solo estrógeno oral": {
+            condicion1: { val: 3, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "sin causa isquémica del IAM ni otros FR",
+            },
+          },
+          "THM solo estrógeno trans": {
+            condicion1: { val: 3, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "sin causa isquémica del IAM ni otros FR",
+            },
+          },
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Angina",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+          },
+          "THM combinada trans": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+          },
+          "THM solo estrógeno oral": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+          },
+          "THM solo estrógeno trans": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+          },
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Hipertensión",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: {
+              val: 1,
+              condition: "combinación de estradiol + drospirenona",
+            },
+          },
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: {
+              val: 1,
+              condition: "combinación de estradiol + + noretisterona",
+            },
+          },
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+    ],
+  },
+  {
     label: "FUMA",
     children: [
       {
