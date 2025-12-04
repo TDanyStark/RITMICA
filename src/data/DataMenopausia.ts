@@ -708,4 +708,79 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
     ],
   },
+  {
+    label: "OTROS CÁNCERES",
+    children: [
+      {
+        label: "Cáncer de ovario",
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Cáncer de endometrio",
+        values: {
+          "THM combinada oral": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
+          "THM combinada trans": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
+          "THM solo estrógeno oral": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
+          "THM solo estrógeno trans": { val: 2, condition: "menor recurrencia con THM combinada que con THM solo estrógenos" },
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Cáncer de cérvix",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Cáncer de colon",
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": { val: 1, condition: "parece evidenciarse mejor resultado con solo estrógenos" },
+          "THM solo estrógeno trans": { val: 1, condition: "parece evidenciarse mejor resultado con solo estrógenos" },
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Cáncer de pulmón",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": "NA",
+          "THM solo estrógeno trans": "NA",
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Melanoma",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+    ],
+  },
+  {
+    label: "MEDICAMENTOS / INTERACCIONES MEDICAMENTOSAS",
+    children: []
+  }
 ];
