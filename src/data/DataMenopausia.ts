@@ -391,14 +391,19 @@ export const condicionesMenopausia: CondicionesMenopausia = [
   },
   {
     label: "FUMA",
-    values: {
-      "THM combinada oral": 3,
-      "THM combinada trans": 2,
-      "THM solo estrógeno oral": 3,
-      "THM solo estrógeno trans": 2,
-      Tibolona: "NA",
-      "THM local": 1,
-    },
+    children: [
+      {
+        label: "Si",
+        values: {
+          "THM combinada oral": 3,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": 2,
+          Tibolona: "NA",
+          "THM local": 1,
+        },
+      },
+    ],
   },
   {
     label: "ALTERACIONES METABÓLICAS RELACIONADAS CON EL SÍNDROME METABÓLICO",
