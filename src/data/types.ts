@@ -9,7 +9,7 @@ export type TreatmentName =
   | "THM local";
 
 export type NestedVal = {
-  val: number;
+  val: number | "NA";
   condition: string;
 };
 

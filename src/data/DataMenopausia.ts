@@ -275,11 +275,20 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       {
         label: "TVP/EP con anticoagulación de acción directa",
         values: {
-          "THM combinada oral": "NA",
+          "THM combinada oral": {
+            val: "NA",
+            condition: "Si fuese necesaria la THM, utilizar la vía transdérmica",
+          },
           "THM combinada trans": 3,
-          "THM solo estrógeno oral": "NA",
+          "THM solo estrógeno oral": {
+            val: "NA",
+            condition: "Si fuese necesaria la THM, utilizar la vía transdérmica",
+          },
           "THM solo estrógeno trans": 3,
-          Tibolona: "NA",
+          Tibolona: {
+            val: "NA",
+            condition: "Si fuese necesaria la THM, utilizar la vía transdérmica",
+          },
           "THM local": 1,
         },
       },
