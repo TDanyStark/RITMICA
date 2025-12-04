@@ -869,204 +869,343 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
       {
         label: "Ansiolíticos / hipnóticos",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans": 1,
-              Tibolona: {
-                condicion1: { val: 1, condition: "" },
-                condicion2: {
-                  val: 2,
-                  condition: "2 (con midazolam)",
-                },
-              },
-              "THM local": 1,
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "2 (con midazolam)",
             },
           },
-        ],
+          "THM local": 1,
+        },
       },
       {
         label: "Analgésicos / antiinflamatorios",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans": 1,
-              Tibolona: 1,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
       },
       {
         label: "Antidepresivos",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans": 1,
-              Tibolona: 1,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
       },
       {
         label: "Inhibidores de la aromatasa",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 4,
-              "THM combinada trans": 4,
-              "THM solo estrógeno oral": 4,
-              "THM solo estrógeno trans": 4,
-              Tibolona: 4,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 4,
+          "THM solo estrógeno oral": 4,
+          "THM solo estrógeno trans": 4,
+          Tibolona: 4,
+          "THM local": 1,
+        },
       },
       {
         label: "Antidiabéticos orales",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans": 1,
-              Tibolona: 1,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
       },
       {
         label: "Insulina",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans": 1,
-              Tibolona: 1,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
       },
       {
         label: "Hormonas tiroideas",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans": 1,
-              Tibolona: 1,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 1,
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
       },
       {
         label: "Broncodilatadores",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": "1 (con teofilina oral ajustar dosis)",
-              "THM combinada trans": 1,
-              "THM solo estrógeno oral": "1 (con teofilina oral ajustar dosis)",
-              "THM solo estrógeno trans": 1,
-              Tibolona: 1,
-              "THM local": 1,
-            },
+        values: {
+          "THM combinada oral": {
+            val: 1,
+            condition: "con teofilina oral ajustar dosis",
           },
-        ],
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": {
+            val: 1,
+            condition: "con teofilina oral ajustar dosis",
+          },
+          "THM solo estrógeno trans": 1,
+          Tibolona: {
+            val: 1,
+            condition: "con teofilina oral ajustar dosis",
+          },
+          "THM local": 1,
+        },
       },
       {
         label: "Anticoagulantes",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 1,
-              "THM combinada trans":
-                "2 (se puede requerir ajustar la dosis de Warfarina)",
-              "THM solo estrógeno oral": 1,
-              "THM solo estrógeno trans":
-                "2 (se puede requerir ajustar la dosis de Warfarina)",
-              Tibolona: 1,
-              "THM local": 1,
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "se puede requerir ajustar la dosis de Warfarina",
             },
           },
-        ],
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition: "se puede requerir ajustar la dosis de Warfarina",
+            },
+          },
+          "THM solo estrógeno trans": 1,
+          Tibolona: {
+            val: 2,
+            condition: "se puede requerir ajustar la dosis de Warfarina",
+          },
+          "THM local": 1,
+        },
       },
       {
         label: "SERMs",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 4,
-              "THM combinada trans": 4,
-              "THM solo estrógeno oral": 4,
-              "THM solo estrógeno trans": 4,
-              Tibolona: 4,
-              "THM local": 1,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 4,
+          "THM solo estrógeno oral": 4,
+          "THM solo estrógeno trans": 4,
+          Tibolona: 4,
+          "THM local": 1,
+        },
       },
       {
         label: "Corticoides",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 2,
-              "THM combinada trans": 2,
-              "THM solo estrógeno oral": 2,
-              "THM solo estrógeno trans": 2,
-              Tibolona: 2,
-              "THM local": 2,
-            },
-          },
-        ],
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 2,
+        },
       },
       {
         label: "Antiepilépticos",
-        children: [
-          {
-            label: "Interacción",
-            values: {
-              "THM combinada oral": 4,
-              "THM combinada trans": 3,
-              "THM solo estrógeno oral": 4,
-              "THM solo estrógeno trans": 3,
-              Tibolona: 4,
-              "THM local": 1,
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 3,
+          "THM solo estrógeno oral": 4,
+          "THM solo estrógeno trans": 3,
+          Tibolona: 4,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Antibióticos inhibidores enzimáticos (rifampicina / rifabutina)",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Antineoplásicos",
+        values: {
+          "THM combinada oral": 4,
+          "THM combinada trans": 4,
+          "THM solo estrógeno oral": 4,
+          "THM solo estrógeno trans": 4,
+          Tibolona: 4,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Inmunosupresores",
+        values: {
+          "THM combinada oral": 3,
+          "THM combinada trans": 3,
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": 3,
+          Tibolona: 3,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Antifúngicos orales",
+        values: {
+          "THM combinada oral":{
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "en tratamientos crónicos",
             },
           },
-        ],
+          "THM combinada trans": 1,
+          "THM solo estrógeno oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "en tratamientos crónicos",
+            },
+          },
+          "THM solo estrógeno trans": 1,
+          Tibolona: {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "en tratamientos crónicos",
+            },
+          },
+          "THM local": 1,
+        },
       },
+      {
+        label: "Antirretrovirales",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "Los inhibidores de la proteasa (Ritonavir, Saquinavir, Atazanavir, Tipranavir) son inductores enzimáticos y reducen el efecto estrogénico; los inhibidores no nucleósidos de la transcriptasa reversa (Efavirenz, Nivirapina) son inductores enzimáticos que no lo reducen",
+            },
+          },
+          "THM combinada trans": {
+            val: 2,
+            condition:
+              "Los inhibidores de la proteasa (Ritonavir, Saquinavir, Atazanavir, Tipranavir) son inductores enzimáticos y reducen el efecto estrogénico; los inhibidores no nucleósidos de la transcriptasa reversa (Efavirenz, Nivirapina) son inductores enzimáticos que no lo reducen",
+          },
+          "THM solo estrógeno oral": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "Los inhibidores de la proteasa (Ritonavir, Saquinavir, Atazanavir, Tipranavir) son inductores enzimáticos y reducen el efecto estrogénico; los inhibidores no nucleósidos de la transcriptasa reversa (Efavirenz, Nivirapina) son inductores enzimáticos que no lo reducen",
+            },
+          },
+          "THM solo estrógeno trans": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "Los inhibidores de la proteasa (Ritonavir, Saquinavir, Atazanavir, Tipranavir) son inductores enzimáticos y reducen el efecto estrogénico; los inhibidores no nucleósidos de la transcriptasa reversa (Efavirenz, Nivirapina) son inductores enzimáticos que no lo reducen",
+            },
+          },
+          Tibolona: {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
+              val: 2,
+              condition:
+                "Los inhibidores de la proteasa (Ritonavir, Saquinavir, Atazanavir, Tipranavir) son inductores enzimáticos y reducen el efecto estrogénico; los inhibidores no nucleósidos de la transcriptasa reversa (Efavirenz, Nivirapina) son inductores enzimáticos que no lo reducen",
+            },
+          },
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Dopaminérgicos",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Litolíticos",
+        values: {
+          "THM combinada oral": 3,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 3,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 3,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Neuroestimulantes",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Antitiroideos",
+        values: {
+          "THM combinada oral": 2,
+          "THM combinada trans": 2,
+          "THM solo estrógeno oral": 2,
+          "THM solo estrógeno trans": 2,
+          Tibolona: 2,
+          "THM local": 1,
+        },
+      },
+      {
+        label: "Antipsicóticos",
+        values: {
+          "THM combinada oral": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: {
+              val: 3,
+              condition:
+                "Algunos estudios han comunicado interacción con el gestágeno para aripiprazol y pimozida",
+            },  
+          },
+          "THM combinada trans": {
+            condicion1: { val: 2, condition: "" },
+            condicion2: {
+              val: 3,
+              condition:
+                "Algunos estudios han comunicado interacción con el gestágeno para aripiprazol y pimozida",
+            },  
+          },
+          "THM solo estrógeno oral": 1,
+          "THM solo estrógeno trans": 1,
+          Tibolona: 1,
+          "THM local": 1,
+        },
+      }
     ],
   },
 ];
