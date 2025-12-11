@@ -87,6 +87,15 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         "THM local": "THM local"
       };
 
+      const SUMMARY_LABELS = {
+        "THM combinada oral": "Comb. Oral",
+        "THM combinada trans": "Comb. Trans",
+        "THM solo estrógeno oral": "Est. Oral",
+        "THM solo estrógeno trans": "Est.Trans",
+        "Tibolona": "Tibolona",
+        "THM local": "THM local"
+      };
+
       // Helper to determine if a list of nodes should be a radio group
       function isRadioGroup(nodes) {
         if (!nodes || nodes.length <= 1) return false;
@@ -496,7 +505,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
         sortedEntries.forEach(([method, score]) => {
           const wrapper = document.createElement("div");
-          wrapper.className = "flex flex-col items-center min-w-[3rem]";
+          wrapper.className = "flex flex-col items-center min-w-[4rem]";
 
           const badge = document.createElement("div");
           // Base classes
@@ -523,8 +532,8 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           badge.textContent = text;
 
           const label = document.createElement("span");
-          label.className = "text-xs font-bold text-purple-abbott text-center leading-tight";
-          label.textContent = method;
+          label.className = "text-xs font-bold text-purple-abbott text-center leading-tight text-nowrap";
+          label.textContent = SUMMARY_LABELS[method] || method;
 
           wrapper.appendChild(badge);
           wrapper.appendChild(label);

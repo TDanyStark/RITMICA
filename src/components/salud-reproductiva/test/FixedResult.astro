@@ -5,10 +5,10 @@
   <!-- Handle / Summary Bar -->
   <button
     id="drawer-toggle"
-    class="w-full h-20 flex items-center justify-between px-4 md:px-8 bg-white rounded-t-3xl relative z-20 focus:outline-none group"
+    class="w-full h-20 flex items-center justify-between px-4 pr-0 md:px-8 md:pr-0 bg-white rounded-t-3xl relative z-20 focus:outline-none group overflow-clip"
   >
     <div
-      class="flex items-center gap-2 md:gap-4 overflow-x-auto no-scrollbar flex-1 pr-4"
+      class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 pr-20"
       id="results-summary"
     >
       <!-- Results will be injected here -->
@@ -17,10 +17,10 @@
       >
     </div>
 
-    <div class="flex items-center gap-2 px-2">
+    <div class="absolute flex items-center gap-2 px-4 top-0 bottom-0 right-0 bg-white/90">
       <div
         id="reset-test-btn"
-        class="text-purple-abbott hover:bg-purple-100 rounded-full cursor-pointer transition-colors"
+        class="text-purple-abbott hover:bg-purple-100 rounded-full cursor-pointer opacity-50 group-hover:opacity-100 transition-colors"
         title="Reiniciar Test"
       >
         <svg
