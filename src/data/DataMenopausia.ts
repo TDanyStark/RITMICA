@@ -2,7 +2,7 @@ import type { CondicionesMenopausia } from "./types";
 
 export const condicionesMenopausia: CondicionesMenopausia = [
   {
-    label: "EDAD Y DURACION",
+    label: "EDAD Y DURACIÓN",
     children: [
       {
         label: "<40 años",

@@ -1,7 +1,7 @@
 ---
 import { condicionesMenopausia as criterios } from "@/data/DataMenopausia";
 // import { testScenarios } from "./test-scenarios";
-import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro";
+import FixedResultMenopausia from "./FixedResultMenopausia.astro";
 ---
 
 <div
@@ -64,7 +64,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
   <!-- Rendered via JS -->
 </div>
 
-<FixedResult />
+<FixedResultMenopausia />
 
 <script is:inline data-astro-rerun define:vars={{ criterios }}>
   document.addEventListener(
@@ -211,12 +211,14 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
               path: path,
               values: val,
               type: "radio",
+              label: node.label,
             };
           } else {
             if (target.checked) {
               formState[path] = {
                 values: val,
                 type: "checkbox",
+                label: node.label,
               };
             } else {
               delete formState[path];
@@ -419,54 +421,96 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       function calculateScores() {
         const methods = Object.keys(METHOD_MAP);
         const result = {};
-        const selectedValues = Object.values(formState).map((s) => s.values);
-
+        const selections = Object.values(formState);
 
         // If no selection, return null to show placeholder
-        if (selectedValues.length === 0) return null;
+        if (selections.length === 0) return null;
 
         methods.forEach((method) => {
           let maxI = 0;
           let maxC = 0;
+          let conditionsI = [];
+          let conditionsC = [];
           let hasN = false;
           let hasValue = false;
 
-          selectedValues.forEach((valObj) => {
+          selections.forEach((selection) => {
+            const valObj = selection.values;
+            const label = selection.label;
             const val = valObj[method];
-            if (val === undefined) return;
 
+            if (val === undefined) return;
             hasValue = true;
+
+            const processVal = (v, cond, type) => {
+              if (v === "N" || v === "NA") {
+                hasN = true;
+                return;
+              }
+              const numVal = Number(v);
+              if (isNaN(numVal)) return;
+
+              if (type === "I") {
+                if (numVal > maxI) {
+                  maxI = numVal;
+                  conditionsI = cond ? [`${numVal} - ${label}: ${cond}`] : [];
+                } else if (numVal === maxI && cond) {
+                  conditionsI.push(`${numVal} - ${label}: ${cond}`);
+                }
+              } else {
+                if (numVal > maxC) {
+                  maxC = numVal;
+                  conditionsC = cond ? [`${numVal} - ${label}: ${cond}`] : [];
+                } else if (numVal === maxC && cond) {
+                  conditionsC.push(`${numVal} - ${label}: ${cond}`);
+                }
+              }
+            };
+
             if (val === "N" || val === "NA") {
               hasN = true;
             } else if (typeof val === "number") {
-              if (val > maxI) maxI = val;
-              if (val > maxC) maxC = val;
+              processVal(val, null, "I");
+              processVal(val, null, "C");
             } else if (typeof val === "object" && val !== null) {
-              if (val.I > maxI) maxI = val.I;
-              if (val.C > maxC) maxC = val.C;
+              if ("C" in val && "I" in val) {
+                const valI = typeof val.I === "object" ? val.I.val : val.I;
+                const condI =
+                  typeof val.I === "object" ? val.I.condition : null;
+                processVal(valI, condI, "I");
+
+                const valC = typeof val.C === "object" ? val.C.val : val.C;
+                const condC =
+                  typeof val.C === "object" ? val.C.condition : null;
+                processVal(valC, condC, "C"); 
+              } else if ("val" in val) {
+                processVal(val.val, val.condition, "I");
+                processVal(val.val, val.condition, "C");
+              } else if ("condicion1" in val && "condicion2" in val) {
+                const v1 = val.condicion1.val;
+                const c1 = val.condicion1.condition;
+                const v2 = val.condicion2.val;
+                const c2 = val.condicion2.condition;
+                // Map condicion1 to I slot and condicion2 to C slot to display both
+                processVal(v1, c1, "I");
+                processVal(v2, c2, "C");
+              }
             }
           });
 
           if (hasN) {
             result[method] = "N";
           } else if (hasValue) {
-            // If we found values, use the max found.
-            // If maxI is still 0 (e.g. only 'N' was found but handled above, or empty objects?),
-            // actually if hasValue is true and not N, we should have numbers.
-            // Unless the value was {I:0, C:0} which shouldn't happen.
-            // Default to 1 if for some reason we have a selection but no risk?
-            // Actually, if I select a condition that doesn't mention AOC, val is undefined.
-            // If I select a condition that has AOC: 1, maxI=1.
-            // If I select multiple, we take max.
-            // If maxI is 0, it means we only encountered undefineds? No, hasValue checks that.
-            result[method] = { I: maxI || 1, C: maxC || 1 };
+            result[method] = {
+              I: maxI || 1,
+              C: maxC || 1,
+              conditionsI: [...new Set(conditionsI)],
+              conditionsC: [...new Set(conditionsC)],
+            };
           } else {
-            // No selection touched this method. Default to 1?
-            // If the user has selected *something*, usually we assume 1 for everything else unless specified.
-            result[method] = { I: 1, C: 1 };
+            result[method] = { I: 1, C: 1, conditionsI: [], conditionsC: [] };
           }
         });
-
         return result;
       }
 
@@ -510,11 +554,17 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           let text = "";
           let colorClass = "";
 
-          if (score.I === score.C) {
-            text = score.I;
+          const fmt = (val, conds) =>
+            `${val}${conds && conds.length > 0 ? "*" : ""}`;
+
+          const txtI = fmt(score.I, score.conditionsI);
+          const txtC = fmt(score.C, score.conditionsC);
+
+          if (txtI === txtC) {
+            text = txtI;
             colorClass = getBadgeColor(score.I);
           } else {
-            text = `${score.I}|${score.C}`;
+            text = `${txtI}|${txtC}`;
             const maxVal = Math.max(score.I, score.C);
             colorClass = getBadgeColor(maxVal);
             badge.classList.add("text-sm");
@@ -527,7 +577,8 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           badge.textContent = text;
 
           const label = document.createElement("span");
-          label.className = "text-xs font-bold text-purple-abbott text-center leading-tight text-nowrap";
+          label.className =
+            "text-xs font-bold text-purple-abbott text-center leading-tight text-nowrap";
           label.textContent = SUMMARY_LABELS[method] || method;
 
           wrapper.appendChild(badge);
@@ -557,6 +608,21 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
             detailInfo.appendChild(detailTitle);
             detailInfo.appendChild(detailDesc);
+
+            const allConditions = [
+              ...new Set([...score.conditionsI, ...score.conditionsC]),
+            ];
+            if (allConditions.length > 0) {
+              const condList = document.createElement("ul");
+              condList.className =
+                "text-sm text-gray-500 mt-1 list-disc list-inside";
+              allConditions.forEach((c) => {
+                const li = document.createElement("li");
+                li.textContent = c;
+                condList.appendChild(li);
+              });
+              detailInfo.appendChild(condList);
+            }
 
             detailRow.appendChild(detailBadge);
             detailRow.appendChild(detailInfo);
