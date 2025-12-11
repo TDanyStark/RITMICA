@@ -31,6 +31,7 @@ export interface DataNode {
   label: string;
   children?: DataNode[];
   values?: ValuesMap;
+  isgroup?: boolean;
 }
 
 export type CondicionesMenopausia = DataNode[];

@@ -6,6 +6,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
     children: [
       {
         label: "<40 años",
+        isgroup: true,
         children: [
           {
             label: "<5 años",
@@ -33,6 +34,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
       {
         label: "40-44",
+        isgroup: true,
         children: [
           {
             label: "<5 años",
@@ -60,6 +62,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
       {
         label: "45-49",
+        isgroup: true,
         children: [
           {
             label: "<5 años",
@@ -87,6 +90,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
       {
         label: "50-59",
+        isgroup: true,
         children: [
           {
             label: "<5 años",
@@ -132,6 +136,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
       {
         label: "60-69",
+        isgroup: true,
         children: [
           {
             label: "<5 años",
@@ -231,6 +236,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       },
       {
         label: ">70",
+        isgroup: true,
         children: [
           {
             label: "<5 años",
@@ -313,6 +319,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
     children: [
       {
         label: "Migraña",
+        isgroup: true,
         children: [
           {
             label: "Sin aura",

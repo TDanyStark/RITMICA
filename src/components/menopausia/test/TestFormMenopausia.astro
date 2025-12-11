@@ -96,11 +96,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         "THM local": "THM local"
       };
 
-      // Helper to determine if a list of nodes should be a radio group
-      function isRadioGroup(nodes) {
-        if (!nodes || nodes.length <= 1) return false;
-        return nodes.every((node) => node.values && !node.children);
-      }
+
 
       function filterNodes(nodes, term) {
         if (!term) return nodes;
@@ -233,10 +229,9 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         return label;
       }
 
-      function renderNodes(nodes, parentContainer, parentPath = "", level = 0) {
+      function renderNodes(nodes, parentContainer, parentPath = "", level = 0, parentNode = null) {
         if (!nodes) return;
-
-        const isGroupRadio = isRadioGroup(nodes);
+        const isGroupRadio = parentNode && parentNode.isgroup;
         const groupName = isGroupRadio ? `group-${parentPath}` : null;
 
         nodes.forEach((node, index) => {
@@ -288,7 +283,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             parentContainer.appendChild(wrapper);
 
             // Recurse
-            renderNodes(node.children, content, currentPath, level + 1);
+            renderNodes(node.children, content, currentPath, level + 1, node);
           }
           // Case 2: Node is a Leaf (has values)
           else if (node.values) {
