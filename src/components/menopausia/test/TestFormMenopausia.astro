@@ -557,13 +557,15 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
           const fmt = (val, conds) =>
             `${val}${conds && conds.length > 0 ? "*" : ""}`;
 
-          const txtI = fmt(score.I, score.conditionsI);
-          const txtC = fmt(score.C, score.conditionsC);
-
-          if (txtI === txtC) {
-            text = txtI;
+          if (score.I === score.C) {
+            const hasConditions =
+              (score.conditionsI && score.conditionsI.length > 0) ||
+              (score.conditionsC && score.conditionsC.length > 0);
+            text = `${score.I}${hasConditions ? "*" : ""}`;
             colorClass = getBadgeColor(score.I);
           } else {
+            const txtI = fmt(score.I, score.conditionsI);
+            const txtC = fmt(score.C, score.conditionsC);
             text = `${txtI}|${txtC}`;
             const maxVal = Math.max(score.I, score.C);
             colorClass = getBadgeColor(maxVal);
