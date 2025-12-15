@@ -10,7 +10,7 @@ import InfoBeneficios from "./InfoBeneficios.astro";
 
 <div
   id="main-menu"
-  class="h-full flex flex-col justify-center gap-3 max-w-4xl mx-auto md:p-4 w-full px-2"
+  class="h-full flex flex-col gap-3 max-w-4xl mx-auto md:p-4 w-full px-2"
 >
   <Button
     idbtn="btn-etapas-conceptos"
@@ -65,7 +65,7 @@ import InfoBeneficios from "./InfoBeneficios.astro";
 </div>
 
 <script data-astro-rerun is:inline>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById("main-menu");
     const contentArea = document.getElementById("content-area");
     const backBtn = document.getElementById("btn-back");

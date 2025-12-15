@@ -3,15 +3,17 @@ import { saludIntimaQuestions, resultsInfo } from "@/data/SaludIntimaForm";
 import FixedResult from "./FixedResultSaludIntima.astro";
 ---
 
-<div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4 md:px-6">
+<div id="form-container-salud" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4 md:px-6">
   <!-- Rendered via JS -->
 </div>
 
 <FixedResult />
 
-<script is:inline define:vars={{ saludIntimaQuestions, resultsInfo }}>
+<script is:inline data-astro-rerun define:vars={{ saludIntimaQuestions, resultsInfo }}>
   document.addEventListener("astro:page-load", () => {
-    const container = document.getElementById("form-container");
+    console.log("Form Salud Intima");
+
+    const container = document.getElementById("form-container-salud");
     if (!container) return;
 
     let formState = {}; // { questionId: [points] }
@@ -103,7 +105,7 @@ import FixedResult from "./FixedResultSaludIntima.astro";
 
     function updateResult() {
       const resultKey = calculateResult();
-      const resultsSummary = document.getElementById("results-summary");
+      const resultsSummary = document.getElementById("results-summary-salud");
       
       // Hide all results first
       document.querySelectorAll('.result-info').forEach(el => el.classList.add('hidden'));
@@ -159,9 +161,9 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     initTabs();
 
     // Drawer Logic
-    const drawerToggle = document.getElementById("drawer-toggle");
-    const resultsDrawer = document.getElementById("results-drawer");
-    const drawerIcon = document.getElementById("drawer-icon");
+    const drawerToggle = document.getElementById("drawer-toggle-salud");
+    const resultsDrawer = document.getElementById("results-drawer-salud");
+    const drawerIcon = document.getElementById("drawer-icon-salud");
     
     if (drawerToggle) {
         drawerToggle.addEventListener("click", () => {
@@ -177,7 +179,7 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     }
 
     // Reset Logic
-    const resetTestBtn = document.getElementById("reset-test-btn");
+    const resetTestBtn = document.getElementById("reset-test-btn-salud");
     if (resetTestBtn) {
         resetTestBtn.addEventListener("click", (e) => {
           e.stopPropagation();
@@ -188,5 +190,5 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     }
 
     renderForm();
-  });
+  }, { once: true });
 </script>

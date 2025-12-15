@@ -10,12 +10,12 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
   <div class="relative flex-1">
     <input
       type="text"
-      id="search-input"
+      id="search-input-meno"
       placeholder="Buscar criterio..."
       class="w-full py-3 px-6 pr-12 rounded-xl md:rounded-full border-2 border-purple-abbott text-purple-abbott placeholder-purple-abbott/50 focus:outline-none focus:bg-white/50 bg-white/90 shadow-sm text-xl transition-all"
     />
     <button
-      id="clear-search"
+      id="clear-search-meno"
       class="absolute right-4 top-1/2 -translate-y-1/2 text-purple-abbott hover:text-purple-900 transition-colors hidden"
       aria-label="Borrar búsqueda"
     >
@@ -35,7 +35,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
     </button>
   </div>
   <button
-    id="toggle-all-btn"
+    id="toggle-all-btn-meno"
     class="bg-white/90 text-purple-abbott p-3 rounded-full shadow-sm border-2 border-purple-abbott hover:bg-purple-abbott hover:text-white transition-all"
     aria-label="Expandir/Colapsar todo"
     title="Expandir/Colapsar todo"
@@ -58,7 +58,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
 </div>
 
 <div
-  id="form-container"
+  id="form-container-meno"
   class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4 md:px-6"
 >
   <!-- Rendered via JS -->
@@ -70,10 +70,11 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
   document.addEventListener(
     "astro:page-load",
     () => {
-      const container = document.getElementById("form-container");
+      console.log("Form Menopausia");
+      const container = document.getElementById("form-container-meno");
       if (!container) return;
-      const searchInput = document.getElementById("search-input");
-      const clearSearchBtn = document.getElementById("clear-search");
+      const searchInput = document.getElementById("search-input-meno");
+      const clearSearchBtn = document.getElementById("clear-search-meno");
       let formState = {};
 
       // Unificado: mapa de métodos -> nombre legible. Usar `Object.keys(METHOD_MAP)`
@@ -319,7 +320,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       });
 
       // Toggle All Logic
-      const toggleAllBtn = document.getElementById("toggle-all-btn");
+      const toggleAllBtn = document.getElementById("toggle-all-btn-meno");
 
       if (toggleAllBtn) {
         toggleAllBtn.addEventListener("click", () => {
@@ -353,7 +354,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       }
 
       // Reset Logic
-      const resetTestBtn = document.getElementById("reset-test-btn");
+      const resetTestBtn = document.getElementById("reset-test-btn-meno");
 
       if (resetTestBtn) {
         resetTestBtn.addEventListener("click", (e) => {
@@ -379,10 +380,10 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       renderNodes(criterios, container);
 
       // Drawer Logic
-      const drawerToggle = document.getElementById("drawer-toggle");
-      const resultsDrawer = document.getElementById("results-drawer");
-      const drawerIcon = document.getElementById("drawer-icon");
-      const resultsSummary = document.getElementById("results-summary");
+      const drawerToggle = document.getElementById("drawer-toggle-meno");
+      const resultsDrawer = document.getElementById("results-drawer-meno");
+      const drawerIcon = document.getElementById("drawer-icon-meno");
+      const resultsSummary = document.getElementById("results-summary-meno");
 
       if (drawerToggle) {
         drawerToggle.addEventListener("click", () => {
@@ -519,7 +520,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         resultsSummary.innerHTML = "";
 
         const detailedResultsContainer =
-          document.getElementById("detailed-results");
+          document.getElementById("detailed-results-meno");
         if (detailedResultsContainer) detailedResultsContainer.innerHTML = "";
 
         const methodNames = METHOD_MAP;
