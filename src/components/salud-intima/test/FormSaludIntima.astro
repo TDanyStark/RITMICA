@@ -75,7 +75,6 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     function calculateResult() {
       const scores = { CV: 0, VB: 0, TV: 0 };
       const answers = Object.values(formState);
-      console.log(answers); 
       if (answers.length === 0) return null;
 
       answers.forEach((points) => {
@@ -105,12 +104,13 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     function updateResult() {
       const resultKey = calculateResult();
       const resultsSummary = document.getElementById("results-summary");
-      const detailedResults = document.getElementById("detailed-results");
       
+      // Hide all results first
+      document.querySelectorAll('.result-info').forEach(el => el.classList.add('hidden'));
+
       if (!resultsSummary) return;
 
       resultsSummary.innerHTML = "";
-      if (detailedResults) detailedResults.innerHTML = "";
 
       if (!resultKey) {
         resultsSummary.innerHTML = '<span class="text-gray-400 italic">Selecciona criterios para ver resultados...</span>';
@@ -125,24 +125,40 @@ import FixedResult from "./FixedResultSaludIntima.astro";
       badge.textContent = info.title;
       resultsSummary.appendChild(badge);
 
-      // Detailed Result
-      if (detailedResults) {
-        const detailWrapper = document.createElement("div");
-        detailWrapper.className = "p-6 bg-purple-50 rounded-2xl border border-purple-100";
-        
-        const detailTitle = document.createElement("h3");
-        detailTitle.className = "text-xl font-bold text-purple-abbott mb-4";
-        detailTitle.textContent = info.title;
-        
-        const detailDesc = document.createElement("div");
-        detailDesc.className = "text-gray-700 whitespace-pre-line";
-        detailDesc.textContent = info.description;
-
-        detailWrapper.appendChild(detailTitle);
-        detailWrapper.appendChild(detailDesc);
-        detailedResults.appendChild(detailWrapper);
+      // Show specific result
+      const resultElement = document.getElementById(`result-${resultKey}`);
+      if (resultElement) {
+        resultElement.classList.remove('hidden');
       }
     }
+
+    // Tab Logic
+    function initTabs() {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+              const targetId = btn.getAttribute('data-target');
+              const parent = btn.closest('.result-info');
+              console.log(targetId);
+              
+              if (!parent) return;
+
+              // Update buttons
+              parent.querySelectorAll('.tab-btn').forEach(b => {
+                  b.classList.remove('active', 'bg-purple-abbott', 'text-white');
+                  b.classList.add('bg-white', 'text-purple-abbott');
+              });
+              btn.classList.remove('bg-white', 'text-purple-abbott');
+              btn.classList.add('active', 'bg-purple-abbott', 'text-white');
+
+              // Update content
+              parent.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+              const targetContent = document.getElementById(targetId);
+              if (targetContent) targetContent.classList.remove('hidden');
+          });
+      });
+    }
+
+    initTabs();
 
     // Drawer Logic
     const drawerToggle = document.getElementById("drawer-toggle");
