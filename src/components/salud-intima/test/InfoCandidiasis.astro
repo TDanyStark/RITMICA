@@ -176,11 +176,11 @@ import TabButton from "./TabButton.astro";
       <!-- Clasificación de antibióticos (AWARE) insertada desde imagen adjunta -->
       <div class="mt-6">
         <div
-          class="bg-white rounded-2xl overflow-hidden border border-purple-100 shadow-sm"
+          class="bg-white rounded-2xl overflow-hidden border border-purple-100"
         >
-          <div class="overflow-x-auto md:overflow-x-visible">
+          <div class="overflow-x-auto md:overflow-x-visible pb-1">
             <div class="min-w-[900px] md:min-w-0">
-              <table class="w-full border-collapse">
+              <table id="tabla_AWARE" class="w-full border-collapse">
                 <thead>
                   <tr>
                     <th
@@ -261,3 +261,19 @@ import TabButton from "./TabButton.astro";
     </button>
   </div>
 </div>
+
+<style>
+  #tabla_AWARE tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+
+  #tabla_AWARE tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+
+  #tabla_AWARE {
+    border-collapse: separate; /* Required for border-radius to work on the table element/cells */
+    border-spacing: 0; /* Removes space between cells */
+    border-radius: 10px;
+  }
+</style>
