@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @font-face {
   font-family: "Brandon";
   src: url("/apps/abbott/RITMICA/fonts/Brandon_reg.woff") format("woff");
@@ -17,16 +16,15 @@
 
 @font-face {
   font-family: "Brandon";
-  src: url("/apps/abbott/RITMICA/fonts/Brandon_light.woff")
-    format("woff");
+  src: url("/apps/abbott/RITMICA/fonts/Brandon_light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 
 @theme {
   --color-purple-abbott: #772a83;
-  --color-pink-abbott: #D686B5;
-  --color-gray-abbott: #B5B7B9;
+  --color-pink-abbott: #d686b5;
+  --color-gray-abbott: #b5b7b9;
 
   --font-brandon: "Brandon", sans-serif;
   --font-georgia: Georgia, serif;
@@ -34,6 +32,14 @@
   --width-9xl: 90rem;
 }
 
-button{
+button {
   @apply cursor-pointer;
+}
+
+.tab-btn {
+  @apply bg-white text-purple-abbott border-purple-abbott hover:bg-purple-50;
+}
+
+.tab-btn.active {
+  @apply bg-purple-abbott text-white border-transparent;
 }

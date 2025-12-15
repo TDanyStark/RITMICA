@@ -144,11 +144,9 @@ import FixedResult from "./FixedResultSaludIntima.astro";
 
               // Update buttons
               parent.querySelectorAll('.tab-btn').forEach(b => {
-                  b.classList.remove('active', 'bg-purple-abbott', 'text-white');
-                  b.classList.add('bg-white', 'text-purple-abbott');
+                  b.classList.remove('active');
               });
-              btn.classList.remove('bg-white', 'text-purple-abbott');
-              btn.classList.add('active', 'bg-purple-abbott', 'text-white');
+              btn.classList.add('active');
 
               // Update content
               parent.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
