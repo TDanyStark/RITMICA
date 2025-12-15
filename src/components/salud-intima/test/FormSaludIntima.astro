@@ -87,20 +87,12 @@ import FixedResult from "./FixedResultSaludIntima.astro";
       // Sort scores
       const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
       const [winner, winnerScore] = sorted[0];
-      const [runnerUp, runnerUpScore] = sorted[1];
 
       if (winnerScore === 0) return null;
 
-      // Logic for Mixed
-      // 1. Close scores
-      if (runnerUpScore > 0 && (winnerScore - runnerUpScore < 2)) {
-        return "Mixed";
-      }
-
-      // 2. Exclusive contradictions
-      // If an answer is exclusive to a type (length 1) and that type is NOT the winner -> Mixed
+      // If any selected answer does NOT include the winner type, it suggests a mixed infection
       const hasContradiction = answers.some((points) => {
-        return points.length === 1 && points[0] !== winner;
+        return !points.includes(winner);
       });
 
       if (hasContradiction) {
