@@ -1,5 +1,11 @@
 ---
 import BtnKnowPortfolio from "./BtnKnowPortfolio.astro";
+
+interface Props {
+  targetId: string;
+}
+
+const { targetId = "cv-tabs" } = Astro.props;
 ---
 
 <div class="mt-6 flex flex-col md:flex-row justify-between gap-4 items-center">
@@ -7,7 +13,7 @@ import BtnKnowPortfolio from "./BtnKnowPortfolio.astro";
   <button
     type="button"
     class="p-2 bg-pink-abbott text-white rounded-full shadow-md hover:opacity-95"
-    onclick="document.getElementById('cv-tabs')?.scrollIntoView({behavior: 'smooth', block: 'start'});"
+    onclick={`document.getElementById("${targetId}")?.scrollIntoView({behavior: 'smooth', block: 'start'});`}
   >
     <span class="sr-only">Ir a pestañas</span>
     <svg

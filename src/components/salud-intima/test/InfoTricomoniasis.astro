@@ -1,4 +1,5 @@
 ---
+import ScrollToTabsButtons from "@/components/ScrollToTabsButtons.astro";
 import TabButton from "./TabButton.astro";
 ---
 
@@ -8,7 +9,7 @@ import TabButton from "./TabButton.astro";
   </h2>
 
   <!-- Tabs -->
-  <div class="flex flex-col md:flex-row gap-4 mb-8">
+  <div id="tv-tabs" class="flex flex-col md:flex-row gap-4 mb-8">
     <TabButton variant="sintomas" target="tv-sintomas" active={true} />
     <TabButton variant="diagnostico" target="tv-diagnostico" />
     <TabButton variant="tratamiento" target="tv-tratamiento" />
@@ -104,51 +105,57 @@ import TabButton from "./TabButton.astro";
   <div id="tv-tratamiento" class="tab-content hidden">
     <div class="bg-purple-50 p-6 rounded-2xl border border-purple-100">
       <div class="space-y-6">
-        <div
-          class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm"
-        >
-          <div
-            class="bg-purple-abbott text-white rounded-full px-6 py-2 inline-block text-center font-bold"
-          >
+        <div class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm">
+          <div class="bg-purple-abbott text-white rounded-full px-6 py-2 inline-block text-center font-bold">
             RECOMENDACIÓN DE LA OMS
           </div>
           <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
             <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Metronidazol 400
-              mg o 500 mg por vía oral dos veces al día durante 7 días.
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Metronidazol 2 g
-              por vía oral en una sola dosis o tinidazol 2 g por vía oral en una sola
-              dosis (excepto durante el embarazo).
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Secnidazol 2 g por
-              vía oral, una sola dosis (opción alternativa si no se dispone de metronidazol
-              o tinidazol).
+              <span class="text-purple-abbott font-bold">•</span> Metronidazol 400 mg o 500 mg por vía oral dos veces al día durante 7 días.
             </li>
           </ul>
-          <p class="mt-3 text-sm text-gray-600">
-            Las parejas sexuales de las personas con infección por T. vaginalis
-            deben recibir tratamiento.
+        </div>
+
+        <div class="bg-purple-50 p-4 rounded-2xl border border-purple-100">
+          <div class="text-purple-abbott font-semibold">
+            Cuando el cumplimiento de múltiples dosis es un problema grave, se sugiere:
+          </div>
+          <ul class="mt-3 space-y-2 text-gray-700 text-lg pl-4">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-abbott font-bold">•</span> Metronidazol 2 g por vía oral en una sola dosis o tinidazol 2 g por vía oral en una sola dosis (excepto durante el embarazo).
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm">
+          <div class="text-purple-abbott font-bold inline-block bg-white px-4 py-1 rounded-full border border-purple-100">
+            Punto clave para tener en cuenta:
+          </div>
+          <p class="mt-3 text-gray-700 text-lg pl-4">
+            • Secnidazol 2 g por vía oral, una sola dosis (excepto durante el embarazo) es una opción adecuada si no se dispone de metronidazol o tinidazol.
           </p>
-          <div
-            class="bg-purple-abbott mt-4 text-white rounded-full px-6 py-2 inline-block text-center font-bold"
-          >
+          <p class="mt-3 text-sm text-gray-600">
+            Las parejas sexuales de las personas con infección por T. vaginalis deben recibir tratamiento.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm">
+          <div class="bg-purple-abbott mt-0 text-white rounded-full px-6 py-2 inline-block text-center font-bold">
             FUERZA DE LA RECOMENDACIÓN Y CERTEZA DE LA EVIDENCIA
           </div>
           <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
             <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Recomendación condicional,
-              certeza moderada en la evidencia de los efectos.
+              <span class="text-purple-abbott font-bold">•</span> Recomendación condicional, certeza moderada en la evidencia de los efectos.
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Las parejas sexuales
-              de las personas con infección por T. vaginalis deben recibir tratamiento.
+              <span class="text-purple-abbott font-bold">•</span> Las parejas sexuales de las personas con infección por T. vaginalis deben recibir tratamiento.
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Scroll-to-tabs button -->
+  <ScrollToTabsButtons targetId="tv-tabs" />
 </div>
