@@ -104,58 +104,186 @@ import TabButton from "./TabButton.astro";
   <!-- Content: Tratamiento (Placeholder) -->
   <div id="tv-tratamiento" class="tab-content hidden">
     <div class="bg-purple-50 p-6 rounded-2xl border border-purple-100">
-      <div class="space-y-6">
-        <div class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm">
-          <div class="bg-purple-abbott text-white rounded-full px-6 py-2 inline-block text-center font-bold">
-            RECOMENDACIÓN DE LA OMS
+      <div>
+        <div
+          class="bg-purple-abbott text-white rounded-full px-6 py-2 inline-block text-center font-bold"
+        >
+          RECOMENDACIÓN DE LA OMS
+        </div>
+        <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Metronidazol 400 mg
+            o 500 mg por vía oral dos veces al día durante 7 días.
+          </li>
+        </ul>
+        <p
+          class="bg-white/80 text-lg text-purple-abbott px-4 py-2 inline-block mt-2 rounded-full font-bold"
+        >
+          Cuando el cumplimiento de múltiples dosis es un problema grave, se
+          sugiere:
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Metronidazol 2 g por
+            vía oral en una sola dosis o tinidazol 2 g por vía oral en una sola dosis
+            (excepto durante el embarazo).
+          </li>
+        </ul>
+        <p
+          class="bg-white/80 text-lg text-purple-abbott px-4 py-2 inline-block mt-2 rounded-full font-bold"
+        >
+          Punto clave para tener en cuenta:
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Secnidazol 2 g por
+            vía oral, una sola dosis (opción alternativa si no se dispone de metronidazol
+            o tinidazol).
+          </li>
+        </ul>
+        <p class="mt-3 text-sm text-gray-600">
+          Las parejas sexuales de las personas con infección por T. vaginalis
+          deben recibir tratamiento.
+        </p>
+        <div
+          class="bg-purple-abbott mt-4 text-white rounded-full px-6 py-2 inline-block text-center font-bold"
+        >
+          FUERZA DE LA RECOMENDACIÓN Y CERTEZA DE LA EVIDENCIA
+        </div>
+        <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Recomendación condicional,
+            certeza moderada en la evidencia de los efectos.
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Las parejas sexuales
+            de las personas con infección por T. vaginalis deben recibir tratamiento.
+          </li>
+        </ul>
+      </div>
+
+      <!-- AWARE: Clasificación de antibióticos (OMS) -->
+      <div class="mt-6">
+        <div class="mb-6">
+          <h5 class="mt-6 text-2xl font-bold text-pink-500">
+            CLASIFICACIÓN DE ANTIBIÓTICOS DE LA OMS: <span
+              class="text-pink-300 font-semibold"
+              >ACCESO, VIGILANCIA Y RESERVA (AWARE)</span
+            >
+          </h5>
+        </div>
+        <div
+          class="bg-white rounded-2xl overflow-hidden border border-purple-100"
+        >
+          <div class="overflow-x-auto md:overflow-x-visible pb-1">
+            <div class="min-w-[900px] md:min-w-0">
+              <table id="tabla_AWARE" class="w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th
+                      class="p-3 bg-green-600 text-white font-bold text-left rounded-tl-2xl"
+                      >GRUPO DE ACCESO</th
+                    >
+                    <th class="p-3 bg-yellow-500 text-white font-bold text-left"
+                      >GRUPO DE VIGILANCIA</th
+                    >
+                    <th
+                      class="p-3 bg-red-600 text-white font-bold text-left rounded-tr-2xl"
+                      >GRUPO DE RESERVA</th
+                    >
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="align-top">
+                    <td
+                      class="p-6 text-gray-700 border-x border-b border-purple-abbott"
+                    >
+                      <p class="font-semibold mb-2">
+                        Antibióticos de primera o segunda elección. Ofrecen el
+                        mejor valor terapéutico, al tiempo que minimizan la
+                        posibilidad de resistencia.
+                      </p>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>Clindamicina</li>
+                        <li>Doxiciclina</li>
+                        <li>Metronidazol</li>
+                        <li>Secnidazol</li>
+                        <li>Tinidazol</li>
+                      </ul>
+                    </td>
+                    <td class="p-6 text-gray-700 border-b border-purple-abbott">
+                      <p class="font-semibold mb-2">
+                        Antibióticos de primera o segunda elección, indicados
+                        únicamente para un número específico y limitado de
+                        síndromes infecciosos. Precaución por mayor riesgo de
+                        desarrollar resistencia bacteriana.
+                      </p>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>Azitromicina</li>
+                        <li>Minociclina</li>
+                        <li>Moxifloxacina</li>
+                      </ul>
+                    </td>
+                    <td
+                      class="p-6 text-gray-700 border-x border-b border-purple-abbott"
+                    >
+                      <p class="font-semibold mb-2">
+                        Último recurso. Infecciones potencialmente mortales
+                        causadas por bacterias multirresistentes. Estrecha
+                        vigilancia y seguimiento.
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Metronidazol 400 mg o 500 mg por vía oral dos veces al día durante 7 días.
-            </li>
+        </div>
+        <p class="mt-6 text-sm text-gray-600">
+          Las recomendaciones aplican para adultas y adolescentes (de 10 a 19
+          años), incluidas las mujeres embarazadas, las que viven con VIH y las
+          poblaciones clave.
+        </p>
+        <!-- Imagen: recomendaciones rápidas -->
+        <div class="mt-6">
+          <h4 class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase">
+            CLOTRIMAZOL / CLINDAMICINA (GYNCLOX)3,4
+          </h4>
+          <ul class="list-disc pl-5 text-gray-700 mb-4">
+            <li>Óvulos (clotrimazol 200 mg / clindamicina 100 mg) / crema (clotrimazol 1% / clindamicina 2%)</li>
+            <li>3 días de tratamiento intravaginal o 7 días de tratamiento tópico</li>
+            <li>Amplio cubrimiento: vaginosis mixta, gardnerella y candidiasis</li>
           </ul>
-        </div>
 
-        <div class="bg-purple-50 p-4 rounded-2xl border border-purple-100">
-          <div class="text-purple-abbott font-semibold">
-            Cuando el cumplimiento de múltiples dosis es un problema grave, se sugiere:
-          </div>
-          <ul class="mt-3 space-y-2 text-gray-700 text-lg pl-4">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Metronidazol 2 g por vía oral en una sola dosis o tinidazol 2 g por vía oral en una sola dosis (excepto durante el embarazo).
-            </li>
-          </ul>
-        </div>
-
-        <div class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm">
-          <div class="text-purple-abbott font-bold inline-block bg-white px-4 py-1 rounded-full border border-purple-100">
-            Punto clave para tener en cuenta:
-          </div>
-          <p class="mt-3 text-gray-700 text-lg pl-4">
-            • Secnidazol 2 g por vía oral, una sola dosis (excepto durante el embarazo) es una opción adecuada si no se dispone de metronidazol o tinidazol.
-          </p>
-          <p class="mt-3 text-sm text-gray-600">
-            Las parejas sexuales de las personas con infección por T. vaginalis deben recibir tratamiento.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-3xl p-4 border border-purple-100 shadow-sm">
-          <div class="bg-purple-abbott mt-0 text-white rounded-full px-6 py-2 inline-block text-center font-bold">
-            FUERZA DE LA RECOMENDACIÓN Y CERTEZA DE LA EVIDENCIA
-          </div>
-          <ul class="mt-4 space-y-2 text-gray-700 text-lg pl-4">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Recomendación condicional, certeza moderada en la evidencia de los efectos.
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-abbott font-bold">•</span> Las parejas sexuales de las personas con infección por T. vaginalis deben recibir tratamiento.
-            </li>
+          <h4 class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase">
+            FLUCONAZOL 75 MG / SECNIDAZOL 1000 MG (GYNFLU-D)5
+          </h4>
+          <ul class="list-disc pl-5 text-gray-700">
+            <li>Tabletas recubiertas</li>
+            <li>Única dosis</li>
+            <li>Erradicación microbiológica en vaginosis bacteriana, tricomoniasis y candidiasis con una menor tasa de recidivas</li>
           </ul>
         </div>
       </div>
+
+      
     </div>
   </div>
-
-  <!-- Scroll-to-tabs button -->
   <ScrollToTabsButtons targetId="tv-tabs" />
 </div>
+
+<style>
+  #tabla_AWARE tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+
+  #tabla_AWARE tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+
+  #tabla_AWARE {
+    border-collapse: separate; /* Required for border-radius to work on the table element/cells */
+    border-spacing: 0; /* Removes space between cells */
+    border-radius: 10px;
+  }
+</style>
