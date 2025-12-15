@@ -1,4 +1,5 @@
 ---
+import ScrollToTabsButtons from "@/components/ScrollToTabsButtons.astro";
 import TabButton from "./TabButton.astro";
 ---
 
@@ -303,37 +304,7 @@ import TabButton from "./TabButton.astro";
     </div>
   </div>
   <!-- Scroll-to-tabs button -->
-  <div class="mt-6 flex flex-col md:flex-row justify-between gap-4 items-center">
-    <a
-      href="https://co.medicinespro.abbott/wp-content/uploads/2025/02/portafolio-2026.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-block py-2 px-6 rounded-full text-white bg-purple-abbott font-semibold"
-    >
-      Conozca el portafolio Abbott para elegir la mejor opción
-    </a>
-    <button
-      type="button"
-      class="p-2 bg-pink-abbott text-white rounded-full shadow-md hover:opacity-95"
-      onclick="document.getElementById('cv-tabs')?.scrollIntoView({behavior: 'smooth', block: 'start'});"
-    >
-      <span class="sr-only">Ir a pestañas</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-6 h-6 inline-block"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 15l7-7 7 7"></path>
-      </svg>
-    </button>
-  </div>
+  <ScrollToTabsButtons />
 </div>
 
 <style>
