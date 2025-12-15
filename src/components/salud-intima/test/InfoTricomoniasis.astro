@@ -57,22 +57,32 @@ import TabButton from "./TabButton.astro";
           </tr>
         </tbody>
       </table>
+
+      
     </div>
-    <ul class="space-y-2 text-gray-700 text-lg pl-4">
-      <li class="flex items-start gap-2">
-        <span class="text-purple-abbott font-bold">•</span> Flujo amarillento o verdoso,
-        a veces con aspecto espumoso
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-purple-abbott font-bold">•</span> Picor vulvar
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-purple-abbott font-bold">•</span> Eritema y edema vulvar
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-purple-abbott font-bold">•</span> Cuello uterino en fresa.
-      </li>
-    </ul>
+    <div class="mt-4">
+        <h3
+          class="text-2xl font-bold text-purple-abbott mb-4 flex items-center gap-2"
+        >
+          SÍNTOMAS Y SIGNOS
+        </h3>
+        <ul class="space-y-2 text-gray-700 text-lg pl-4">
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Flujo amarillento
+            o verdoso, a veces con aspecto espumoso
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Picor vulvar
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Eritema y edema vulvar
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-purple-abbott font-bold">•</span> Cuello uterino en
+            fresa.
+          </li>
+        </ul>
+      </div>
   </div>
 
   <!-- Content: Diagnostico (Placeholder) -->
@@ -246,27 +256,39 @@ import TabButton from "./TabButton.astro";
         </p>
         <!-- Imagen: recomendaciones rápidas -->
         <div class="mt-6">
-          <h4 class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase">
+          <h4
+            class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
+          >
             CLOTRIMAZOL / CLINDAMICINA (GYNCLOX)3,4
           </h4>
           <ul class="list-disc pl-5 text-gray-700 mb-4">
-            <li>Óvulos (clotrimazol 200 mg / clindamicina 100 mg) / crema (clotrimazol 1% / clindamicina 2%)</li>
-            <li>3 días de tratamiento intravaginal o 7 días de tratamiento tópico</li>
-            <li>Amplio cubrimiento: vaginosis mixta, gardnerella y candidiasis</li>
+            <li>
+              Óvulos (clotrimazol 200 mg / clindamicina 100 mg) / crema
+              (clotrimazol 1% / clindamicina 2%)
+            </li>
+            <li>
+              3 días de tratamiento intravaginal o 7 días de tratamiento tópico
+            </li>
+            <li>
+              Amplio cubrimiento: vaginosis mixta, gardnerella y candidiasis
+            </li>
           </ul>
 
-          <h4 class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase">
+          <h4
+            class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
+          >
             FLUCONAZOL 75 MG / SECNIDAZOL 1000 MG (GYNFLU-D)5
           </h4>
           <ul class="list-disc pl-5 text-gray-700">
             <li>Tabletas recubiertas</li>
             <li>Única dosis</li>
-            <li>Erradicación microbiológica en vaginosis bacteriana, tricomoniasis y candidiasis con una menor tasa de recidivas</li>
+            <li>
+              Erradicación microbiológica en vaginosis bacteriana, tricomoniasis
+              y candidiasis con una menor tasa de recidivas
+            </li>
           </ul>
         </div>
       </div>
-
-      
     </div>
   </div>
   <ScrollToTabsButtons targetId="tv-tabs" />
