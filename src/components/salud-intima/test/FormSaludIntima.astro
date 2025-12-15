@@ -1,0 +1,186 @@
+---
+import { saludIntimaQuestions, resultsInfo } from "@/data/SaludIntimaForm";
+import FixedResult from "./FixedResultSaludIntima.astro";
+---
+
+<div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4 md:px-10">
+  <!-- Rendered via JS -->
+</div>
+
+<FixedResult />
+
+<script is:inline define:vars={{ saludIntimaQuestions, resultsInfo }}>
+  document.addEventListener("astro:page-load", () => {
+    const container = document.getElementById("form-container");
+    if (!container) return;
+
+    let formState = {}; // { questionId: [points] }
+
+    function renderForm() {
+      container.innerHTML = "";
+      saludIntimaQuestions.forEach((q) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "w-full flex flex-col gap-4";
+
+        const title = document.createElement("div");
+        title.className = "bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md font-bold";
+        title.textContent = q.title;
+
+        const content = document.createElement("div");
+        content.className = "flex flex-col gap-2 pl-3 md:pl-6 ml-4 md:ml-8 border-l-4 border-purple-abbott/30";
+
+        q.options.forEach((opt) => {
+          const label = document.createElement("label");
+          label.className = "text-white md:text-purple-abbott py-2 px-4 text-left text-lg md:text-xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
+
+          const inputContainer = document.createElement("div");
+          inputContainer.className = "relative flex items-center mt-1";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `q-${q.id}`;
+          input.value = JSON.stringify(opt.points);
+          input.className = "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott rounded-full transition-all bg-transparent";
+
+          const indicator = document.createElement("div");
+          indicator.className = "absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity";
+          const dot = document.createElement("div");
+          dot.className = "w-2.5 h-2.5 bg-white rounded-full";
+          indicator.appendChild(dot);
+
+          inputContainer.appendChild(input);
+          inputContainer.appendChild(indicator);
+
+          const textSpan = document.createElement("span");
+          textSpan.className = "flex-1 leading-tight";
+          textSpan.textContent = opt.label;
+
+          label.appendChild(inputContainer);
+          label.appendChild(textSpan);
+
+          input.addEventListener("change", () => {
+            formState[q.id] = opt.points;
+            updateResult();
+          });
+
+          content.appendChild(label);
+        });
+
+        wrapper.appendChild(title);
+        wrapper.appendChild(content);
+        container.appendChild(wrapper);
+      });
+    }
+
+    function calculateResult() {
+      const scores = { CV: 0, VB: 0, TV: 0 };
+      const answers = Object.values(formState);
+      console.log(answers); 
+      if (answers.length === 0) return null;
+
+      answers.forEach((points) => {
+        points.forEach((p) => {
+          if (scores[p] !== undefined) scores[p]++;
+        });
+      });
+
+      // Sort scores
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const [winner, winnerScore] = sorted[0];
+      const [runnerUp, runnerUpScore] = sorted[1];
+
+      if (winnerScore === 0) return null;
+
+      // Logic for Mixed
+      // 1. Close scores
+      if (runnerUpScore > 0 && (winnerScore - runnerUpScore < 2)) {
+        return "Mixed";
+      }
+
+      // 2. Exclusive contradictions
+      // If an answer is exclusive to a type (length 1) and that type is NOT the winner -> Mixed
+      const hasContradiction = answers.some((points) => {
+        return points.length === 1 && points[0] !== winner;
+      });
+
+      if (hasContradiction) {
+        return "Mixed";
+      }
+
+      return winner;
+    }
+
+    function updateResult() {
+      const resultKey = calculateResult();
+      const resultsSummary = document.getElementById("results-summary");
+      const detailedResults = document.getElementById("detailed-results");
+      
+      if (!resultsSummary) return;
+
+      resultsSummary.innerHTML = "";
+      if (detailedResults) detailedResults.innerHTML = "";
+
+      if (!resultKey) {
+        resultsSummary.innerHTML = '<span class="text-gray-400 italic">Selecciona criterios para ver resultados...</span>';
+        return;
+      }
+
+      const info = resultsInfo[resultKey];
+      
+      // Summary Badge
+      const badge = document.createElement("div");
+      badge.className = "px-4 py-2 rounded-full text-white font-bold text-sm md:text-base whitespace-nowrap bg-purple-abbott";
+      badge.textContent = info.title;
+      resultsSummary.appendChild(badge);
+
+      // Detailed Result
+      if (detailedResults) {
+        const detailWrapper = document.createElement("div");
+        detailWrapper.className = "p-6 bg-purple-50 rounded-2xl border border-purple-100";
+        
+        const detailTitle = document.createElement("h3");
+        detailTitle.className = "text-xl font-bold text-purple-abbott mb-4";
+        detailTitle.textContent = info.title;
+        
+        const detailDesc = document.createElement("div");
+        detailDesc.className = "text-gray-700 whitespace-pre-line";
+        detailDesc.textContent = info.description;
+
+        detailWrapper.appendChild(detailTitle);
+        detailWrapper.appendChild(detailDesc);
+        detailedResults.appendChild(detailWrapper);
+      }
+    }
+
+    // Drawer Logic
+    const drawerToggle = document.getElementById("drawer-toggle");
+    const resultsDrawer = document.getElementById("results-drawer");
+    const drawerIcon = document.getElementById("drawer-icon");
+    
+    if (drawerToggle) {
+        drawerToggle.addEventListener("click", () => {
+          const isClosed = resultsDrawer.classList.contains("translate-y-[calc(100%-5rem)]");
+          if (isClosed) {
+            resultsDrawer.classList.remove("translate-y-[calc(100%-5rem)]");
+            drawerIcon.style.transform = "rotate(180deg)";
+          } else {
+            resultsDrawer.classList.add("translate-y-[calc(100%-5rem)]");
+            drawerIcon.style.transform = "rotate(0deg)";
+          }
+        });
+    }
+
+    // Reset Logic
+    const resetTestBtn = document.getElementById("reset-test-btn");
+    if (resetTestBtn) {
+        resetTestBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          formState = {};
+          renderForm();
+          updateResult();
+        });
+    }
+
+    renderForm();
+  });
+</script>

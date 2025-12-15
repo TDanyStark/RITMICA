@@ -1,0 +1,97 @@
+<div
+  id="results-drawer"
+  class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.15)] z-50 mx-2 rounded-t-3xl transition-all duration-300 transform translate-y-[calc(100%-5rem)]"
+>
+  <!-- Handle / Summary Bar -->
+  <button
+    id="drawer-toggle"
+    class="w-full h-20 flex items-center justify-between px-4 pr-0 md:px-8 md:pr-0 bg-white rounded-t-3xl relative z-20 focus:outline-none group overflow-clip"
+  >
+    <div
+      class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 pr-20"
+      id="results-summary"
+    >
+      <!-- Results will be injected here -->
+      <span class="text-gray-400 italic"
+        >Selecciona criterios para ver resultados...</span
+      >
+    </div>
+
+    <div class="absolute flex items-center gap-2 px-4 top-0 bottom-0 right-0 bg-white/90">
+      <div
+        id="reset-test-btn"
+        class="text-purple-abbott hover:bg-purple-100 rounded-full cursor-pointer opacity-50 group-hover:opacity-100 transition-colors"
+        title="Reiniciar Test"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+          ></path>
+        </svg>
+      </div>
+
+      <div
+        class="flex flex-col items-center justify-center text-purple-abbott opacity-50 group-hover:opacity-100 transition-opacity"
+      >
+        <svg
+          id="drawer-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 transition-transform duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"></path>
+        </svg>
+      </div>
+    </div>
+  </button>
+
+  <!-- Expanded Content -->
+  <div
+    class="contenedor_with_scroll_2 bg-gray-50 p-6 md:p-8 pb-10 max-h-[60vh] overflow-y-auto border-t border-gray-100"
+  >
+    <div class="max-w-4xl mx-auto">
+      <div id="detailed-results" class="grid grid-cols-1 gap-4 mb-8">
+        <!-- Detailed results injected via JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .contenedor_with_scroll_2::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .contenedor_with_scroll_2::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .contenedor_with_scroll_2::-webkit-scrollbar-thumb {
+    background: var(--color-purple-abbott);
+    border-radius: 4px;
+  }
+</style>

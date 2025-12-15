@@ -23,7 +23,9 @@ import InfoPautas from "@/components/salud-intima/pautas/InfoPautas.astro";
       >
         INFECCIONES <span class="font-normal mr-px">VAGINALES</span>
       </div>
-      <main class="flex-1 p-4 flex flex-col md:flex-row gap-10 relative z-10 md:px-6">
+      <main
+        class="flex-1 p-4 flex flex-col md:flex-row gap-10 relative z-10 md:px-6"
+      >
         <div class="md:border-r md:border-purple-abbott w-96 max-w-full">
           <div class="flex items-center justify-center gap-4">
             <PautasSVG />
@@ -43,6 +45,7 @@ import InfoPautas from "@/components/salud-intima/pautas/InfoPautas.astro";
             class="contenedor_with_scroll flex-1 mt-6 md:max-h-[649px] overflow-auto"
           >
             <InfoPautas />
+            
           </div>
           <div class="flex justify-end">
             <a href={`${URL_BASE}/salud-intima`} aria-label="Ir a Salud Intima">
@@ -73,7 +76,6 @@ import InfoPautas from "@/components/salud-intima/pautas/InfoPautas.astro";
 
   .lista_1 li::marker {
     color: var(--color-purple-abbott);
-
   }
   .list_2 li::marker {
     color: var(--color-pink-abbott);

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import HomeSVG from "@/assets/HomeSVG.astro";
 import TestSVG from "@/assets/TestSVG.astro";
+import FormSaludIntima from "@/components/salud-intima/test/FormSaludIntima.astro";
 ---
 
 <Layout>
@@ -39,10 +40,20 @@ import TestSVG from "@/assets/TestSVG.astro";
           <div
             class="contenedor_with_scroll relative flex-1 mt-6 md:max-h-[649px] overflow-auto"
           >
-
-          
-
+            <FormSaludIntima />
           </div>
+          <p class="text-xs mt-4">
+            <strong>Referencias: 1.</strong> Recommendations for the treatment of
+            Trichomonas vaginalis, Mycoplasma genitalium, Candida albicans, bacterial
+            vaginosis and human papillomavirus (anogenital warts). Geneva: World Health
+            Organization; 2024. Licence: CC BY-NC-SA 3.0 IGO. <strong>2.</strong
+            >
+            Sobel J. Common clinical findings of vaginitis. UpToDate®. 2025 <strong
+              >3.</strong
+            >
+            Qi W, Li H, Wang C, et al. Recent Advances in Presentation, Diagnosis
+            and Treatment for Mixed Vaginitis. Front Cell Infect Microbiol. 2021;11:759795.
+          </p>
           <div class="flex justify-end">
             <a href={`${URL_BASE}/salud-intima`} aria-label="Ir a Menopausia">
               <HomeSVG />
