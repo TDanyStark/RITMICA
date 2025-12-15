@@ -176,11 +176,22 @@ import TabButton from "./TabButton.astro";
       <!-- Información de la imagen: fuerza de la recomendación y leyenda AWARE -->
       <div class="mt-6">
         <div class="mb-6">
-          <div class="inline-block bg-purple-abbott text-white rounded-full px-6 py-2">
-            <h4 class="text-lg md:text-xl font-bold uppercase">FUERZA DE LA RECOMENDACIÓN Y CERTEZA DE LA EVIDENCIA</h4>
+          <div
+            class="inline-block bg-purple-abbott text-white rounded-full px-6 py-2"
+          >
+            <h4 class="text-lg md:text-xl font-bold uppercase">
+              FUERZA DE LA RECOMENDACIÓN Y CERTEZA DE LA EVIDENCIA
+            </h4>
           </div>
-          <p class="mt-3 text-gray-700">Recomendación condicional, certeza moderada en la evidencia de los efectos</p>
-          <h5 class="mt-6 text-2xl font-bold text-pink-500">CLASIFICACIÓN DE ANTIBIÓTICOS DE LA OMS: <span class="text-pink-300 font-semibold">ACCESO, VIGILANCIA Y RESERVA (AWARE)<sup>2</sup></span></h5>
+          <p class="mt-3 text-gray-700">
+            Recomendación condicional, certeza moderada en la evidencia de los
+            efectos
+          </p>
+          <h5 class="mt-6 text-2xl font-bold text-pink-500">
+            CLASIFICACIÓN DE ANTIBIÓTICOS DE LA OMS: <span
+              class="text-pink-300 font-semibold"
+              >ACCESO, VIGILANCIA Y RESERVA (AWARE)<sup>2</sup></span>
+          </h5>
         </div>
         <div
           class="bg-white rounded-2xl overflow-hidden border border-purple-100"
@@ -254,17 +265,73 @@ import TabButton from "./TabButton.astro";
           años), incluidas las mujeres embarazadas, las que viven con VIH y las
           poblaciones clave.
         </p>
+
+        <!-- Imagen: recomendaciones rápidas -->
+        <div class="mt-6">
+          <h4
+            class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
+          >
+            TERCONAZOL 0,8% / DEXAMETASONA 0,0036% (VAGICORT)<sup>3</sup>
+          </h4>
+          <ul class="list-disc pl-5 text-gray-700 mb-4">
+            <li>
+              Tópico para el tratamiento de los casos sintomáticos más urgentes.
+            </li>
+            <li>3 días de tratamiento.</li>
+            <li>Propiedades antimicóticas y antiinflamatorias.</li>
+          </ul>
+
+          <h4
+            class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
+          >
+            FLUCONAZOL 150 mg (FUZOLPAULY)<sup>4</sup>
+          </h4>
+          <ul class="list-disc pl-5 text-gray-700">
+            <li>Cápsulas.</li>
+            <li>
+              Única dosis en CCV no complicada o 3 días de tratamiento en CCV
+              complicada.
+            </li>
+            <li>
+              Indicaciones para episodios severos o recurrentes, infecciones por
+              especies distintas a <em>C. albicans</em>, inmunocompromiso o
+              gestación.
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
   <!-- Scroll-to-tabs button -->
-  <div class="mt-6 flex justify-center">
+  <div class="mt-6 flex flex-col md:flex-row justify-between gap-4 items-center">
+    <a
+      href="https://co.medicinespro.abbott/wp-content/uploads/2025/02/portafolio-2026.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block py-2 px-6 rounded-full text-white bg-purple-abbott font-semibold"
+    >
+      Conozca el portafolio Abbott para elegir la mejor opción
+    </a>
     <button
       type="button"
-      class="px-4 py-2 bg-purple-abbott text-white rounded-lg shadow-md hover:opacity-95"
+      class="p-2 bg-pink-abbott text-white rounded-full shadow-md hover:opacity-95"
       onclick="document.getElementById('cv-tabs')?.scrollIntoView({behavior: 'smooth', block: 'start'});"
     >
-      Ir a pestañas
+      <span class="sr-only">Ir a pestañas</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6 inline-block"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 15l7-7 7 7"></path>
+      </svg>
     </button>
   </div>
 </div>
