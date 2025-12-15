@@ -1,3 +1,7 @@
+---
+import BtnKnowPortfolio from "@/components/BtnKnowPortfolio.astro";
+---
+
 <div
   id="results-drawer-meno"
   class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.15)] z-50 mx-2 rounded-t-3xl transition-all duration-300 transform translate-y-[calc(100%-5rem)]"
@@ -112,14 +116,9 @@
 
         </p>
 
-        <a
-          href="https://co.medicinespro.abbott/wp-content/uploads/2025/02/portafolio-2026.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block mt-4 py-2 px-6 rounded-full text-white bg-purple-abbott font-semibold"
-        >
-          Conozca el portafolio Abbott para elegir la mejor opción
-        </a>
+        <div class="mt-4">
+          <BtnKnowPortfolio />
+        </div>
       </div>
     </div>
   </div>
