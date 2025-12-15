@@ -3,7 +3,7 @@ import { saludIntimaQuestions, resultsInfo } from "@/data/SaludIntimaForm";
 import FixedResult from "./FixedResultSaludIntima.astro";
 ---
 
-<div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4 md:px-10">
+<div id="form-container" class="flex flex-col gap-4 w-full max-w-4xl mx-auto p-2 md:p-4 md:px-6">
   <!-- Rendered via JS -->
 </div>
 
@@ -27,7 +27,7 @@ import FixedResult from "./FixedResultSaludIntima.astro";
         title.textContent = q.title;
 
         const content = document.createElement("div");
-        content.className = "flex flex-col gap-2 pl-3 md:pl-6 ml-4 md:ml-8 border-l-4 border-purple-abbott/30";
+        content.className = "flex flex-col gap-2 ml-4 md:ml-8 border-l-2 border-purple-abbott/30";
 
         q.options.forEach((opt) => {
           const label = document.createElement("label");
