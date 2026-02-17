@@ -145,6 +145,101 @@ import BtnKnowPortfolio from "@/components/BtnKnowPortfolio.astro";
         </div>
       </div>
 
+      <!-- preferencias de uso acordion -->
+      <h3 class="text-purple-abbott font-bold text-xl mt-8 mb-4">
+        Preferencias de uso
+      </h3>
+      <div class="flex flex-col gap-3">
+        <!-- Privacidad -->
+        <div>
+          <button
+            class="accordion-btn w-full bg-white/90 text-purple-abbott rounded-xl py-3 px-6 text-left font-bold shadow-sm hover:bg-purple-abbott hover:text-white transition-all flex justify-between items-center"
+            data-accordion="privacy"
+          >
+            <span>Privacidad</span>
+            <svg
+              class="accordion-icon h-5 w-5 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </button>
+          <div
+            class="accordion-content hidden bg-gray-50 border-l-2 border-purple-abbott/30 ml-4 mt-2 pl-4 py-3 rounded"
+            data-accordion="privacy"
+          >
+            <p class="text-sm text-gray-700">
+              Inyectables de solo progestágeno, Inyectables combinados, Anillo vaginal
+            </p>
+          </div>
+        </div>
+
+        <!-- Controlado por la usuaria -->
+        <div>
+          <button
+            class="accordion-btn w-full bg-white/90 text-purple-abbott rounded-xl py-3 px-6 text-left font-bold shadow-sm hover:bg-purple-abbott hover:text-white transition-all flex justify-between items-center"
+            data-accordion="controlled"
+          >
+            <span>Controlado por la usuaria</span>
+            <svg
+              class="accordion-icon h-5 w-5 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </button>
+          <div
+            class="accordion-content hidden bg-gray-50 border-l-2 border-purple-abbott/30 ml-4 mt-2 pl-4 py-3 rounded"
+            data-accordion="controlled"
+          >
+            <p class="text-sm text-gray-700">
+              Orales combinados, Orales de solo progestágeno, Anillo vaginal
+            </p>
+          </div>
+        </div>
+
+        <!-- Larga duración -->
+        <div>
+          <button
+            class="accordion-btn w-full bg-white/90 text-purple-abbott rounded-xl py-3 px-6 text-left font-bold shadow-sm hover:bg-purple-abbott hover:text-white transition-all flex justify-between items-center"
+            data-accordion="longterm"
+          >
+            <span>Larga duración</span>
+            <svg
+              class="accordion-icon h-5 w-5 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </button>
+          <div
+            class="accordion-content hidden bg-gray-50 border-l-2 border-purple-abbott/30 ml-4 mt-2 pl-4 py-3 rounded"
+            data-accordion="longterm"
+          >
+            <p class="text-sm text-gray-700">Implante subdérmico</p>
+          </div>
+        </div>
+      </div>
+      
+
       <div class="mt-6">
         <p class="text-xs">
           <strong>Referencias:</strong>
@@ -187,3 +282,31 @@ import BtnKnowPortfolio from "@/components/BtnKnowPortfolio.astro";
     border-radius: 4px;
   }
 </style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const accordionBtns = document.querySelectorAll(".accordion-btn");
+
+    accordionBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const accordionId = btn.getAttribute("data-accordion");
+        const content = document.querySelector(
+          `.accordion-content[data-accordion="${accordionId}"]`
+        );
+        const icon = btn.querySelector(".accordion-icon") as HTMLElement;
+
+        // Toggle content
+        if (content && icon) {
+          content.classList.toggle("hidden");
+
+          // Rotate icon
+          if (content.classList.contains("hidden")) {
+            (icon as HTMLElement).style.transform = "rotate(0deg)";
+          } else {
+            (icon as HTMLElement).style.transform = "rotate(180deg)";
+          }
+        }
+      });
+    });
+  });
+</script>
