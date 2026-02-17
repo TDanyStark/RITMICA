@@ -201,7 +201,7 @@ export const criterios: CriteriaNode[] = [
             ],
           },
           {
-            label: "Enfermedad vascular",
+            label: "Vasculopatía",
             values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 },
           },
         ],
@@ -256,7 +256,7 @@ export const criterios: CriteriaNode[] = [
         values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 2, IMP: 2 },
       },
       {
-        label: "Trombosis venosa superficial",
+        label: "Trastornos venosos superficiales",
         children: [
           {
             label: "Venas varicosas (várices)",
@@ -332,7 +332,7 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label: "Ninguna de las anteriores",
-            values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 2, IMP: 2 },
+            values: { AOC: 2, IM: 2, AVC: 2, PSP: 2, ISP: 2, IMP: 2 },
           },
         ],
       },
@@ -394,10 +394,6 @@ export const criterios: CriteriaNode[] = [
             ],
           },
           {
-            label: "No presenta",
-            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          },
-          {
             label: "Epilepsia",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
@@ -453,12 +449,12 @@ export const criterios: CriteriaNode[] = [
         label: "Enfermedad trofoblástica gestacional",
         children: [
           {
-            label: "Concentraciones de ß-hCG bajos o no detectables",
+            label: "Concentraciones de <span style='text-transform: none;'>ß</span>-hCG bajos o no detectables",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
             label:
-              "Concentraciones de ß-hCG persistentemente elevadas o enfermedad maligna",
+              "Concentraciones de <span style='text-transform: none;'>ß</span>-hCG persistentemente elevadas o enfermedad maligna",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
         ],
@@ -557,7 +553,7 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label:
-              "Vaginitis (incluidas la infección por Trichomonas vaginalis y la vaginosis bacteriana)",
+              "Vaginitis (incluidas la infección por <i>Trichomonas vaginalis</i> y la vaginosis bacteriana)",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
@@ -626,7 +622,7 @@ export const criterios: CriteriaNode[] = [
           },
           {
             label:
-              "Fibrosis hepática (si es grave, véase cirrosis, en la página siguiente)",
+              "Fibrosis hepática (si es grave, véase cirrosis)",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
         ],
@@ -739,7 +735,7 @@ export const criterios: CriteriaNode[] = [
             values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "Relacionada con la toma de anticonceptivos hormonales",
+            label: "Relacionada con el uso de anticonceptivos orales combinados en el pasado",
             values: { AOC: 3, IM: 2, AVC: 3, PSP: 2, ISP: 2, IMP: 2 },
           },
         ],
@@ -769,7 +765,7 @@ export const criterios: CriteriaNode[] = [
         ],
       },
       {
-        label: "Cirrósis",
+        label: "Cirrosis",
         children: [
           {
             label: "Leve (compensada)",
