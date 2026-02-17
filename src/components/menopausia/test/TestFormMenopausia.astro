@@ -80,10 +80,10 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       // Unificado: mapa de métodos -> nombre legible. Usar `Object.keys(METHOD_MAP)`
       // cuando se necesite la lista de métodos.
       const METHOD_MAP = {
-        "THM combinada oral": "THM combinada oral",
-        "THM combinada trans": "THM combinada trans",
-        "THM solo estrógeno oral": "THM solo estrógeno oral",
-        "THM solo estrógeno trans": "THM solo estrógeno trans",
+        "THM combinada oral": "Comb. Oral",
+        "THM combinada trans": "Comb. Trans",
+        "THM solo estrógeno oral": "Est. Oral",
+        "THM solo estrógeno trans": "Est. Trans",
         "Tibolona": "Tibolona",
         "THM local": "THM local"
       };
@@ -92,7 +92,17 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         "THM combinada oral": "Comb. Oral",
         "THM combinada trans": "Comb. Trans",
         "THM solo estrógeno oral": "Est. Oral",
-        "THM solo estrógeno trans": "Est.Trans",
+        "THM solo estrógeno trans": "Est. Trans",
+        "Tibolona": "Tibolona",
+        "THM local": "THM local"
+      };
+
+      // Mapa para mostrar nombres legibles completos
+      const DISPLAY_NAMES = {
+        "THM combinada oral": "THM combinada oral",
+        "THM combinada trans": "THM combinada transdérmica",
+        "THM solo estrógeno oral": "THM solo estrógeno oral",
+        "THM solo estrógeno trans": "THM solo estrógeno transdérmico",
         "Tibolona": "Tibolona",
         "THM local": "THM local"
       };
@@ -603,7 +613,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
 
             const detailTitle = document.createElement("span");
             detailTitle.className = "font-bold text-purple-abbott text-xl";
-            detailTitle.textContent = `${method}`;
+            detailTitle.textContent = DISPLAY_NAMES[method] || method;
 
             const detailDesc = document.createElement("span");
             detailDesc.className = "text-gray-600";
