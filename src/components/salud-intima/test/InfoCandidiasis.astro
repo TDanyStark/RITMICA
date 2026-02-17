@@ -17,7 +17,6 @@ import TabButton from "./TabButton.astro";
 
   <!-- Content: Sintomas -->
   <div id="cv-sintomas" class="tab-content">
-
     <div class="mt-4">
       <h3
         class="text-2xl font-bold text-purple-abbott mb-4 flex items-center gap-2"
@@ -51,6 +50,19 @@ import TabButton from "./TabButton.astro";
           normal.
         </li>
       </ul>
+
+      <!-- Referencias -->
+      <div class="mt-6 text-xs text-gray-700">
+        <p>
+          <strong>Referencias</strong> Recommendations for the treatment of Trichomonas
+          vaginalis, Mycoplasma genitalium, Candida albicans, bacterial vaginosis
+          and human papillomavirus (anogenital warts). Geneva: World Health Organization;
+          2024. Licence: CC BY-NC-SA 3.0 IGO. Sobel J. Common clinical findings of
+          vaginitis. UpToDate®. 2025. Qi W, Li H, Wang C, et al. Recent Advances in
+          Presentation, Diagnosis and Treatment for Mixed Vaginitis. Front Cell Infect
+          Microbiol. 2021;11:759795.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -82,6 +94,19 @@ import TabButton from "./TabButton.astro";
             o en agar cromogénico.
           </li>
         </ul>
+
+        <!-- Referencias -->
+        <div class="mt-6 text-xs text-gray-700">
+          <p>
+            <strong>Referencias</strong> Recommendations for the treatment of Trichomonas
+            vaginalis, Mycoplasma genitalium, Candida albicans, bacterial vaginosis
+            and human papillomavirus (anogenital warts). Geneva: World Health Organization;
+            2024. Licence: CC BY-NC-SA 3.0 IGO. Sobel J. Common clinical findings
+            of vaginitis. UpToDate®. 2025. Qi W, Li H, Wang C, et al. Recent Advances
+            in Presentation, Diagnosis and Treatment for Mixed Vaginitis. Front Cell
+            Infect Microbiol. 2021;11:759795.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -89,51 +114,90 @@ import TabButton from "./TabButton.astro";
   <!-- Content: Tratamiento (Placeholder) -->
   <div id="cv-tratamiento" class="tab-content hidden">
     <div class="bg-purple-50 p-6 rounded-2xl border border-purple-100">
-      <h3 class="text-xl font-bold text-purple-abbott mb-4">
-        RECOMENDACIÓN DE LA OMS
-      </h3>
-      <ul class="space-y-2 text-gray-700 text-lg pl-4 list-disc mb-4">
-        <li>
-          <strong>Fluconazol</strong> 150-200 mg por vía oral en una sola dosis;
-        </li>
-        <li>
-          <strong>Clotrimazol</strong> 500 mg por vía intravaginal en una sola dosis,
-          o 200 mg por vía intravaginal una vez al día durante 3 días o crema al 10%
-          por vía intravaginal;
-        </li>
-        <li>
-          <strong>Miconazol</strong> 1200 mg por vía intravaginal en una sola dosis
-          o 400 mg por vía intravaginal una vez al día durante 7 días;
-        </li>
-        <li>
-          <strong>Nistatina</strong> 100.000 unidades por vía intravaginal 2 veces
-          al día durante 15 días.
-        </li>
-      </ul>
+      <!-- Imagen: recomendaciones rápidas -->
+      <div class="mt-6">
+        <h3 class="text-3xl font-bold text-pink-abbott mb-4 uppercase">
+          TRATAMIENTOS A LA MEDIDA
+        </h3>
+        <h4
+          class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
+        >
+          TERCONAZOL 0,8% / DEXAMETASONA 0,0036% (VAGICORT)<sup>3</sup>
+        </h4>
+        <ul class="list-disc text-lg pl-5 text-gray-700 mb-4">
+          <li>
+            Tópico para el tratamiento de los casos sintomáticos más urgentes.
+          </li>
+          <li>3 días de tratamiento.</li>
+          <li>Propiedades antimicóticas y antiinflamatorias.</li>
+        </ul>
 
-      <h4 class="text-lg font-semibold text-purple-abbott mb-2">
-        Para las mujeres embarazadas se sugiere:
-      </h4>
-      <ul class="space-y-2 text-gray-700 text-lg pl-4 mb-4 list-disc">
-        <li>
-          <strong>Clotrimazol</strong> 100 mg por vía intravaginal una vez al día
-          durante 7 días o crema al 1% por vía intravaginal una vez al día durante
-          7 días;
-        </li>
-        <li>
-          <strong>Nistatina</strong> 100.000 unidades por vía intravaginal 2 veces
-          al día durante 15 días.
-        </li>
-      </ul>
+        <h4
+          class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
+        >
+          FLUCONAZOL 150 mg (FUZOLPAULY)<sup>4</sup>
+        </h4>
+        <ul class="list-disc text-lg pl-5 text-gray-700">
+          <li>Cápsulas.</li>
+          <li>
+            Única dosis en CCV no complicada o 3 días de tratamiento en CCV
+            complicada.
+          </li>
+          <li>
+            Indicaciones para episodios severos o recurrentes, infecciones por
+            especies distintas a <em>C. albicans</em>, inmunocompromiso o
+            gestación.
+          </li>
+        </ul>
+      </div>
 
-      <h4 class="text-lg font-semibold text-purple-abbott mb-2">
-        Puntos clave para tener en cuenta:
-      </h4>
-      <p class="text-gray-700">
-        La elección del tratamiento depende de las preferencias por la
-        administración intravaginal, que ayuda a reducir el picor y el dolor
-        vulvar, u oral.
-      </p>
+      <div>
+        <h3 class="mt-4 text-xl font-bold text-purple-abbott mb-4">
+          RECOMENDACIÓN DE LA OMS
+        </h3>
+        <ul class="space-y-2 text-gray-700 text-lg pl-4 list-disc mb-4">
+          <li>
+            <strong>Fluconazol</strong> 150-200 mg por vía oral en una sola dosis;
+          </li>
+          <li>
+            <strong>Clotrimazol</strong> 500 mg por vía intravaginal en una sola dosis,
+            o 200 mg por vía intravaginal una vez al día durante 3 días o crema al
+            10% por vía intravaginal;
+          </li>
+          <li>
+            <strong>Miconazol</strong> 1200 mg por vía intravaginal en una sola dosis
+            o 400 mg por vía intravaginal una vez al día durante 7 días;
+          </li>
+          <li>
+            <strong>Nistatina</strong> 100.000 unidades por vía intravaginal 2 veces
+            al día durante 15 días.
+          </li>
+        </ul>
+
+        <h4 class="text-lg font-semibold text-purple-abbott mb-2">
+          Para las mujeres embarazadas se sugiere:
+        </h4>
+        <ul class="space-y-2 text-gray-700 text-lg pl-4 mb-4 list-disc">
+          <li>
+            <strong>Clotrimazol</strong> 100 mg por vía intravaginal una vez al día
+            durante 7 días o crema al 1% por vía intravaginal una vez al día durante
+            7 días;
+          </li>
+          <li>
+            <strong>Nistatina</strong> 100.000 unidades por vía intravaginal 2 veces
+            al día durante 15 días.
+          </li>
+        </ul>
+
+        <h4 class="text-lg font-semibold text-purple-abbott mb-2">
+          Puntos clave para tener en cuenta:
+        </h4>
+        <p class="text-gray-700">
+          La elección del tratamiento depende de las preferencias por la
+          administración intravaginal, que ayuda a reducir el picor y el dolor
+          vulvar, u oral.
+        </p>
+      </div>
 
       <!-- Información de la imagen: fuerza de la recomendación y leyenda AWARE -->
       <div class="mt-6">
@@ -228,40 +292,21 @@ import TabButton from "./TabButton.astro";
           años), incluidas las mujeres embarazadas, las que viven con VIH y las
           poblaciones clave.
         </p>
+      </div>
 
-        <!-- Imagen: recomendaciones rápidas -->
-        <div class="mt-6">
-          <h4
-            class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
-          >
-            TERCONAZOL 0,8% / DEXAMETASONA 0,0036% (VAGICORT)<sup>3</sup>
-          </h4>
-          <ul class="list-disc text-lg pl-5 text-gray-700 mb-4">
-            <li>
-              Tópico para el tratamiento de los casos sintomáticos más urgentes.
-            </li>
-            <li>3 días de tratamiento.</li>
-            <li>Propiedades antimicóticas y antiinflamatorias.</li>
-          </ul>
-
-          <h4
-            class="text-lg font-bold text-white bg-pink-abbott text-center py-2 px-6 rounded-full mb-3 uppercase"
-          >
-            FLUCONAZOL 150 mg (FUZOLPAULY)<sup>4</sup>
-          </h4>
-          <ul class="list-disc text-lg pl-5 text-gray-700">
-            <li>Cápsulas.</li>
-            <li>
-              Única dosis en CCV no complicada o 3 días de tratamiento en CCV
-              complicada.
-            </li>
-            <li>
-              Indicaciones para episodios severos o recurrentes, infecciones por
-              especies distintas a <em>C. albicans</em>, inmunocompromiso o
-              gestación.
-            </li>
-          </ul>
-        </div>
+      <!-- Referencias -->
+      <div class="mt-6 text-xs text-gray-700">
+        <p>
+          <strong>Referencias</strong> Qi W, Li H, Wang C, et al. Recent Advances
+          in Presentation, Diagnosis and Treatment for Mixed Vaginitis. Front Cell
+          Infect Microbiol. 2021;11:759795. Recommendations for the treatment of Trichomonas
+          vaginalis, Mycoplasma genitalium, Candida albicans, bacterial vaginosis
+          and human papillomavirus (anogenital warts). Geneva: World Health Organization;
+          2024. Licence: CC BY-NC-SA 3.0 IGO. Vagicort [Internet]. Farmacopedia en
+          Colombia. Disponible en: https://bit.ly/34YWcYN Workowski K, Bolan G. Bacterial
+          Vaginosis in Diseases Characterized by Vaginal Discharge. Sexually Transmitted
+          Diseases Treatment Guidelines, 2015 Recom Rep 2015; 64 (3): 69-75.
+        </p>
       </div>
     </div>
   </div>
