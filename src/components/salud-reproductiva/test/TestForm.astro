@@ -168,6 +168,8 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         input.name = groupName || path; // Group name for radios, path for checkbox
         input.value = JSON.stringify(node.values || {});
         input.dataset.path = path;
+        // Use label as stable identifier
+        input.dataset.nodeLabel = node.label;
         if (node.additionalInfo) {
           input.dataset.additionalInfo = node.additionalInfo;
         }
@@ -205,23 +207,28 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           } catch (err) {}
 
           const additionalInfo = target.dataset.additionalInfo;
+          const nodeLabel = target.dataset.nodeLabel;
+          const stateKey = type === "radio" ? groupName : nodeLabel;
 
           if (type === "radio") {
-            formState[groupName] = {
+            formState[stateKey] = {
               path: path,
               values: val,
               type: "radio",
               additionalInfo: additionalInfo || null,
+              nodeLabel: nodeLabel,
             };
           } else {
             if (target.checked) {
-              formState[path] = {
+              formState[stateKey] = {
+                path: path,
                 values: val,
                 type: "checkbox",
                 additionalInfo: additionalInfo || null,
+                nodeLabel: nodeLabel,
               };
             } else {
-              delete formState[path];
+              delete formState[stateKey];
             }
           }
           // console.log("Form State:", formState);
@@ -297,6 +304,25 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         });
       }
 
+      function syncInputsWithState() {
+        // Sync all inputs with current formState
+        const allInputs = container.querySelectorAll("input[data-path]");
+        
+        allInputs.forEach((input) => {
+          const nodeLabel = input.dataset.nodeLabel;
+          const groupName = input.name;
+          
+          if (input.type === "checkbox") {
+            // For checkboxes, check if this nodeLabel exists in formState
+            input.checked = !!formState[nodeLabel];
+          } else if (input.type === "radio") {
+            // For radios, check if this group's selected nodeLabel matches this input's nodeLabel
+            const groupState = formState[groupName];
+            input.checked = groupState && groupState.nodeLabel === nodeLabel;
+          }
+        });
+      }
+
       searchInput.addEventListener("input", (e) => {
         const term = e.target.value;
 
@@ -309,6 +335,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         const filtered = filterNodes(criterios, term);
         container.innerHTML = ""; // Clear
         renderNodes(filtered, container);
+        syncInputsWithState(); // Sync after rendering
       });
 
       clearSearchBtn.addEventListener("click", () => {
@@ -316,6 +343,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         clearSearchBtn.classList.add("hidden");
         container.innerHTML = "";
         renderNodes(criterios, container);
+        syncInputsWithState(); // Sync after rendering
         searchInput.focus();
       });
 
@@ -370,6 +398,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           // Re-render (clears inputs)
           container.innerHTML = "";
           renderNodes(criterios, container);
+          syncInputsWithState(); // Sync after rendering
 
           // Update drawer
           updateDrawer();
@@ -378,6 +407,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
       // Initial Render
       renderNodes(criterios, container);
+      syncInputsWithState(); // Sync after initial render
 
       // Drawer Logic
       const drawerToggle = document.getElementById("drawer-toggle");
@@ -598,14 +628,26 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             criteriaList.className = "space-y-2";
             
             selectedCriteria.forEach(([key, value]) => {
-              const path = value.type === "radio" ? value.path : key;
-              const input = container.querySelector(`input[data-path="${path}"]`);
-              if (!input) return;
+              const nodeLabel = value.nodeLabel;
               
-              const label = input.closest("label");
-              if (!label) return;
+              // Try to find the input to get formatted label
+              const allInputs = container.querySelectorAll("input[data-node-label]");
+              let input = null;
+              for (const inp of allInputs) {
+                if (inp.dataset.nodeLabel === nodeLabel) {
+                  input = inp;
+                  break;
+                }
+              }
               
-              const labelText = label.querySelector("span.flex-1")?.textContent || "Criterio";
+              let labelText = nodeLabel || "Criterio";
+              
+              if (input) {
+                const label = input.closest("label");
+                if (label) {
+                  labelText = label.querySelector("span.flex-1")?.innerHTML || labelText;
+                }
+              }
               
               const criteriaItem = document.createElement("div");
               criteriaItem.className = "flex items-center justify-between gap-3 p-3 bg-purple-abbott/5 rounded-lg hover:bg-purple-abbott/10 transition-colors";
@@ -622,16 +664,20 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
               deleteBtn.style.lineHeight = "1";
               
               deleteBtn.addEventListener("click", () => {
-                // Uncheck the input
-                if (input.type === "radio") {
-                  // For radio, uncheck all in the group
-                  const groupInputs = container.querySelectorAll(`input[name="${input.name}"]`);
-                  groupInputs.forEach(inp => inp.checked = false);
-                  delete formState[input.name];
-                } else {
-                  input.checked = false;
-                  delete formState[path];
+                // Delete from formState
+                delete formState[key];
+                
+                // If input is visible, uncheck it
+                if (input) {
+                  if (value.type === "radio") {
+                    // For radio, uncheck all in the group
+                    const groupInputs = container.querySelectorAll(`input[name="${key}"]`);
+                    groupInputs.forEach(inp => inp.checked = false);
+                  } else {
+                    input.checked = false;
+                  }
                 }
+                
                 updateDrawer();
               });
               

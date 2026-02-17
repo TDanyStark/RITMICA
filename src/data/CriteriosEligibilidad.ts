@@ -397,7 +397,7 @@ export const criterios: CriteriaNode[] = [
           {
             label: "Epilepsia",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-            additionalInfo: "* Ciertos medicamentos pueden interactuar con el método, reduciendo su efectividad.",
+            additionalInfo: "*Si toma anticonvulsivantes, consulte la sección sobre interacciones medicamentosas.",
           },
           
         ],
@@ -409,6 +409,7 @@ export const criterios: CriteriaNode[] = [
     children: [
       {
         label: "Trastornos depresivos",
+        additionalInfo:"* Ciertos medicamentos pueden interactuar con el método, reduciendo su efectividad.",
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
       },
     ],
