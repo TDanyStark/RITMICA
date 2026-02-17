@@ -65,7 +65,7 @@ import InfoBeneficios from "./InfoBeneficios.astro";
 </div>
 
 <script data-astro-rerun is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const menu = document.getElementById("main-menu");
     const contentArea = document.getElementById("content-area");
     const backBtn = document.getElementById("btn-back");
