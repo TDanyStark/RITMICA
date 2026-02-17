@@ -88,15 +88,6 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         "THM local": "THM local"
       };
 
-      const SUMMARY_LABELS = {
-        "THM combinada oral": "Comb. Oral",
-        "THM combinada trans": "Comb. Trans",
-        "THM solo estrógeno oral": "Est. Oral",
-        "THM solo estrógeno trans": "Est. Trans",
-        "Tibolona": "Tibolona",
-        "THM local": "THM local"
-      };
-
       // Mapa para mostrar nombres legibles completos
       const DISPLAY_NAMES = {
         "THM combinada oral": "THM combinada oral",
@@ -592,7 +583,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
           const label = document.createElement("span");
           label.className =
             "text-xs font-bold text-purple-abbott text-center leading-tight text-nowrap";
-          label.textContent = SUMMARY_LABELS[method] || method;
+          label.textContent = METHOD_MAP[method] || method;
 
           wrapper.appendChild(badge);
           wrapper.appendChild(label);
