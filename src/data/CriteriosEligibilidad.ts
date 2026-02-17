@@ -10,6 +10,7 @@ type CriteriaNode = {
   label: string;
   values?: CriteriaValue;
   children?: CriteriaNode[];
+  additionalInfo?: string;
 };
 
 export const criterios: CriteriaNode[] = [
@@ -396,6 +397,7 @@ export const criterios: CriteriaNode[] = [
           {
             label: "Epilepsia",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+            additionalInfo: "* Ciertos medicamentos pueden interactuar con el método, reduciendo su efectividad.",
           },
           
         ],

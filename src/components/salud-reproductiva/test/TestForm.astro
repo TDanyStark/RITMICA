@@ -168,6 +168,9 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         input.name = groupName || path; // Group name for radios, path for checkbox
         input.value = JSON.stringify(node.values || {});
         input.dataset.path = path;
+        if (node.additionalInfo) {
+          input.dataset.additionalInfo = node.additionalInfo;
+        }
 
         const indicator = document.createElement("div");
         indicator.className =
@@ -201,17 +204,21 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             val = JSON.parse(target.value);
           } catch (err) {}
 
+          const additionalInfo = target.dataset.additionalInfo;
+
           if (type === "radio") {
             formState[groupName] = {
               path: path,
               values: val,
               type: "radio",
+              additionalInfo: additionalInfo || null,
             };
           } else {
             if (target.checked) {
               formState[path] = {
                 values: val,
                 type: "checkbox",
+                additionalInfo: additionalInfo || null,
               };
             } else {
               delete formState[path];
@@ -554,11 +561,113 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             detailInfo.appendChild(detailTitle);
             detailInfo.appendChild(detailDesc);
 
+            // Add I and C values if different
+            if (score.I !== score.C) {
+              const detailI = document.createElement("span");
+              detailI.className = "text-gray-600 text-sm";
+              detailI.textContent = `Inicio: ${score.I}`;
+
+              const detailC = document.createElement("span");
+              detailC.className = "text-gray-600 text-sm";
+              detailC.textContent = `Continuación: ${score.C}`;
+
+              detailInfo.appendChild(detailI);
+              detailInfo.appendChild(detailC);
+            }
+
             detailRow.appendChild(detailBadge);
             detailRow.appendChild(detailInfo);
             detailedResultsContainer.appendChild(detailRow);
           }
         });
+
+        // Add list of selected criteria with delete buttons
+        if (detailedResultsContainer && scores) {
+          const selectedCriteria = Object.entries(formState);
+          
+          if (selectedCriteria.length > 0) {
+            const criteriaContainer = document.createElement("div");
+            criteriaContainer.className = "mt-6 pt-4 border-t-2 border-purple-abbott/20";
+            
+            const criteriaTitle = document.createElement("h3");
+            criteriaTitle.className = "text-lg font-bold text-purple-abbott mb-3";
+            criteriaTitle.textContent = "Criterios seleccionados:";
+            criteriaContainer.appendChild(criteriaTitle);
+            
+            const criteriaList = document.createElement("div");
+            criteriaList.className = "space-y-2";
+            
+            selectedCriteria.forEach(([key, value]) => {
+              const path = value.type === "radio" ? value.path : key;
+              const input = container.querySelector(`input[data-path="${path}"]`);
+              if (!input) return;
+              
+              const label = input.closest("label");
+              if (!label) return;
+              
+              const labelText = label.querySelector("span.flex-1")?.textContent || "Criterio";
+              
+              const criteriaItem = document.createElement("div");
+              criteriaItem.className = "flex items-center justify-between gap-3 p-3 bg-purple-abbott/5 rounded-lg hover:bg-purple-abbott/10 transition-colors";
+              
+              const criteriaLabel = document.createElement("span");
+              criteriaLabel.className = "text-purple-abbott text-sm flex-1";
+              criteriaLabel.innerHTML = labelText;
+              
+              const deleteBtn = document.createElement("button");
+              deleteBtn.className = "flex-shrink-0 w-6 h-6 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-colors shadow-sm";
+              deleteBtn.innerHTML = "×";
+              deleteBtn.title = "Eliminar criterio";
+              deleteBtn.style.fontSize = "1.25rem";
+              deleteBtn.style.lineHeight = "1";
+              
+              deleteBtn.addEventListener("click", () => {
+                // Uncheck the input
+                if (input.type === "radio") {
+                  // For radio, uncheck all in the group
+                  const groupInputs = container.querySelectorAll(`input[name="${input.name}"]`);
+                  groupInputs.forEach(inp => inp.checked = false);
+                  delete formState[input.name];
+                } else {
+                  input.checked = false;
+                  delete formState[path];
+                }
+                updateDrawer();
+              });
+              
+              criteriaItem.appendChild(criteriaLabel);
+              criteriaItem.appendChild(deleteBtn);
+              criteriaList.appendChild(criteriaItem);
+            });
+            
+            criteriaContainer.appendChild(criteriaList);
+            detailedResultsContainer.appendChild(criteriaContainer);
+          }
+        }
+
+        // Add additional info if any criteria has it
+        if (detailedResultsContainer && scores) {
+          const additionalInfos = Object.values(formState)
+            .map((s) => s.additionalInfo)
+            .filter((info) => info);
+          
+          // Remove duplicates
+          const uniqueInfos = [...new Set(additionalInfos)];
+          
+          if (uniqueInfos.length > 0) {
+            const infoContainer = document.createElement("div");
+            infoContainer.className = "mt-4 pt-3 border-t border-gray-200 space-y-2";
+            
+            uniqueInfos.forEach((info) => {
+              const infoDiv = document.createElement("div");
+              infoDiv.className = "text-sm text-gray-600 italic";
+              infoDiv.innerHTML = info;
+              infoContainer.appendChild(infoDiv);
+            });
+            
+            detailedResultsContainer.appendChild(infoContainer);
+          }
+        }
       }
 
       // // --- HERRAMIENTAS DE TESTING ---
