@@ -54,16 +54,16 @@ export const criterios: CriteriaNode[] = [
         label: "Lactancia materna",
         children: [
           {
-            label: "<6 semanas después del parto",
+            label: "<6 semanas posparto",
             values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 },
           },
           {
             label:
-              "≥6 semanas a <6 meses después del parto (básicamente amamantando)",
+              ">6 semanas - <6 meses posparto",
             values: { AOC: 3, IM: 3, AVC: 3, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "≥≥6 meses después del parto",
+            label: ">6 meses posparto",
             values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
           },
         ],
@@ -99,15 +99,15 @@ export const criterios: CriteriaNode[] = [
         label: "Después de un aborto",
         children: [
           {
-            label: "En el primer trimestre",
+            label: "Primer trimestre",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "En el segundo trimestre",
+            label: "Segundo trimestre",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "inmediatamente después de un aborto séptico",
+            label: "Inmediatamente después de un aborto séptico",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
         ],
@@ -155,11 +155,11 @@ export const criterios: CriteriaNode[] = [
         label: "Obesidad",
         children: [
           {
-            label: "Índice de masa corporal ≥30 kg/m2",
+            label: "Índice de masa corporal ≥30 kg/m<sup>2</sup>",
             values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "Índice de masa corporal <30 kg/m2",
+            label: "Índice de masa corporal <30 kg/m<sup>2</sup>",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           }
         ],

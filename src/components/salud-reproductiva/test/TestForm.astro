@@ -133,7 +133,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         btn.id = id;
 
         const spanLabel = document.createElement("span");
-        spanLabel.textContent = label;
+        spanLabel.innerHTML = label;
 
         const spanIcon = document.createElement("span");
         spanIcon.className = "icon text-2xl transition-transform duration-300";
@@ -188,7 +188,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
         const textSpan = document.createElement("span");
         textSpan.className = "flex-1 leading-tight";
-        textSpan.textContent = node.label;
+        textSpan.innerHTML = node.label;
 
         label.appendChild(inputContainer);
         label.appendChild(textSpan);
