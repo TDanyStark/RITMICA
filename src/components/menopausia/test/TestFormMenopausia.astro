@@ -195,7 +195,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
 
         const textSpan = document.createElement("span");
         textSpan.className = "flex-1 leading-tight";
-        textSpan.textContent = node.label;
+        textSpan.innerHTML = node.label;
 
         label.appendChild(inputContainer);
         label.appendChild(textSpan);

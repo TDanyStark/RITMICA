@@ -411,7 +411,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             condicion2: {
               val: 2,
               condition:
-                "Paciente que por edad sea tributaria de THM y que su ictus no sea 2º a arterioesclerosis, o bien el ictus sea hemorrágico y su estudio coronario / troncos supraaórticos sean normales y presente otros FR (diabetes mal controlada, tabaquismo, HTA mal controlada, trombofilia, insuficiencia cardiaca)",
+                "Paciente que por edad sea tributaria de THM y que su ictus no sea 2º a arterioesclerosis, o bien el ictus sea hemorrágico y su estudio coronario / troncos supraaórticos sean normales y presente otros factores de riesgo (diabetes mal controlada, tabaquismo, HTA mal controlada, trombofilia, insuficiencia cardiaca)",
             },
           },
           "THM solo estrógeno oral": 3,
@@ -423,7 +423,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             condicion2: {
               val: 2,
               condition:
-                "Paciente que por edad sea tributaria de THM y que su ictus no sea 2º a arterioesclerosis, o bien el ictus sea hemorrágico y su estudio coronario / troncos supraaórticos sean normales y presente otros FR (diabetes mal controlada, tabaquismo, HTA mal controlada, trombofilia, insuficiencia cardiaca)",
+                "Paciente que por edad sea tributaria de THM y que su ictus no sea 2º a arterioesclerosis, o bien el ictus sea hemorrágico y su estudio coronario / troncos supraaórticos sean normales y presente otros factores de riesgo (diabetes mal controlada, tabaquismo, HTA mal controlada, trombofilia, insuficiencia cardiaca)",
             },
           },
           Tibolona: "NA",
@@ -437,28 +437,36 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             condicion1: { val: 3, condition: "" },
             condicion2: {
               val: 2,
-              condition: "sin causa isquémica del IAM ni otros FR",
+              condition:
+                "sin causa isquémica del IAM ni otros factores de riesgo",
             },
           },
           "THM combinada trans": {
             condicion1: { val: 3, condition: "" },
             condicion2: {
               val: 2,
-              condition: "sin causa isquémica del IAM ni otros FR",
+              condition:
+                "sin causa isquémica del IAM ni otros factores de riesgo",
             },
           },
           "THM solo estrógeno oral": {
             condicion1: { val: 3, condition: "" },
             condicion2: {
               val: 2,
-              condition: "sin causa isquémica del IAM ni otros FR",
+              condition:
+                "sin causa isquémica del IAM ni otros factores de riesgo",
             },
           },
           "THM solo estrógeno trans": {
-            condicion1: { val: 3, condition: "" },
+            condicion1: {
+              val: 3,
+              condition:
+                "Pacientes que por edad sean tributarias de THM y que hayan sufrido un IAM y este haya sido corregido mediante bypass coronario con injerto de vena safena, tienen mejor pronóstico si están bajo THM con estrógenos solos en el momento de realizar la revascularización, por lo tanto, en estas pacientes se podría valorar mantener la THM",
+            },
             condicion2: {
               val: 2,
-              condition: "sin causa isquémica del IAM ni otros FR",
+              condition:
+                "sin causa isquémica del IAM ni otros factores de riesgo",
             },
           },
           Tibolona: "NA",
@@ -470,19 +478,31 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         values: {
           "THM combinada oral": {
             condicion1: { val: 2, condition: "" },
-            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+            condicion2: {
+              val: 3,
+              condition: "causa isquémica o con otros factores de riesgo",
+            },
           },
           "THM combinada trans": {
             condicion1: { val: 2, condition: "" },
-            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+            condicion2: {
+              val: 3,
+              condition: "causa isquémica o con otros factores de riesgo",
+            },
           },
           "THM solo estrógeno oral": {
             condicion1: { val: 2, condition: "" },
-            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+            condicion2: {
+              val: 3,
+              condition: "causa isquémica o con otros factores de riesgo",
+            },
           },
           "THM solo estrógeno trans": {
             condicion1: { val: 2, condition: "" },
-            condicion2: { val: 3, condition: "causa isquémica o con otros FR" },
+            condicion2: {
+              val: 3,
+              condition: "causa isquémica o con otros factores de riesgo",
+            },
           },
           Tibolona: "NA",
           "THM local": 1,
@@ -491,21 +511,9 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       {
         label: "Hipertensión",
         values: {
-          "THM combinada oral": {
-            condicion1: { val: 2, condition: "" },
-            condicion2: {
-              val: 1,
-              condition: "combinación de estradiol + drospirenona",
-            },
-          },
+          "THM combinada oral": { val: 2, condition: "" },
           "THM combinada trans": 2,
-          "THM solo estrógeno oral": {
-            condicion1: { val: 2, condition: "" },
-            condicion2: {
-              val: 1,
-              condition: "combinación de estradiol + + noretisterona",
-            },
-          },
+          "THM solo estrógeno oral": { val: 2, condition: "" },
           "THM solo estrógeno trans": 2,
           Tibolona: 2,
           "THM local": 1,
@@ -578,7 +586,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         },
       },
       {
-        label: "IMC entre 25-30 kg/m2",
+        label: "IMC entre 25-30 kg/m<sup>2</sup>",
         values: {
           "THM combinada oral": 2,
           "THM combinada trans": 1,
@@ -589,7 +597,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         },
       },
       {
-        label: "IMC >30 kg/m2",
+        label: "IMC >30 kg/m<sup>2</sup>",
         values: {
           "THM combinada oral": 3,
           "THM combinada trans": 2,
@@ -607,12 +615,27 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       {
         label: "Enfermedad inflamatoria intestinal",
         values: {
-          "THM combinada oral": 2,
-          "THM combinada trans": 1,
-          "THM solo estrógeno oral": 2,
-          "THM solo estrógeno trans": 1,
+          "THM combinada oral": {
+            val: 2,
+            condition: "Valorar factores de riesgo trombótico adicionales.",
+          },
+          "THM combinada trans": {
+            val: 2,
+            condition: "Valorar factores de riesgo trombótico adicionales.",
+          },
+          "THM solo estrógeno oral": {
+            val: 2,
+            condition: "Valorar factores de riesgo trombótico adicionales.",
+          },
+          "THM solo estrógeno trans": {
+            val: 2,
+            condition: "Valorar factores de riesgo trombótico adicionales.",
+          },
           Tibolona: "NA",
-          "THM local": 1,
+          "THM local": {
+            val: 2,
+            condition: "Valorar factores de riesgo trombótico adicionales.",
+          },
         },
       },
       {
@@ -752,18 +775,36 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             condition:
               "menor recurrencia con THM combinada que con THM solo estrógenos",
           },
-          Tibolona: 2,
+          Tibolona: {
+            val: 2,
+            condition: "sin diferencias en supervivencia libre de enfermedad",
+          },
           "THM local": 1,
         },
       },
       {
         label: "Cáncer de cérvix",
         values: {
-          "THM combinada oral": 2,
-          "THM combinada trans": 2,
-          "THM solo estrógeno oral": 2,
-          "THM solo estrógeno trans": 2,
-          Tibolona: 2,
+          "THM combinada oral": {
+            val: 2,
+            condition: "sin diferencias en supervivencia libre de enfermedad",
+          },
+          "THM combinada trans": {
+            val: 2,
+            condition: "sin diferencias en supervivencia libre de enfermedad",
+          },
+          "THM solo estrógeno oral": {
+            val: 2,
+            condition: "sin diferencias en supervivencia libre de enfermedad",
+          },
+          "THM solo estrógeno trans": {
+            val: 2,
+            condition: "sin diferencias en supervivencia libre de enfermedad",
+          },
+          Tibolona: {
+            val: 2,
+            condition: "sin diferencias en supervivencia libre de enfermedad",
+          },
           "THM local": 1,
         },
       },
@@ -1004,7 +1045,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         },
       },
       {
-        label: "SERMs",
+        label: "Moduladores selectivos del receptor de estrógeno (SERM)",
         values: {
           "THM combinada oral": 4,
           "THM combinada trans": 4,
@@ -1022,7 +1063,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
           "THM solo estrógeno oral": 2,
           "THM solo estrógeno trans": 2,
           Tibolona: 2,
-          "THM local": 2,
+          "THM local": 1,
         },
       },
       {
@@ -1037,7 +1078,8 @@ export const condicionesMenopausia: CondicionesMenopausia = [
         },
       },
       {
-        label: "Antibióticos inhibidores enzimáticos (rifampicina / rifabutina)",
+        label:
+          "Antibióticos inhibidores enzimáticos (rifampicina / rifabutina)",
         values: {
           "THM combinada oral": 2,
           "THM combinada trans": 2,
@@ -1072,12 +1114,11 @@ export const condicionesMenopausia: CondicionesMenopausia = [
       {
         label: "Antifúngicos orales",
         values: {
-          "THM combinada oral":{
+          "THM combinada oral": {
             condicion1: { val: 1, condition: "" },
             condicion2: {
               val: 2,
-              condition:
-                "en tratamientos crónicos",
+              condition: "en tratamientos crónicos",
             },
           },
           "THM combinada trans": 1,
@@ -1085,8 +1126,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             condicion1: { val: 1, condition: "" },
             condicion2: {
               val: 2,
-              condition:
-                "en tratamientos crónicos",
+              condition: "en tratamientos crónicos",
             },
           },
           "THM solo estrógeno trans": 1,
@@ -1094,8 +1134,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             condicion1: { val: 1, condition: "" },
             condicion2: {
               val: 2,
-              condition:
-                "en tratamientos crónicos",
+              condition: "en tratamientos crónicos",
             },
           },
           "THM local": 1,
@@ -1113,10 +1152,12 @@ export const condicionesMenopausia: CondicionesMenopausia = [
             },
           },
           "THM combinada trans": {
+            condicion1: { val: 1, condition: "" },
+            condicion2: {
             val: 2,
             condition:
               "Los inhibidores de la proteasa (Ritonavir, Saquinavir, Atazanavir, Tipranavir) son inductores enzimáticos y reducen el efecto estrogénico; los inhibidores no nucleósidos de la transcriptasa reversa (Efavirenz, Nivirapina) son inductores enzimáticos que no lo reducen",
-          },
+          }},
           "THM solo estrógeno oral": {
             condicion1: { val: 1, condition: "" },
             condicion2: {
@@ -1197,7 +1238,7 @@ export const condicionesMenopausia: CondicionesMenopausia = [
               val: 3,
               condition:
                 "Algunos estudios han comunicado interacción con el gestágeno para aripiprazol y pimozida",
-            },  
+            },
           },
           "THM combinada trans": {
             condicion1: { val: 2, condition: "" },
@@ -1205,14 +1246,14 @@ export const condicionesMenopausia: CondicionesMenopausia = [
               val: 3,
               condition:
                 "Algunos estudios han comunicado interacción con el gestágeno para aripiprazol y pimozida",
-            },  
+            },
           },
           "THM solo estrógeno oral": 1,
           "THM solo estrógeno trans": 1,
           Tibolona: 1,
           "THM local": 1,
         },
-      }
+      },
     ],
   },
 ];
