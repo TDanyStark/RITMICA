@@ -43,3 +43,7 @@ button {
 .tab-btn.active {
   @apply bg-purple-abbott text-white border-transparent;
 }
+
+.item_metodo_salud_reproductiva_acordion{
+  @apply border border-purple-abbott bg-purple-abbott/10 text-purple-abbott w-fit rounded-lg p-2 mb-2;
+}
