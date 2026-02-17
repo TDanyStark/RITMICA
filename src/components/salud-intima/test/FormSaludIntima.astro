@@ -31,7 +31,7 @@ import FixedResult from "./FixedResultSaludIntima.astro";
         const content = document.createElement("div");
         content.className = "flex flex-col gap-2 ml-4 md:ml-8 border-l-2 border-purple-abbott/30";
 
-        q.options.forEach((opt) => {
+        q.options.forEach((opt, index) => {
           const label = document.createElement("label");
           label.className = "text-white md:text-purple-abbott py-2 px-4 text-left text-lg md:text-xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
 
@@ -39,16 +39,30 @@ import FixedResult from "./FixedResultSaludIntima.astro";
           inputContainer.className = "relative flex items-center mt-1";
 
           const input = document.createElement("input");
-          input.type = "radio";
+          const isCheckbox = q.isCheckbox || false;
+          input.type = isCheckbox ? "checkbox" : "radio";
           input.name = `q-${q.id}`;
           input.value = JSON.stringify(opt.points);
-          input.className = "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott rounded-full transition-all bg-transparent";
+          input.dataset.optionIndex = index;
+          
+          if (isCheckbox) {
+            input.className = "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott rounded transition-all bg-transparent";
+          } else {
+            input.className = "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott rounded-full transition-all bg-transparent";
+          }
 
           const indicator = document.createElement("div");
           indicator.className = "absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity";
-          const dot = document.createElement("div");
-          dot.className = "w-2.5 h-2.5 bg-white rounded-full";
-          indicator.appendChild(dot);
+          
+          if (isCheckbox) {
+            // Checkmark for checkbox
+            indicator.innerHTML = `<svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`;
+          } else {
+            // Inner circle for radio
+            const dot = document.createElement("div");
+            dot.className = "w-2.5 h-2.5 bg-white rounded-full";
+            indicator.appendChild(dot);
+          }
 
           inputContainer.appendChild(input);
           inputContainer.appendChild(indicator);
@@ -61,7 +75,23 @@ import FixedResult from "./FixedResultSaludIntima.astro";
           label.appendChild(textSpan);
 
           input.addEventListener("change", () => {
-            formState[q.id] = opt.points;
+            if (isCheckbox) {
+              if (!formState[q.id]) {
+                formState[q.id] = [];
+              }
+              if (input.checked) {
+                formState[q.id].push(opt.points);
+              } else {
+                formState[q.id] = formState[q.id].filter(
+                  item => JSON.stringify(item) !== JSON.stringify(opt.points)
+                );
+              }
+              if (formState[q.id].length === 0) {
+                delete formState[q.id];
+              }
+            } else {
+              formState[q.id] = opt.points;
+            }
             updateResult();
           });
 
@@ -76,7 +106,21 @@ import FixedResult from "./FixedResultSaludIntima.astro";
 
     function calculateResult() {
       const scores = { CV: 0, VB: 0, TV: 0 };
-      const answers = Object.values(formState);
+      const answers = [];
+      
+      // Flatten formState to collect all selected points
+      Object.entries(formState).forEach(([qId, value]) => {
+        if (Array.isArray(value)) {
+          // Multiple selections (checkboxes)
+          value.forEach((points) => {
+            answers.push(points);
+          });
+        } else {
+          // Single selection (radio)
+          answers.push(value);
+        }
+      });
+      
       if (answers.length === 0) return null;
 
       answers.forEach((points) => {

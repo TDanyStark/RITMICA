@@ -9,6 +9,7 @@ export interface Question {
   id: number;
   title: string;
   options: Option[];
+  isCheckbox?: boolean;
 }
 
 export const saludIntimaQuestions: Question[] = [
@@ -65,6 +66,7 @@ export const saludIntimaQuestions: Question[] = [
   {
     id: 4,
     title: "Otros signos y síntomas",
+    isCheckbox: true,
     options: [
       {
         label: "Prurito",
