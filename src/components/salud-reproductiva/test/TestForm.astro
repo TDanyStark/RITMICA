@@ -129,7 +129,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       function createButton(label, id, isExpanded) {
         const btn = document.createElement("button");
         btn.className =
-          "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
+          "accordion-trigger relative z-10 menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-lg uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
         btn.id = id;
 
         const spanLabel = document.createElement("span");
@@ -149,7 +149,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       function createInputRow(node, path, type, groupName) {
         const label = document.createElement("label");
         label.className =
-          "text-white  md:text-purple-abbott py-2 px-8 text-left text-xl md:text-2xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
+          "text-white md:text-purple-abbott py-2 text-left text-lg uppercase w-full flex items-end gap-4 cursor-pointer group transition-opacity hover:opacity-75";
 
         const inputContainer = document.createElement("div");
         inputContainer.className = "relative flex items-center mt-1";
@@ -163,6 +163,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           input.classList.add("rounded");
         } else {
           input.classList.add("rounded-full");
+          label.classList.add("px-4");
         }
 
         input.name = groupName || path; // Group name for radios, path for checkbox
@@ -261,7 +262,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           // Case 1: Node is a Group (has children)
           if (node.children) {
             const wrapper = document.createElement("div");
-            wrapper.className = "w-full flex flex-col gap-4"; // Added gap for spacing
+            wrapper.className = "w-full flex flex-col"; // Added gap for spacing
 
             const { btn, icon } = createButton(
               node.label,
@@ -276,7 +277,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             // "linea mas pegada al contenido" -> reduced pl (pl-3)
             // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
             content.className =
-              "hidden flex-col gap-3 mt-4 pl-3 border-l-2 border-purple-abbott/30 ml-4 md:ml-8";
+              `hidden flex-col gap-3 -mt-6 pt-10 pb-4 border-x-2 border-b-2 border-purple-abbott/30 px-4 level-${level}`;
 
             if (node._forceOpen) {
               content.classList.remove("hidden");
@@ -348,6 +349,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         }
 
         const filtered = filterNodes(criterios, term);
+        console.log(filtered);
         container.innerHTML = ""; // Clear
         renderNodes(filtered, container, "", 0, "root");
         syncInputsWithState(); // Sync after rendering

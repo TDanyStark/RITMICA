@@ -8,6 +8,7 @@ type CriteriaValue = {
 };
 type CriteriaNode = {
   label: string;
+  sublabel?: string;
   id?: string;
   values?: CriteriaValue;
   children?: CriteriaNode[];
@@ -60,8 +61,7 @@ const criteriosData: CriteriaNode[] = [
             values: { AOC: 4, IM: 4, AVC: 4, PSP: 2, ISP: 3, IMP: 2 },
           },
           {
-            label:
-              ">6 semanas - <6 meses posparto",
+            label: ">6 semanas - <6 meses posparto",
             values: { AOC: 3, IM: 3, AVC: 3, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
@@ -150,7 +150,7 @@ const criteriosData: CriteriaNode[] = [
           {
             label: "No fumadora",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
+          },
         ],
       },
       {
@@ -163,7 +163,7 @@ const criteriosData: CriteriaNode[] = [
           {
             label: "Índice de masa corporal <30 kg/m<sup>2</sup>",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-          }
+          },
         ],
       },
     ],
@@ -344,6 +344,12 @@ const criteriosData: CriteriaNode[] = [
     label: "TRASTORNOS NEUROLÓGICOS",
     children: [
       {
+        label: "Epilepsia",
+        values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
+        additionalInfo:
+          "*Si toma anticonvulsivantes, consulte la sección sobre interacciones medicamentosas.",
+      },
+      {
         label: "Cefaleas",
         children: [
           {
@@ -395,12 +401,6 @@ const criteriosData: CriteriaNode[] = [
               },
             ],
           },
-          {
-            label: "Epilepsia",
-            values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
-            additionalInfo: "*Si toma anticonvulsivantes, consulte la sección sobre interacciones medicamentosas.",
-          },
-          
         ],
       },
     ],
@@ -410,7 +410,8 @@ const criteriosData: CriteriaNode[] = [
     children: [
       {
         label: "Trastornos depresivos",
-        additionalInfo:"* Ciertos medicamentos pueden interactuar con el método, reduciendo su efectividad.",
+        additionalInfo:
+          "* Ciertos medicamentos pueden interactuar con el método, reduciendo su efectividad.",
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
       },
     ],
@@ -453,7 +454,8 @@ const criteriosData: CriteriaNode[] = [
         label: "Enfermedad trofoblástica gestacional",
         children: [
           {
-            label: "Concentraciones de <span style='text-transform: none;'>ß</span>-hCG bajos o no detectables",
+            label:
+              "Concentraciones de <span style='text-transform: none;'>ß</span>-hCG bajos o no detectables",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
@@ -528,7 +530,9 @@ const criteriosData: CriteriaNode[] = [
         ],
       },
       {
-        label: "Enfermedad pélvica inflamatoria (EPI)",
+        label:
+          "Enfermedad pélvica inflamatoria (EPI)",
+        sublabel: "Antecedentes de enfermedad inflamatoria pélvica (se supone que no hay factores de riesgo actuales de ITS)",
         children: [
           {
             label: "Con embarazo ulterior",
@@ -625,8 +629,7 @@ const criteriosData: CriteriaNode[] = [
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label:
-              "Fibrosis hepática (si es grave, véase cirrosis)",
+            label: "Fibrosis hepática (si es grave, véase cirrosis)",
             values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
           },
         ],
@@ -739,7 +742,8 @@ const criteriosData: CriteriaNode[] = [
             values: { AOC: 2, IM: 2, AVC: 2, PSP: 1, ISP: 1, IMP: 1 },
           },
           {
-            label: "Relacionada con el uso de anticonceptivos orales combinados en el pasado",
+            label:
+              "Relacionada con el uso de anticonceptivos orales combinados en el pasado",
             values: { AOC: 3, IM: 2, AVC: 3, PSP: 2, ISP: 2, IMP: 2 },
           },
         ],
