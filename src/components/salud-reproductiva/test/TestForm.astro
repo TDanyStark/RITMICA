@@ -168,7 +168,8 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         input.name = groupName || path; // Group name for radios, path for checkbox
         input.value = JSON.stringify(node.values || {});
         input.dataset.path = path;
-        // Use label as stable identifier
+        const nodeId = node.id || path;
+        input.dataset.nodeId = nodeId;
         input.dataset.nodeLabel = node.label;
         if (node.additionalInfo) {
           input.dataset.additionalInfo = node.additionalInfo;
@@ -207,8 +208,9 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           } catch (err) {}
 
           const additionalInfo = target.dataset.additionalInfo;
+          const nodeId = target.dataset.nodeId;
           const nodeLabel = target.dataset.nodeLabel;
-          const stateKey = type === "radio" ? groupName : nodeLabel;
+          const stateKey = type === "radio" ? groupName : nodeId;
 
           if (type === "radio") {
             formState[stateKey] = {
@@ -216,6 +218,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
               values: val,
               type: "radio",
               additionalInfo: additionalInfo || null,
+              nodeId: nodeId,
               nodeLabel: nodeLabel,
             };
           } else {
@@ -225,6 +228,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
                 values: val,
                 type: "checkbox",
                 additionalInfo: additionalInfo || null,
+                nodeId: nodeId,
                 nodeLabel: nodeLabel,
               };
             } else {
@@ -238,11 +242,16 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         return label;
       }
 
-      function renderNodes(nodes, parentContainer, parentPath = "", level = 0) {
+      function renderNodes(
+        nodes,
+        parentContainer,
+        parentPath = "",
+        level = 0,
+        parentId = "root"
+      ) {
         if (!nodes) return;
-
         const isGroupRadio = isRadioGroup(nodes);
-        const groupName = isGroupRadio ? `group-${parentPath}` : null;
+        const groupName = isGroupRadio ? `group-${parentId}` : null;
 
         nodes.forEach((node, index) => {
           const currentPath = parentPath
@@ -293,7 +302,13 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             parentContainer.appendChild(wrapper);
 
             // Recurse
-            renderNodes(node.children, content, currentPath, level + 1);
+            renderNodes(
+              node.children,
+              content,
+              currentPath,
+              level + 1,
+              node.id || `${parentId}-${index}`
+            );
           }
           // Case 2: Node is a Leaf (has values)
           else if (node.values) {
@@ -309,16 +324,16 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         const allInputs = container.querySelectorAll("input[data-path]");
         
         allInputs.forEach((input) => {
-          const nodeLabel = input.dataset.nodeLabel;
+          const nodeId = input.dataset.nodeId;
           const groupName = input.name;
           
           if (input.type === "checkbox") {
-            // For checkboxes, check if this nodeLabel exists in formState
-            input.checked = !!formState[nodeLabel];
+            // For checkboxes, check if this nodeId exists in formState
+            input.checked = !!formState[nodeId];
           } else if (input.type === "radio") {
-            // For radios, check if this group's selected nodeLabel matches this input's nodeLabel
+            // For radios, check if this group's selected nodeId matches this input's nodeId
             const groupState = formState[groupName];
-            input.checked = groupState && groupState.nodeLabel === nodeLabel;
+            input.checked = groupState && groupState.nodeId === nodeId;
           }
         });
       }
@@ -334,7 +349,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
         const filtered = filterNodes(criterios, term);
         container.innerHTML = ""; // Clear
-        renderNodes(filtered, container);
+        renderNodes(filtered, container, "", 0, "root");
         syncInputsWithState(); // Sync after rendering
       });
 
@@ -342,7 +357,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         searchInput.value = "";
         clearSearchBtn.classList.add("hidden");
         container.innerHTML = "";
-        renderNodes(criterios, container);
+        renderNodes(criterios, container, "", 0, "root");
         syncInputsWithState(); // Sync after rendering
         searchInput.focus();
       });
@@ -397,7 +412,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
           // Re-render (clears inputs)
           container.innerHTML = "";
-          renderNodes(criterios, container);
+          renderNodes(criterios, container, "", 0, "root");
           syncInputsWithState(); // Sync after rendering
 
           // Update drawer
@@ -406,7 +421,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       }
 
       // Initial Render
-      renderNodes(criterios, container);
+      renderNodes(criterios, container, "", 0, "root");
       syncInputsWithState(); // Sync after initial render
 
       // Drawer Logic
@@ -614,7 +629,10 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         // Add list of selected criteria with delete buttons
         if (detailedResultsContainer && scores) {
           const selectedCriteria = Object.entries(formState);
-          
+          console.log({
+            formState,
+            selectedCriteria
+          });
           if (selectedCriteria.length > 0) {
             const criteriaContainer = document.createElement("div");
             criteriaContainer.className = "mt-6 pt-4 border-t-2 border-purple-abbott/20";
@@ -628,19 +646,19 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             criteriaList.className = "space-y-2";
             
             selectedCriteria.forEach(([key, value]) => {
-              const nodeLabel = value.nodeLabel;
+              const nodeId = value.nodeId;
               
               // Try to find the input to get formatted label
-              const allInputs = container.querySelectorAll("input[data-node-label]");
+              const allInputs = container.querySelectorAll("input[data-node-id]");
               let input = null;
               for (const inp of allInputs) {
-                if (inp.dataset.nodeLabel === nodeLabel) {
+                if (inp.dataset.nodeId === nodeId) {
                   input = inp;
                   break;
                 }
               }
               
-              let labelText = nodeLabel || "Criterio";
+              let labelText = value.nodeLabel || "Criterio";
               
               if (input) {
                 const label = input.closest("label");
@@ -690,7 +708,6 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             detailedResultsContainer.appendChild(criteriaContainer);
           }
         }
-
         // Add additional info if any criteria has it
         if (detailedResultsContainer && scores) {
           const additionalInfos = Object.values(formState)

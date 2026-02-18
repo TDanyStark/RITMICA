@@ -8,12 +8,13 @@ type CriteriaValue = {
 };
 type CriteriaNode = {
   label: string;
+  id?: string;
   values?: CriteriaValue;
   children?: CriteriaNode[];
   additionalInfo?: string;
 };
 
-export const criterios: CriteriaNode[] = [
+const criteriosData: CriteriaNode[] = [
   {
     label: "CARACTERÍSTICAS PERSONALES Y ANTECEDENTES REPRODUCTIVOS",
     children: [
@@ -853,3 +854,17 @@ export const criterios: CriteriaNode[] = [
     ],
   },
 ];
+
+function addIds(nodes: CriteriaNode[], parentId = "root"): CriteriaNode[] {
+  return nodes.map((node, index) => {
+    const id = `${parentId}-${index}`;
+    const children = node.children ? addIds(node.children, id) : undefined;
+    return {
+      ...node,
+      id,
+      children,
+    };
+  });
+}
+
+export const criterios: CriteriaNode[] = addIds(criteriosData);
