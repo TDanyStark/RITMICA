@@ -278,7 +278,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             // "linea mas pegada al contenido" -> reduced pl (pl-3)
             // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
             content.className =
-              `hidden flex-col gap-3 -mt-6 pt-10 pb-4 px-4 rounded-b-lg level-${level}`;
+              `hidden flex-col gap-4 -mt-6 pt-10 pb-4 px-4 rounded-b-lg level-${level}`;
 
             if (node._forceOpen) {
               content.classList.remove("hidden");
@@ -300,6 +300,13 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             };
 
             wrapper.appendChild(btn);
+            if (node.sublabel) {
+              const sublabel = document.createElement("div");
+              sublabel.className =
+                "text-sm text-white px-2 mb-1 leading-snug";
+              sublabel.textContent = node.sublabel;
+              content.appendChild(sublabel);
+            }
             wrapper.appendChild(content);
             parentContainer.appendChild(wrapper);
 
