@@ -129,7 +129,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       function createButton(label, id, isExpanded) {
         const btn = document.createElement("button");
         btn.className =
-          "accordion-trigger relative z-10 menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-lg uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
+          "accordion-trigger relative z-10 menu-btn bg-white text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-lg uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
         btn.id = id;
 
         const spanLabel = document.createElement("span");
@@ -149,7 +149,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       function createInputRow(node, path, type, groupName) {
         const label = document.createElement("label");
         label.className =
-          "text-white md:text-purple-abbott py-2 text-left text-lg uppercase w-full flex items-end gap-4 cursor-pointer group transition-opacity hover:opacity-75";
+          "text-white py-2 text-left text-lg uppercase w-full flex items-end gap-4 cursor-pointer group transition-opacity hover:opacity-75";
 
         const inputContainer = document.createElement("div");
         inputContainer.className = "relative flex items-center mt-1";
@@ -277,7 +277,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             // "linea mas pegada al contenido" -> reduced pl (pl-3)
             // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
             content.className =
-              `hidden flex-col gap-3 -mt-6 pt-10 pb-4 px-4  border-x-2 border-b-2 border-purple-abbott/20 rounded-b-lg level-${level}`;
+              `hidden flex-col gap-3 -mt-6 pt-10 pb-4 px-4 rounded-b-lg level-${level}`;
 
             if (node._forceOpen) {
               content.classList.remove("hidden");
@@ -815,3 +815,17 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
     { once: true }
   );
 </script>
+
+<style is:inline>
+  .level-0 {
+    background-color: rgba(119, 42, 131, 0.7) !important; /* purple-abbott/20 */
+  }
+
+  .level-1 {
+    background-color: rgba(214, 134, 181, 0.7) !important; /* pink-abbott/20 */
+  }
+
+  .level-2 {
+    background-color: rgba(181, 183, 185, 1) !important; /* gray-abbott/20 */
+  }
+</style>
