@@ -136,7 +136,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       function createButton(label, id, isExpanded) {
         const btn = document.createElement("button");
         btn.className =
-          "accordion-trigger menu-btn bg-white/90 text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-xl md:text-2xl uppercase shadow-md hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
+          "accordion-trigger relative z-10 menu-btn bg-white text-purple-abbott rounded-xl md:rounded-full py-4 px-8 text-left text-lg uppercase shadow-md border border-white hover:text-white hover:font-bold hover:scale-[1.02] hover:bg-purple-abbott transition-all w-full flex justify-between items-center";
         btn.id = id;
 
         const spanLabel = document.createElement("span");
@@ -156,7 +156,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       function createInputRow(node, path, type, groupName) {
         const label = document.createElement("label");
         label.className =
-          "text-white  md:text-purple-abbott py-2 px-8 text-left text-xl md:text-2xl uppercase w-full flex items-start gap-4 cursor-pointer group transition-opacity hover:opacity-75";
+          "text-white py-2 text-left text-lg uppercase w-full flex items-start gap-4 cursor-pointer group";
 
         const inputContainer = document.createElement("div");
         inputContainer.className = "relative flex items-center mt-1";
@@ -164,12 +164,14 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         const input = document.createElement("input");
         input.type = type;
         input.className =
-          "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white md:border-purple-abbott checked:bg-purple-abbott transition-all bg-transparent";
+          "peer h-6 w-6 min-w-[1.5rem] cursor-pointer appearance-none border-2 border-white checked:bg-white transition-all bg-transparent";
 
         if (type === "checkbox") {
           input.classList.add("rounded");
+          label.classList.add("px-2");
         } else {
           input.classList.add("rounded-full");
+          label.classList.add("px-4");
         }
 
         input.name = groupName || path; // Group name for radios, path for checkbox
@@ -183,18 +185,18 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         if (type === "radio") {
           // Inner circle for radio
           const dot = document.createElement("div");
-          dot.className = "w-2.5 h-2.5 bg-white rounded-full";
+          dot.className = "w-2.5 h-2.5 bg-purple-abbott rounded-full";
           indicator.appendChild(dot);
         } else {
           // Checkmark for checkbox
-          indicator.innerHTML = `<svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`;
+          indicator.innerHTML = `<svg class="w-4 h-4 text-purple-abbott" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`;
         }
 
         inputContainer.appendChild(input);
         inputContainer.appendChild(indicator);
 
         const textSpan = document.createElement("span");
-        textSpan.className = "flex-1 leading-tight";
+        textSpan.className = "flex-1 leading-tight mt-1";
         textSpan.innerHTML = node.label;
 
         label.appendChild(inputContainer);
@@ -246,7 +248,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
           // Case 1: Node is a Group (has children)
           if (node.children) {
             const wrapper = document.createElement("div");
-            wrapper.className = "w-full flex flex-col gap-4"; // Added gap for spacing
+            wrapper.className = "w-full flex flex-col";
 
             const { btn, icon } = createButton(
               node.label,
@@ -261,7 +263,7 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
             // "linea mas pegada al contenido" -> reduced pl (pl-3)
             // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
             content.className =
-              "hidden flex-col gap-3 mt-4 pl-3 border-l-2 border-purple-abbott/30 ml-4 md:ml-8";
+              `hidden flex-col gap-4 -mt-6 pt-10 pb-4 px-4 rounded-b-lg level-${level}`;
 
             if (node._forceOpen) {
               content.classList.remove("hidden");
@@ -638,3 +640,18 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
     { once: true }
   );
 </script>
+
+<style is:inline>
+  .level-0 {
+    background-color: rgba(119, 42, 131) !important;
+    border: 1px solid white;
+  }
+
+  .level-1 {
+    background-color: rgba(214, 134, 181) !important;
+  }
+
+  .level-2 {
+    background-color: rgba(119, 42, 131) !important;
+  }
+</style>
