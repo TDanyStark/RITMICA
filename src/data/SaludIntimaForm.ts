@@ -70,7 +70,7 @@ export const saludIntimaQuestions: Question[] = [
     options: [
       {
         label: "Prurito",
-        points: ["CV"],
+        points: ["CV", "TV"],
       },
       {
         label: "Dispareunia",
@@ -86,7 +86,7 @@ export const saludIntimaQuestions: Question[] = [
       },
       {
         label: "Edema vulvar",
-        points: ["CV"],
+        points: ["CV", "TV"],
       },
       {
         label: "Sangrado poscoital",
