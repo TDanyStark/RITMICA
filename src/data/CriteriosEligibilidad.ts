@@ -808,7 +808,7 @@ const criteriosData: CriteriaNode[] = [
     label: "ANEMIAS",
     children: [
       {
-        label: "Talassemia",
+        label: "Talasemia",
         values: { AOC: 1, IM: 1, AVC: 1, PSP: 1, ISP: 1, IMP: 1 },
       },
       {
