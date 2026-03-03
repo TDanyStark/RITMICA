@@ -202,6 +202,23 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         label.appendChild(textSpan);
 
         // Event Listener
+        if (type === "radio") {
+          input.addEventListener("click", (e) => {
+            const currentGroupState = formState[groupName];
+            const isSameSelected =
+              currentGroupState && currentGroupState.nodeId === nodeId;
+
+            if (isSameSelected) {
+              e.preventDefault();
+              delete formState[groupName];
+              requestAnimationFrame(() => {
+                input.checked = false;
+                updateDrawer();
+              });
+            }
+          });
+        }
+
         input.addEventListener("change", (e) => {
           const target = e.target;
           let val = {};
