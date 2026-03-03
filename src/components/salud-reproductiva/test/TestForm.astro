@@ -203,16 +203,20 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
         // Event Listener
         if (type === "radio") {
-          input.addEventListener("click", (e) => {
+          input.addEventListener("click", () => {
             const currentGroupState = formState[groupName];
             const isSameSelected =
               currentGroupState && currentGroupState.nodeId === nodeId;
 
             if (isSameSelected) {
-              e.preventDefault();
               delete formState[groupName];
               requestAnimationFrame(() => {
-                input.checked = false;
+                const groupInputs = container.querySelectorAll(
+                  `input[name="${groupName}"]`
+                );
+                groupInputs.forEach((groupInput) => {
+                  groupInput.checked = false;
+                });
                 updateDrawer();
               });
             }
@@ -232,6 +236,11 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
           const stateKey = type === "radio" ? groupName : nodeId;
 
           if (type === "radio") {
+            if (!target.checked) {
+              delete formState[stateKey];
+              updateDrawer();
+              return;
+            }
             formState[stateKey] = {
               path: path,
               values: val,
