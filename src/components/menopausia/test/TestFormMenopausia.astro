@@ -203,6 +203,27 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         label.appendChild(textSpan);
 
         // Event Listener
+        if (type === "radio") {
+          input.addEventListener("click", () => {
+            const currentGroupState = formState[groupName];
+            const isSameSelected =
+              currentGroupState && currentGroupState.path === path;
+
+            if (isSameSelected) {
+              delete formState[groupName];
+              requestAnimationFrame(() => {
+                const groupInputs = container.querySelectorAll(
+                  `input[name="${groupName}"]`
+                );
+                groupInputs.forEach((groupInput) => {
+                  groupInput.checked = false;
+                });
+                updateDrawer();
+              });
+            }
+          });
+        }
+
         input.addEventListener("change", (e) => {
           const target = e.target;
           let val = {};
@@ -211,6 +232,11 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
           } catch (err) {}
 
           if (type === "radio") {
+            if (!target.checked) {
+              delete formState[groupName];
+              updateDrawer();
+              return;
+            }
             formState[groupName] = {
               path: path,
               values: val,

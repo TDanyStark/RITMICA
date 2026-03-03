@@ -74,6 +74,28 @@ import FixedResult from "./FixedResultSaludIntima.astro";
           label.appendChild(inputContainer);
           label.appendChild(textSpan);
 
+          if (!isCheckbox) {
+            input.addEventListener("click", () => {
+              const currentValue = formState[q.id];
+              const isSameSelected =
+                currentValue &&
+                JSON.stringify(currentValue) === JSON.stringify(opt.points);
+
+              if (isSameSelected) {
+                delete formState[q.id];
+                requestAnimationFrame(() => {
+                  const groupInputs = container.querySelectorAll(
+                    `input[name="q-${q.id}"]`
+                  );
+                  groupInputs.forEach((groupInput) => {
+                    groupInput.checked = false;
+                  });
+                  updateResult();
+                });
+              }
+            });
+          }
+
           input.addEventListener("change", () => {
             if (isCheckbox) {
               if (!formState[q.id]) {
@@ -90,6 +112,11 @@ import FixedResult from "./FixedResultSaludIntima.astro";
                 delete formState[q.id];
               }
             } else {
+              if (!input.checked) {
+                delete formState[q.id];
+                updateResult();
+                return;
+              }
               formState[q.id] = opt.points;
             }
             updateResult();
