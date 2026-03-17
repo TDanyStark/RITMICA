@@ -45,5 +45,5 @@ button {
 }
 
 .item_metodo_salud_reproductiva_acordion{
-  @apply border border-purple-abbott bg-purple-abbott/10 text-purple-abbott w-fit rounded-lg p-2 mb-2;
+  @apply border border-purple-abbott bg-purple-abbott/10 text-purple-abbott w-fit rounded-lg p-2 mb-2 cursor-pointer hover:bg-purple-abbott hover:text-white transition-colors;
 }

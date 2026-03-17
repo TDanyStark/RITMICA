@@ -74,21 +74,21 @@ import InfoAnticonceptivosEmergencia from "./InfoAnticonceptivosEmergencia.astro
     const buttons = document.querySelectorAll(".menu-btn");
     const contents = document.querySelectorAll(".info-content");
 
+    function showContent(id) {
+      const content = document.getElementById(id);
+      if (content) {
+        menu?.classList.add("hidden");
+        contentArea?.classList.remove("hidden");
+        contentArea?.classList.add("flex", "flex-col");
+        contents.forEach((c) => c.classList.add("hidden"));
+        content.classList.remove("hidden");
+      }
+    }
+
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const id = btn.id.replace("btn-", "info-");
-        const content = document.getElementById(id);
-
-        if (content) {
-          menu?.classList.add("hidden");
-          contentArea?.classList.remove("hidden");
-          contentArea?.classList.add("flex", "flex-col");
-
-          // Hide all contents first
-          contents.forEach((c) => c.classList.add("hidden"));
-          // Show selected content
-          content.classList.remove("hidden");
-        }
+        showContent(id);
       });
     });
 
@@ -96,8 +96,18 @@ import InfoAnticonceptivosEmergencia from "./InfoAnticonceptivosEmergencia.astro
       contentArea?.classList.add("hidden");
       contentArea?.classList.remove("flex", "flex-col");
       menu?.classList.remove("hidden");
-      // Hide all contents
       contents.forEach((c) => c.classList.add("hidden"));
+      // Clear the URL param without reloading
+      const url = new URL(window.location.href);
+      url.searchParams.delete("metodo");
+      history.replaceState(null, "", url.toString());
     });
+
+    // Show content based on ?metodo= URL param
+    const params = new URLSearchParams(window.location.search);
+    const metodo = params.get("metodo");
+    if (metodo) {
+      showContent("info-" + metodo);
+    }
   }, { once: true });
 </script>
