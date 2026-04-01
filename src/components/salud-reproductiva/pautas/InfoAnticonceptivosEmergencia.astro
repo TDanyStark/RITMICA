@@ -1,3 +1,7 @@
+---
+import ReferenciasPautas from "./ReferenciasPautas.astro";
+---
+
 <div
   id="info-anticonceptivos-emergencia"
   class="info-content hidden rounded-t-3xl"
@@ -13,7 +17,7 @@
       <span class="block text-black font-bold uppercase text-xs mb-1"
         >Cómo actúan</span
       >
-      <p>Inhiben la ovulación</p>
+      <p>Inhiben el pico de LH para impedir la ovulación</p>
     </div>
 
     <div class="p-4 border-b border-gray-100">
@@ -41,7 +45,7 @@
       <span class="block text-black font-bold uppercase text-xs mb-1"
         >MODO DE USO</span
       >
-      <p>2 comprimidos de 0,75 mg en una sola toma o 1 comprimido de 1,5 mg</p>
+      <p>2 comprimidos de 0,75 mg en una sola toma</p>
     </div>
 
   </div>
@@ -79,7 +83,7 @@
         >
           <td
             class="hidden md:table-cell bg-purple-abbott/70 text-white font-bold text-center border border-purple-abbott p-3 text-lg align-middle"
-            >Inhiben la ovulación</td
+            >Inhiben el pico de LH para impedir la ovulación</td
           >
           <td
             class="hidden md:table-cell text-center border border-purple-abbott p-3 font-extrabold text-xl align-middle"
@@ -92,7 +96,7 @@
           >
           <td
             class="hidden md:table-cell border border-purple-abbott p-4 align-middle"
-            >2 comprimidos de 0,75 mg en una sola toma o 1 comprimido de 1,5 mg</td
+            >2 comprimidos de 0,75 mg en una sola toma</td
           >
           <td
             class="block md:table-cell p-4 md:text-black border border-purple-abbott text-center font-bold md:align-middle"
@@ -100,7 +104,7 @@
             <span class="text-lg md:text-base">Postday</span>
             <span
               class="block text-xs font-normal text-purple-abbott/80 md:text-gray-500 mt-1"
-              >(LNG 0,75 mg / 1,5 mg)</span
+              >Levonorgestrel 0.75 mg</span
             >
           </td>
           <td
@@ -108,7 +112,7 @@
           >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
               <li>
-                Usarlo varias veces entre períodos menstruales es seguro.<sup
+                Lo ideal es encontrar un anticonceptivo de uso regular para que realmente sea anticoncepción de emergencia el uso dado.<sup
                   >1</sup>
               </li>
             </ul>
@@ -119,14 +123,9 @@
   </div>
 
   <div class="mt-4 p-4 text-xs space-y-1">
-    <div>
-      <p>*Tasa de embarazo por cada 100 mujeres.</p>
-      <p><strong>LNG:</strong> levonorgestrel.</p>
-    </div>
+    
     <div class="mt-2">
-      <strong>Referencias:</strong>
-      <strong>1.</strong> Organización Mundial de la Salud (OMS). Planificación familiar.
-      Un manual para proveedores [Internet]. OMS; 2019. Disponible en: <a href="https://bit.ly/2B50Pnw" target="_blank">https://bit.ly/2B50Pnw</a>
+      <ReferenciasPautas />
     </div>
   </div>
 </div>
