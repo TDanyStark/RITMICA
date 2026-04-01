@@ -1,4 +1,5 @@
 ---
+import { URL_BASE } from "@/config";
 import BtnKnowPortfolio from "./BtnKnowPortfolio.astro";
 
 interface Props {
@@ -9,7 +10,7 @@ const { targetId = "cv-tabs" } = Astro.props;
 ---
 
 <div class="mt-6 flex flex-col md:flex-row justify-between gap-4 items-center">
-  <BtnKnowPortfolio />
+  <BtnKnowPortfolio url={`${URL_BASE}/pdfs/31-03-2026 portafolio APP RÍTMICA_Antiinfecciosos.pdf`} />
   <button
     type="button"
     class="p-2 bg-pink-abbott text-white rounded-full shadow-md hover:opacity-95"
