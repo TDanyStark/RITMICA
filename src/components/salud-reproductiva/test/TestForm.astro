@@ -439,6 +439,9 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         resetTestBtn.addEventListener("click", (e) => {
           e.stopPropagation(); // Prevent drawer toggle
 
+          // If the drawer is open, close it with the downward transition.
+          closeDrawer();
+
           // Clear state
           formState = {};
 
@@ -465,6 +468,17 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
       const resultsDrawer = document.getElementById("results-drawer");
       const drawerIcon = document.getElementById("drawer-icon");
       const resultsSummary = document.getElementById("results-summary");
+
+      function closeDrawer() {
+        if (!resultsDrawer || !drawerIcon) return;
+
+        const isOpen = resultsDrawer.classList.contains("translate-y-0");
+        if (!isOpen) return;
+
+        resultsDrawer.classList.remove("translate-y-0");
+        resultsDrawer.classList.add("translate-y-[calc(100%-5rem)]");
+        drawerIcon.style.transform = "rotate(0deg)";
+      }
 
       if (drawerToggle) {
         drawerToggle.addEventListener("click", () => {
