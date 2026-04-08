@@ -389,6 +389,9 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
         resetTestBtn.addEventListener("click", (e) => {
           e.stopPropagation(); // Prevent drawer toggle
 
+          // If the drawer is open, close it with the downward transition.
+          closeDrawer();
+
           // Clear state
           formState = {};
 
@@ -413,6 +416,17 @@ import FixedResultMenopausia from "./FixedResultMenopausia.astro";
       const resultsDrawer = document.getElementById("results-drawer-meno");
       const drawerIcon = document.getElementById("drawer-icon-meno");
       const resultsSummary = document.getElementById("results-summary-meno");
+
+      function closeDrawer() {
+        if (!resultsDrawer || !drawerIcon) return;
+
+        const isOpen = resultsDrawer.classList.contains("translate-y-0");
+        if (!isOpen) return;
+
+        resultsDrawer.classList.remove("translate-y-0");
+        resultsDrawer.classList.add("translate-y-[calc(100%-5rem)]");
+        drawerIcon.style.transform = "rotate(0deg)";
+      }
 
       if (drawerToggle) {
         drawerToggle.addEventListener("click", () => {

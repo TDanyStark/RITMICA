@@ -238,6 +238,16 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     const drawerToggle = document.getElementById("drawer-toggle-salud");
     const resultsDrawer = document.getElementById("results-drawer-salud");
     const drawerIcon = document.getElementById("drawer-icon-salud");
+
+    function closeDrawer() {
+      if (!resultsDrawer || !drawerIcon) return;
+
+      const isOpen = !resultsDrawer.classList.contains("translate-y-[calc(100%-5rem)]");
+      if (!isOpen) return;
+
+      resultsDrawer.classList.add("translate-y-[calc(100%-5rem)]");
+      drawerIcon.style.transform = "rotate(0deg)";
+    }
     
     if (drawerToggle) {
         drawerToggle.addEventListener("click", () => {
@@ -257,6 +267,7 @@ import FixedResult from "./FixedResultSaludIntima.astro";
     if (resetTestBtn) {
         resetTestBtn.addEventListener("click", (e) => {
           e.stopPropagation();
+          closeDrawer();
           formState = {};
           renderForm();
           updateResult();
