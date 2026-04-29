@@ -142,6 +142,17 @@ import { categorias } from "@/data/Categorias";
           .replace(/[\u0300-\u036f]/g, "");
       }
 
+      // Recursively mark all nodes with children as _forceOpen
+      function forceOpenAll(nodes) {
+        if (!nodes) return nodes;
+        return nodes.map((node) => {
+          if (node.children) {
+            return { ...node, _forceOpen: true, children: forceOpenAll(node.children) };
+          }
+          return node;
+        });
+      }
+
       function filterNodes(nodes, term) {
         if (!term) return nodes;
 
@@ -156,8 +167,8 @@ import { categorias } from "@/data/Categorias";
               const hasMatchingChild = filteredChildren.length > 0;
 
               if (labelMatch) {
-                // Match on this category: Return it with ALL children (original), expanded
-                return { ...node, _forceOpen: true };
+                // Match on this category: Return it with ALL children expanded recursively
+                return { ...node, _forceOpen: true, children: forceOpenAll(node.children) };
               } else if (hasMatchingChild) {
                 // Match in descendants: Return with filtered children, expanded
                 return {
