@@ -6,7 +6,7 @@ import { categorias } from "@/data/Categorias";
 ---
 
 <div
-  class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2 relative flex items-center gap-2"
+  class="w-full max-w-4xl mx-auto px-2 md:px-4 mb-2 relative flex flex-col gap-2 md:flex-row md:items-center"
 >
   <div class="relative flex-1">
     <input
@@ -35,27 +35,61 @@ import { categorias } from "@/data/Categorias";
       </svg>
     </button>
   </div>
-  <button
-    id="toggle-all-btn"
-    class="bg-white/90 text-purple-abbott p-3 rounded-full shadow-sm border-2 border-purple-abbott hover:bg-purple-abbott hover:text-white transition-all"
-    aria-label="Expandir/Colapsar todo"
-    title="Expandir/Colapsar todo"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
+
+  <!-- Wrapper for buttons on mobile: sin restricción + toggle -->
+  <div class="flex items-center gap-2 w-full md:w-auto">
+    <!-- Checkbox "Sin restricción" — va entre el search y el botón de expandir -->
+    <label
+      id="sin-restriccion-label"
+      class="flex flex-1 items-center gap-2 bg-white/90 text-purple-abbott text-sm font-semibold px-4 py-3 rounded-xl md:rounded-full shadow-sm border-2 border-purple-abbott cursor-pointer hover:bg-purple-abbott hover:text-white transition-all select-none whitespace-nowrap sin-restriccion-inactive"
+      title="Mostrar condiciones sin restricción para cualquier método"
     >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-      ></path>
-    </svg>
-  </button>
+      <input type="checkbox" id="sin-restriccion-check" class="sr-only" />
+      <!-- Caja del checkbox: cambia de color/icono via JS con data-checked -->
+      <span
+        id="sin-restriccion-box"
+        class="flex items-center justify-center h-5 w-5 min-w-5 rounded border-2 border-current transition-all bg-transparent"
+        aria-hidden="true"
+      >
+        <!-- Checkmark: oculto por defecto, visible cuando está activo -->
+        <svg
+          id="sin-restriccion-checkmark"
+          class="hidden w-3.5 h-3.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+      <span>Sin restricción</span>
+    </label>
+
+    <button
+      id="toggle-all-btn"
+      class="bg-white/90 text-purple-abbott p-3 rounded-full shadow-sm border-2 border-purple-abbott hover:bg-purple-abbott hover:text-white transition-all"
+      aria-label="Expandir/Colapsar todo"
+      title="Expandir/Colapsar todo"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+        ></path>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <div
@@ -67,15 +101,19 @@ import { categorias } from "@/data/Categorias";
 
 <FixedResult />
 
-<script is:inline data-astro-rerun define:vars={{ criterios, testScenarios, categorias }}>
-document.addEventListener(
-  "astro:page-load",
-  () => {
-    // Initialize category popup
-    createCategoryPopup();
+<script
+  is:inline
+  data-astro-rerun
+  define:vars={{ criterios, testScenarios, categorias }}
+>
+  document.addEventListener(
+    "astro:page-load",
+    () => {
+      // Initialize category popup
+      createCategoryPopup();
 
-    const container = document.getElementById("form-container");
-    if (!container) return;
+      const container = document.getElementById("form-container");
+      if (!container) return;
       const searchInput = document.getElementById("search-input");
       const clearSearchBtn = document.getElementById("clear-search");
       let formState = {};
@@ -124,6 +162,49 @@ document.addEventListener(
             } else {
               // Leaf node
               if (labelMatch) return node;
+            }
+            return null;
+          })
+          .filter((n) => n !== null);
+      }
+
+      // Check if a value is category 1 or 2 (no restriction)
+      function isCat1or2(val) {
+        if (val === "N") return false;
+        if (typeof val === "number") return val === 1 || val === 2;
+        if (typeof val === "object" && val !== null) {
+          return (val.I === 1 || val.I === 2) && (val.C === 1 || val.C === 2);
+        }
+        return false;
+      }
+
+      // Check if all methods in a values object have category 1 or 2
+      function hasNoRestriction(values) {
+        const methods = ["AOC", "AIC", "AVC", "AOPS", "AMPD", "IMP"];
+        return methods.every((m) => {
+          const v = values[m];
+          if (v === undefined) return true; // Method not mentioned = no restriction
+          return isCat1or2(v);
+        });
+      }
+
+      // Filter tree to only show nodes where ALL methods have cat 1 or 2
+      function filterSinRestriccion(nodes) {
+        if (!nodes) return [];
+
+        return nodes
+          .map((node) => {
+            if (node.children) {
+              const filteredChildren = filterSinRestriccion(node.children);
+              if (filteredChildren.length > 0) {
+                return {
+                  ...node,
+                  children: filteredChildren,
+                  _forceOpen: true,
+                };
+              }
+            } else if (node.values) {
+              if (hasNoRestriction(node.values)) return node;
             }
             return null;
           })
@@ -216,7 +297,7 @@ document.addEventListener(
               delete formState[groupName];
               requestAnimationFrame(() => {
                 const groupInputs = container.querySelectorAll(
-                  `input[name="${groupName}"]`
+                  `input[name="${groupName}"]`,
                 );
                 groupInputs.forEach((groupInput) => {
                   groupInput.checked = false;
@@ -279,7 +360,7 @@ document.addEventListener(
         parentContainer,
         parentPath = "",
         level = 0,
-        parentId = "root"
+        parentId = "root",
       ) {
         if (!nodes) return;
         const isGroupRadio = isRadioGroup(nodes);
@@ -298,7 +379,7 @@ document.addEventListener(
             const { btn, icon } = createButton(
               node.label,
               `btn-${currentPath}`,
-              node._forceOpen
+              node._forceOpen,
             );
 
             const content = document.createElement("div");
@@ -307,8 +388,7 @@ document.addEventListener(
             // Apply border and indentation to all levels (Level 0 content = Level 1 items, etc.)
             // "linea mas pegada al contenido" -> reduced pl (pl-3)
             // "agrega un margin" -> ml-4 md:ml-8 to indent the whole block
-            content.className =
-              `hidden flex-col gap-4 -mt-6 pt-10 pb-4 px-4 rounded-b-lg level-${level}`;
+            content.className = `hidden flex-col gap-4 -mt-6 pt-10 pb-4 px-4 rounded-b-lg level-${level}`;
 
             if (node._forceOpen) {
               content.classList.remove("hidden");
@@ -332,8 +412,7 @@ document.addEventListener(
             wrapper.appendChild(btn);
             if (node.sublabel) {
               const sublabel = document.createElement("div");
-              sublabel.className =
-                "text-sm text-white px-2 mb-1 leading-snug";
+              sublabel.className = "text-sm text-white px-2 mb-1 leading-snug";
               sublabel.textContent = node.sublabel;
               content.appendChild(sublabel);
             }
@@ -346,7 +425,7 @@ document.addEventListener(
               content,
               currentPath,
               level + 1,
-              node.id || `${parentId}-${index}`
+              node.id || `${parentId}-${index}`,
             );
           }
           // Case 2: Node is a Leaf (has values)
@@ -361,11 +440,11 @@ document.addEventListener(
       function syncInputsWithState() {
         // Sync all inputs with current formState
         const allInputs = container.querySelectorAll("input[data-path]");
-        
+
         allInputs.forEach((input) => {
           const nodeId = input.dataset.nodeId;
           const groupName = input.name;
-          
+
           if (input.type === "checkbox") {
             // For checkboxes, check if this nodeId exists in formState
             input.checked = !!formState[nodeId];
@@ -386,6 +465,9 @@ document.addEventListener(
           clearSearchBtn.classList.add("hidden");
         }
 
+        // Uncheck sin-restriccion when searching
+        setSinRestriccionUI(false);
+
         const filtered = filterNodes(criterios, term);
         console.log(filtered);
         container.innerHTML = ""; // Clear
@@ -400,17 +482,47 @@ document.addEventListener(
         renderNodes(criterios, container, "", 0, "root");
         syncInputsWithState(); // Sync after rendering
         searchInput.focus();
+
+        // Uncheck sin-restriccion on clear
+        setSinRestriccionUI(false);
       });
 
       // Toggle All Logic
       const toggleAllBtn = document.getElementById("toggle-all-btn");
+      const sinRestriccionCheck = document.getElementById(
+        "sin-restriccion-check",
+      );
+      const sinRestriccionLabel = document.getElementById(
+        "sin-restriccion-label",
+      );
+      const sinRestriccionBox = document.getElementById("sin-restriccion-box");
+      const sinRestriccionCheckmark = document.getElementById(
+        "sin-restriccion-checkmark",
+      );
+
+      function setSinRestriccionUI(active) {
+        if (!sinRestriccionCheck) return;
+        sinRestriccionCheck.checked = active;
+        if (sinRestriccionCheckmark) {
+          sinRestriccionCheckmark.classList.toggle("hidden", !active);
+        }
+        if (sinRestriccionLabel) {
+          if (active) {
+            sinRestriccionLabel.classList.remove("sin-restriccion-inactive");
+            sinRestriccionLabel.classList.add("sin-restriccion-active");
+          } else {
+            sinRestriccionLabel.classList.add("sin-restriccion-inactive");
+            sinRestriccionLabel.classList.remove("sin-restriccion-active");
+          }
+        }
+      }
 
       if (toggleAllBtn) {
         toggleAllBtn.addEventListener("click", () => {
           const allContents = document.querySelectorAll('[id^="content-"]');
           // Check if ANY content is currently visible (expanded)
           const anyExpanded = Array.from(allContents).some(
-            (content) => !content.classList.contains("hidden")
+            (content) => !content.classList.contains("hidden"),
           );
 
           const triggers = document.querySelectorAll(".accordion-trigger");
@@ -433,6 +545,52 @@ document.addEventListener(
               }
             }
           });
+
+          // Uncheck sin-restriccion when toggle button collapses
+          if (anyExpanded) {
+            setSinRestriccionUI(false);
+          }
+        });
+      }
+
+      // Sin restricción checkbox logic
+      if (sinRestriccionLabel) {
+        sinRestriccionLabel.addEventListener("click", () => {
+          const newState = !sinRestriccionCheck.checked;
+          setSinRestriccionUI(newState);
+
+          if (newState) {
+            // Filter to show only conditions with no restriction (cat 1 or 2 for all methods)
+            const filtered = filterSinRestriccion(criterios);
+            container.innerHTML = "";
+            renderNodes(filtered, container, "", 0, "root");
+            syncInputsWithState();
+
+            // Expand all categories
+            const triggers = document.querySelectorAll(".accordion-trigger");
+            triggers.forEach((btn) => {
+              const contentId = btn.id.replace("btn-", "content-");
+              const content = document.getElementById(contentId);
+              const icon = btn.querySelector(".icon");
+              if (content && icon) {
+                content.classList.remove("hidden");
+                content.classList.add("flex");
+                icon.style.transform = "rotate(180deg)";
+              }
+            });
+          } else {
+            // Restore full view
+            const term = searchInput.value;
+            if (term) {
+              const filtered = filterNodes(criterios, term);
+              container.innerHTML = "";
+              renderNodes(filtered, container, "", 0, "root");
+            } else {
+              container.innerHTML = "";
+              renderNodes(criterios, container, "", 0, "root");
+            }
+            syncInputsWithState();
+          }
         });
       }
 
@@ -487,7 +645,7 @@ document.addEventListener(
       if (drawerToggle) {
         drawerToggle.addEventListener("click", () => {
           const isClosed = resultsDrawer.classList.contains(
-            "translate-y-[calc(100%-5rem)]"
+            "translate-y-[calc(100%-5rem)]",
           );
           if (isClosed) {
             // Open
@@ -503,123 +661,128 @@ document.addEventListener(
         });
       }
 
-function getBadgeColor(num) {
-  const cat = categorias.find(c => c.num === num);
-  return cat ? cat.color : "bg-gray-400";
-}
+      function getBadgeColor(num) {
+        const cat = categorias.find((c) => c.num === num);
+        return cat ? cat.color : "bg-gray-400";
+      }
 
-function getCategoryInfo(num) {
-  const cat = categorias.find(c => c.num === num);
-  return cat ? { desc: cat.desc, color: cat.color } : { desc: "Categoría desconocida.", color: "bg-gray-400" };
-}
+      function getCategoryInfo(num) {
+        const cat = categorias.find((c) => c.num === num);
+        return cat
+          ? { desc: cat.desc, color: cat.color }
+          : { desc: "Categoría desconocida.", color: "bg-gray-400" };
+      }
 
-// Create reusable category popup
-function createCategoryPopup() {
-  let popup = document.getElementById("category-popup");
-  if (popup) return popup;
+      // Create reusable category popup as modal overlay
+      function createCategoryPopup() {
+        let overlay = document.getElementById("category-popup-overlay");
+        if (overlay) return overlay;
 
-  popup = document.createElement("div");
-  popup.id = "category-popup";
-  popup.className = "hidden fixed z-50 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 min-w-[300px] max-w-[400px]";
-  popup.innerHTML = `
-    <div class="flex justify-between items-start mb-3">
+        // Create overlay
+        overlay = document.createElement("div");
+        overlay.id = "category-popup-overlay";
+        overlay.className =
+          "hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm";
+
+        // Create modal
+        const modal = document.createElement("div");
+        modal.className =
+          "bg-white rounded-xl shadow-2xl border border-gray-200 w-full max-w-md max-h-[90vh] overflow-y-auto";
+        modal.innerHTML = `
+    <div class="flex justify-between items-start p-4 border-b border-gray-100">
       <h4 class="font-bold text-purple-abbott text-lg">Información de Categoría</h4>
-      <button id="close-popup" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+      <button id="close-popup" class="text-gray-400 hover:text-gray-600 text-2xl leading-none p-1 -m-1">&times;</button>
     </div>
-    <div id="popup-content"></div>
+    <div id="popup-content" class="p-4"></div>
   `;
-  document.body.appendChild(popup);
 
-  // Close button handler
-  popup.querySelector("#close-popup").addEventListener("click", () => {
-    popup.classList.add("hidden");
-  });
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
 
-  // Click outside to close
-  document.addEventListener("click", (e) => {
-    if (!popup.contains(e.target) && !e.target.closest(".detailBadge")) {
-      popup.classList.add("hidden");
-    }
-  });
+        // Close button handler
+        modal.querySelector("#close-popup").addEventListener("click", () => {
+          overlay.classList.add("hidden");
+        });
 
-  return popup;
-}
+        // Click overlay to close (but not modal clicks)
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) {
+            overlay.classList.add("hidden");
+          }
+        });
 
-function showCategoryPopup(badge, score) {
-  const popup = document.getElementById("category-popup") || createCategoryPopup();
-  const content = popup.querySelector("#popup-content");
-  content.innerHTML = "";
+        // Escape key handler
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !overlay.classList.contains("hidden")) {
+            overlay.classList.add("hidden");
+          }
+        });
 
-  if (score.I === score.C) {
-    const info = getCategoryInfo(score.I);
-    const badgeEl = document.createElement("div");
-    badgeEl.className = `inline-flex w-10 h-10 rounded-full text-white font-bold items-center justify-center shadow-sm text-lg mb-2 ${info.color}`;
-    badgeEl.textContent = score.I;
-    content.appendChild(badgeEl);
+        return overlay;
+      }
 
-    const desc = document.createElement("p");
-    desc.className = "text-gray-700 text-sm";
-    desc.textContent = info.desc;
-    content.appendChild(desc);
-  } else {
-    const infoI = getCategoryInfo(score.I);
-    const infoC = getCategoryInfo(score.C);
+      function showCategoryPopup(badge, score) {
+        const overlay =
+          document.getElementById("category-popup-overlay") ||
+          createCategoryPopup();
+        const content = overlay.querySelector("#popup-content");
+        content.innerHTML = "";
 
-    const sectionI = document.createElement("div");
-    sectionI.className = "mb-3 pb-3 border-b border-gray-100";
-    const labelI = document.createElement("div");
-    labelI.className = "text-xs font-bold text-gray-500 mb-1";
-    labelI.textContent = "Inicio";
-    const badgeI = document.createElement("div");
-    badgeI.className = `inline-flex w-8 h-8 rounded-full text-white font-bold items-center justify-center shadow-sm text-sm mr-2 ${infoI.color}`;
-    badgeI.textContent = score.I;
-    const descI = document.createElement("span");
-    descI.className = "text-gray-700 text-sm";
-    descI.textContent = infoI.desc;
-    sectionI.appendChild(labelI);
-    sectionI.appendChild(badgeI);
-    sectionI.appendChild(descI);
+        if (score.I === score.C) {
+          const info = getCategoryInfo(score.I);
+          const badgeEl = document.createElement("div");
+          badgeEl.className = `inline-flex w-10 h-10 rounded-full text-white font-bold items-center justify-center shadow-sm text-lg mb-2 ${info.color}`;
+          badgeEl.textContent = score.I;
+          content.appendChild(badgeEl);
 
-    const sectionC = document.createElement("div");
-    const labelC = document.createElement("div");
-    labelC.className = "text-xs font-bold text-gray-500 mb-1";
-    labelC.textContent = "Continuación";
-    const badgeC = document.createElement("div");
-    badgeC.className = `inline-flex w-8 h-8 rounded-full text-white font-bold items-center justify-center shadow-sm text-sm mr-2 ${infoC.color}`;
-    badgeC.textContent = score.C;
-    const descC = document.createElement("span");
-    descC.className = "text-gray-700 text-sm";
-    descC.textContent = infoC.desc;
-    sectionC.appendChild(labelC);
-    sectionC.appendChild(badgeC);
-    sectionC.appendChild(descC);
+          const desc = document.createElement("p");
+          desc.className = "text-gray-700 text-sm";
+          desc.textContent = info.desc;
+          content.appendChild(desc);
+        } else {
+          const infoI = getCategoryInfo(score.I);
+          const infoC = getCategoryInfo(score.C);
 
-    content.appendChild(sectionI);
-    content.appendChild(sectionC);
-  }
+          const sectionI = document.createElement("div");
+          sectionI.className = "mb-3 pb-3 border-b border-gray-100";
+          const labelI = document.createElement("div");
+          labelI.className = "text-xs font-bold text-gray-500 mb-1";
+          labelI.textContent = "Inicio";
+          const badgeI = document.createElement("div");
+          badgeI.className = `inline-flex w-8 h-8 rounded-full text-white font-bold items-center justify-center shadow-sm text-sm mr-2 ${infoI.color}`;
+          badgeI.textContent = score.I;
+          const descI = document.createElement("span");
+          descI.className = "text-gray-700 text-sm";
+          descI.textContent = infoI.desc;
+          sectionI.appendChild(labelI);
+          sectionI.appendChild(badgeI);
+          sectionI.appendChild(descI);
 
-  // Position popup near the badge
-  const rect = badge.getBoundingClientRect();
-  popup.style.top = `${rect.top + window.scrollY - 10}px`;
-  popup.style.left = `${rect.right + window.scrollX + 10}px`;
+          const sectionC = document.createElement("div");
+          const labelC = document.createElement("div");
+          labelC.className = "text-xs font-bold text-gray-500 mb-1";
+          labelC.textContent = "Continuación";
+          const badgeC = document.createElement("div");
+          badgeC.className = `inline-flex w-8 h-8 rounded-full text-white font-bold items-center justify-center shadow-sm text-sm mr-2 ${infoC.color}`;
+          badgeC.textContent = score.C;
+          const descC = document.createElement("span");
+          descC.className = "text-gray-700 text-sm";
+          descC.textContent = infoC.desc;
+          sectionC.appendChild(labelC);
+          sectionC.appendChild(badgeC);
+          sectionC.appendChild(descC);
 
-  // Adjust if popup goes off screen
-  const popupRect = popup.getBoundingClientRect();
-  if (popupRect.right > window.innerWidth) {
-    popup.style.left = `${rect.left + window.scrollX - popupRect.width - 10}px`;
-  }
-  if (popupRect.bottom > window.innerHeight + window.scrollY) {
-    popup.style.top = `${rect.bottom + window.scrollY - popupRect.height - 10}px`;
-  }
+          content.appendChild(sectionI);
+          content.appendChild(sectionC);
+        }
 
-  popup.classList.remove("hidden");
-}
+        overlay.classList.remove("hidden");
+      }
 
       function calculateScores() {
         const methods = Object.keys(METHOD_MAP);
         const result = {};
         const selectedValues = Object.values(formState).map((s) => s.values);
-
 
         // If no selection, return null to show placeholder
         if (selectedValues.length === 0) return null;
@@ -739,16 +902,19 @@ function showCategoryPopup(badge, score) {
             detailRow.className =
               "flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100";
 
-const detailBadge = document.createElement("div");
-detailBadge.className = `detailBadge w-16 h-16 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-2xl shrink-0 ${colorClass} cursor-pointer`;
-detailBadge.textContent = text;
-detailBadge.title = "Haz clic para ver información de la categoría";
-detailBadge.setAttribute("role", "button");
-detailBadge.setAttribute("aria-label", "Ver información de categoría " + text);
-detailBadge.addEventListener("click", (e) => {
-  e.stopPropagation();
-  showCategoryPopup(detailBadge, score);
-});
+            const detailBadge = document.createElement("div");
+            detailBadge.className = `detailBadge w-16 h-16 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-2xl shrink-0 ${colorClass} cursor-pointer`;
+            detailBadge.textContent = text;
+            detailBadge.title = "Haz clic para ver información de la categoría";
+            detailBadge.setAttribute("role", "button");
+            detailBadge.setAttribute(
+              "aria-label",
+              "Ver información de categoría " + text,
+            );
+            detailBadge.addEventListener("click", (e) => {
+              e.stopPropagation();
+              showCategoryPopup(detailBadge, score);
+            });
 
             const detailInfo = document.createElement("div");
             detailInfo.className = "flex flex-col";
@@ -789,25 +955,29 @@ detailBadge.addEventListener("click", (e) => {
           const selectedCriteria = Object.entries(formState);
           console.log({
             formState,
-            selectedCriteria
+            selectedCriteria,
           });
           if (selectedCriteria.length > 0) {
             const criteriaContainer = document.createElement("div");
-            criteriaContainer.className = "mt-6 pt-4 border-t-2 border-purple-abbott/20";
-            
+            criteriaContainer.className =
+              "mt-6 pt-4 border-t-2 border-purple-abbott/20";
+
             const criteriaTitle = document.createElement("h3");
-            criteriaTitle.className = "text-lg font-bold text-purple-abbott mb-3";
+            criteriaTitle.className =
+              "text-lg font-bold text-purple-abbott mb-3";
             criteriaTitle.textContent = "Criterios seleccionados:";
             criteriaContainer.appendChild(criteriaTitle);
-            
+
             const criteriaList = document.createElement("div");
             criteriaList.className = "space-y-2";
-            
+
             selectedCriteria.forEach(([key, value]) => {
               const nodeId = value.nodeId;
-              
+
               // Try to find the input to get formatted label
-              const allInputs = container.querySelectorAll("input[data-node-id]");
+              const allInputs = container.querySelectorAll(
+                "input[data-node-id]",
+              );
               let input = null;
               for (const inp of allInputs) {
                 if (inp.dataset.nodeId === nodeId) {
@@ -815,53 +985,58 @@ detailBadge.addEventListener("click", (e) => {
                   break;
                 }
               }
-              
+
               let labelText = value.nodeLabel || "Criterio";
-              
+
               if (input) {
                 const label = input.closest("label");
                 if (label) {
-                  labelText = label.querySelector("span.flex-1")?.innerHTML || labelText;
+                  labelText =
+                    label.querySelector("span.flex-1")?.innerHTML || labelText;
                 }
               }
-              
+
               const criteriaItem = document.createElement("div");
-              criteriaItem.className = "flex items-center justify-between gap-3 p-3 bg-purple-abbott/5 rounded-lg hover:bg-purple-abbott/10 transition-colors";
-              
+              criteriaItem.className =
+                "flex items-center justify-between gap-3 p-3 bg-purple-abbott/5 rounded-lg hover:bg-purple-abbott/10 transition-colors";
+
               const criteriaLabel = document.createElement("span");
               criteriaLabel.className = "text-purple-abbott text-sm flex-1";
               criteriaLabel.innerHTML = labelText;
-              
+
               const deleteBtn = document.createElement("button");
-              deleteBtn.className = "flex-shrink-0 w-6 h-6 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-colors shadow-sm";
+              deleteBtn.className =
+                "flex-shrink-0 w-6 h-6 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-colors shadow-sm";
               deleteBtn.innerHTML = "×";
               deleteBtn.title = "Eliminar criterio";
               deleteBtn.style.fontSize = "1.25rem";
               deleteBtn.style.lineHeight = "1";
-              
+
               deleteBtn.addEventListener("click", () => {
                 // Delete from formState
                 delete formState[key];
-                
+
                 // If input is visible, uncheck it
                 if (input) {
                   if (value.type === "radio") {
                     // For radio, uncheck all in the group
-                    const groupInputs = container.querySelectorAll(`input[name="${key}"]`);
-                    groupInputs.forEach(inp => inp.checked = false);
+                    const groupInputs = container.querySelectorAll(
+                      `input[name="${key}"]`,
+                    );
+                    groupInputs.forEach((inp) => (inp.checked = false));
                   } else {
                     input.checked = false;
                   }
                 }
-                
+
                 updateDrawer();
               });
-              
+
               criteriaItem.appendChild(criteriaLabel);
               criteriaItem.appendChild(deleteBtn);
               criteriaList.appendChild(criteriaItem);
             });
-            
+
             criteriaContainer.appendChild(criteriaList);
             detailedResultsContainer.appendChild(criteriaContainer);
           }
@@ -871,21 +1046,22 @@ detailBadge.addEventListener("click", (e) => {
           const additionalInfos = Object.values(formState)
             .map((s) => s.additionalInfo)
             .filter((info) => info);
-          
+
           // Remove duplicates
           const uniqueInfos = [...new Set(additionalInfos)];
-          
+
           if (uniqueInfos.length > 0) {
             const infoContainer = document.createElement("div");
-            infoContainer.className = "mt-4 pt-3 border-t border-gray-200 space-y-2";
-            
+            infoContainer.className =
+              "mt-4 pt-3 border-t border-gray-200 space-y-2";
+
             uniqueInfos.forEach((info) => {
               const infoDiv = document.createElement("div");
               infoDiv.className = "text-sm text-gray-600 italic";
               infoDiv.innerHTML = info;
               infoContainer.appendChild(infoDiv);
             });
-            
+
             detailedResultsContainer.appendChild(infoContainer);
           }
         }
@@ -968,11 +1144,32 @@ detailBadge.addEventListener("click", (e) => {
       // );
       // console.log("Usa window.ritmicaTest.runScenario(id) para ejecutar uno.");
     },
-    { once: true }
+    { once: true },
   );
 </script>
 
 <style is:inline>
+  /* Sin restricción label states */
+  .sin-restriccion-inactive #sin-restriccion-box {
+    border-color: var(--color-purple-abbott, #772a83);
+  }
+  /* En hover el label queda fondo morado → el cuadro debe ser blanco */
+  .sin-restriccion-inactive:hover #sin-restriccion-box {
+    border-color: white;
+  }
+  .sin-restriccion-active {
+    background-color: var(--color-purple-abbott, #772a83) !important;
+    color: white !important;
+  }
+  .sin-restriccion-active #sin-restriccion-box {
+    border-color: white;
+    background-color: white;
+  }
+  .sin-restriccion-active #sin-restriccion-checkmark {
+    color: var(--color-purple-abbott, #772a83);
+    stroke: var(--color-purple-abbott, #772a83);
+  }
+
   .level-0 {
     background-color: rgba(119, 42, 131) !important; /* purple-abbott/20 */
     border: 1px solid white;
