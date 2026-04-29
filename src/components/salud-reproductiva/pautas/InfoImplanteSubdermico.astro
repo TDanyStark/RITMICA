@@ -72,7 +72,7 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       <thead class="hidden md:table-header-group text-white">
         <tr>
           <th
-            colspan="7"
+            colspan="8"
             class="bg-purple-abbott p-4 text-xl uppercase border-b-2 border-white"
             >Implantes con progestágeno solo</th
           >
@@ -103,6 +103,11 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             rowspan="2"
             class="border border-white p-2 border-b-purple-abbott w-1/4"
             >Beneficios Adicionales</th
+          >
+          <th
+            rowspan="2"
+            class="border border-white p-2 border-b-purple-abbott w-1/4"
+            >Método adecuado para mujeres con contraindicación para el uso de estrógenos</th
           >
         </tr>
         <tr class="bg-purple-abbott/70 text-xs uppercase">
@@ -187,30 +192,26 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
               </li>
             </ul>
           </td>
+          <td
+            rowspan="4"
+            class="hidden md:table-cell border border-purple-abbott p-4 align-middle"
+          >
+            <ul class="list-disc marker:text-[10px] text-xs md:text-sm space-y-1">
+              <li>Hipertensión<sup>1</sup></li>
+              <li>Factores de riesgo cardiovascular<sup>1</sup></li>
+              <li>Migrañas con aura<sup>1</sup></li>
+              <li>Factores de riesgo de tromboembolismo venoso<sup>1</sup></li>
+              <li>Lactancia<sup>1</sup></li>
+              <li>Obesidad<sup>1</sup></li>
+              <li>Consumo de tabaco<sup>1</sup></li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <p class="mt-4 ml-4">*Se recomienda el uso simultáneo de preservativo para evitar el contagio de ITS. 1</p>
-
-  <!-- Método adecuado para mujeres con contraindicación de estrógenos -->
-  <div class="mt-4 md:border md:border-purple-abbott rounded-lg overflow-hidden">
-    <div class="bg-purple-abbott/70 text-white font-bold uppercase text-xs p-3">
-      Método adecuado para mujeres con contraindicación para el uso de estrógenos
-    </div>
-    <div class="p-4 bg-white">
-      <ul class="list-disc list-inside text-xs md:text-sm space-y-1">
-        <li>Hipertensión<sup>1</sup></li>
-        <li>Factores de riesgo cardiovascular<sup>1</sup></li>
-        <li>Migrañas con aura<sup>1</sup></li>
-        <li>Factores de riesgo de tromboembolismo venoso<sup>1</sup></li>
-        <li>Lactancia<sup>1</sup></li>
-        <li>Obesidad<sup>1</sup></li>
-        <li>Consumo de tabaco<sup>1</sup></li>
-      </ul>
-    </div>
-  </div>
+  <p class="mt-4 ml-4">*Se recomienda el uso simultáneo de preservativo para evitar el contagio de ITS. <sup>1</sup></p>
 
   <!-- Manejo de efectos secundarios -->
   <div class="mt-4 md:border md:border-purple-abbott rounded-lg overflow-hidden">
