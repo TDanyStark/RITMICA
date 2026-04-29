@@ -67,11 +67,14 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 <FixedResult />
 
 <script is:inline data-astro-rerun define:vars={{ criterios, testScenarios }}>
-  document.addEventListener(
-    "astro:page-load",
-    () => {
-      const container = document.getElementById("form-container");
-      if (!container) return;
+document.addEventListener(
+  "astro:page-load",
+  () => {
+    // Initialize category popup
+    createCategoryPopup();
+
+    const container = document.getElementById("form-container");
+    if (!container) return;
       const searchInput = document.getElementById("search-input");
       const clearSearchBtn = document.getElementById("clear-search");
       let formState = {};
@@ -499,20 +502,137 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
         });
       }
 
-      function getBadgeColor(num) {
-        switch (num) {
-          case 1:
-            return "bg-[#009A44]";
-          case 2:
-            return "bg-[#8BC53F]";
-          case 3:
-            return "bg-[#FDB913]";
-          case 4:
-            return "bg-[#E30613]";
-          default:
-            return "bg-gray-400";
-        }
-      }
+function getBadgeColor(num) {
+  switch (num) {
+    case 1:
+      return "bg-[#009A44]";
+    case 2:
+      return "bg-[#8BC53F]";
+    case 3:
+      return "bg-[#FDB913]";
+    case 4:
+      return "bg-[#E30613]";
+    default:
+      return "bg-gray-400";
+  }
+}
+
+function getCategoryInfo(num) {
+  switch(num) {
+    case 1:
+      return { desc: "Use el método en cualquier circunstancia.", color: getBadgeColor(1) };
+    case 2:
+      return { desc: "En general, use el método.", color: getBadgeColor(2) };
+    case 3:
+      return { desc: "El uso del método generalmente no se recomienda a menos que otros métodos más adecuados no estén disponibles o no sean aceptados.", color: getBadgeColor(3) };
+    case 4:
+      return { desc: "No use el método.", color: getBadgeColor(4) };
+    default:
+      return { desc: "Categoría desconocida.", color: "bg-gray-400" };
+  }
+}
+
+// Create reusable category popup
+function createCategoryPopup() {
+  let popup = document.getElementById("category-popup");
+  if (popup) return popup;
+
+  popup = document.createElement("div");
+  popup.id = "category-popup";
+  popup.className = "hidden fixed z-50 bg-white rounded-xl shadow-2xl border border-gray-200 p-4 min-w-[300px] max-w-[400px]";
+  popup.innerHTML = `
+    <div class="flex justify-between items-start mb-3">
+      <h4 class="font-bold text-purple-abbott text-lg">Información de Categoría</h4>
+      <button id="close-popup" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+    </div>
+    <div id="popup-content"></div>
+  `;
+  document.body.appendChild(popup);
+
+  // Close button handler
+  popup.querySelector("#close-popup").addEventListener("click", () => {
+    popup.classList.add("hidden");
+  });
+
+  // Click outside to close
+  document.addEventListener("click", (e) => {
+    if (!popup.contains(e.target) && !e.target.closest(".detailBadge")) {
+      popup.classList.add("hidden");
+    }
+  });
+
+  return popup;
+}
+
+function showCategoryPopup(badge, score) {
+  const popup = document.getElementById("category-popup") || createCategoryPopup();
+  const content = popup.querySelector("#popup-content");
+  content.innerHTML = "";
+
+  if (score.I === score.C) {
+    const info = getCategoryInfo(score.I);
+    const badgeEl = document.createElement("div");
+    badgeEl.className = `inline-flex w-10 h-10 rounded-full text-white font-bold items-center justify-center shadow-sm text-lg mb-2 ${info.color}`;
+    badgeEl.textContent = score.I;
+    content.appendChild(badgeEl);
+
+    const desc = document.createElement("p");
+    desc.className = "text-gray-700 text-sm";
+    desc.textContent = info.desc;
+    content.appendChild(desc);
+  } else {
+    const infoI = getCategoryInfo(score.I);
+    const infoC = getCategoryInfo(score.C);
+
+    const sectionI = document.createElement("div");
+    sectionI.className = "mb-3 pb-3 border-b border-gray-100";
+    const labelI = document.createElement("div");
+    labelI.className = "text-xs font-bold text-gray-500 mb-1";
+    labelI.textContent = "Inicio";
+    const badgeI = document.createElement("div");
+    badgeI.className = `inline-flex w-8 h-8 rounded-full text-white font-bold items-center justify-center shadow-sm text-sm mr-2 ${infoI.color}`;
+    badgeI.textContent = score.I;
+    const descI = document.createElement("span");
+    descI.className = "text-gray-700 text-sm";
+    descI.textContent = infoI.desc;
+    sectionI.appendChild(labelI);
+    sectionI.appendChild(badgeI);
+    sectionI.appendChild(descI);
+
+    const sectionC = document.createElement("div");
+    const labelC = document.createElement("div");
+    labelC.className = "text-xs font-bold text-gray-500 mb-1";
+    labelC.textContent = "Continuación";
+    const badgeC = document.createElement("div");
+    badgeC.className = `inline-flex w-8 h-8 rounded-full text-white font-bold items-center justify-center shadow-sm text-sm mr-2 ${infoC.color}`;
+    badgeC.textContent = score.C;
+    const descC = document.createElement("span");
+    descC.className = "text-gray-700 text-sm";
+    descC.textContent = infoC.desc;
+    sectionC.appendChild(labelC);
+    sectionC.appendChild(badgeC);
+    sectionC.appendChild(descC);
+
+    content.appendChild(sectionI);
+    content.appendChild(sectionC);
+  }
+
+  // Position popup near the badge
+  const rect = badge.getBoundingClientRect();
+  popup.style.top = `${rect.top + window.scrollY - 10}px`;
+  popup.style.left = `${rect.right + window.scrollX + 10}px`;
+
+  // Adjust if popup goes off screen
+  const popupRect = popup.getBoundingClientRect();
+  if (popupRect.right > window.innerWidth) {
+    popup.style.left = `${rect.left + window.scrollX - popupRect.width - 10}px`;
+  }
+  if (popupRect.bottom > window.innerHeight + window.scrollY) {
+    popup.style.top = `${rect.bottom + window.scrollY - popupRect.height - 10}px`;
+  }
+
+  popup.classList.remove("hidden");
+}
 
       function calculateScores() {
         const methods = Object.keys(METHOD_MAP);
@@ -638,9 +758,16 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
             detailRow.className =
               "flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100";
 
-            const detailBadge = document.createElement("div");
-            detailBadge.className = `w-16 h-16 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-2xl shrink-0 ${colorClass}`;
-            detailBadge.textContent = text;
+const detailBadge = document.createElement("div");
+detailBadge.className = `detailBadge w-16 h-16 rounded-full text-white font-bold flex items-center justify-center shadow-sm text-2xl shrink-0 ${colorClass} cursor-pointer`;
+detailBadge.textContent = text;
+detailBadge.title = "Haz clic para ver información de la categoría";
+detailBadge.setAttribute("role", "button");
+detailBadge.setAttribute("aria-label", "Ver información de categoría " + text);
+detailBadge.addEventListener("click", (e) => {
+  e.stopPropagation();
+  showCategoryPopup(detailBadge, score);
+});
 
             const detailInfo = document.createElement("div");
             detailInfo.className = "flex flex-col";
