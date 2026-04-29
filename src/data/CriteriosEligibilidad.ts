@@ -128,7 +128,7 @@ const criteriosData: CriteriaNode[] = [
         ],
       },
       {
-        label: "Tabaquismo",
+        label: "Tabaquismo / vaper",
         children: [
           {
             label: "Edad <35 años",
@@ -143,6 +143,10 @@ const criteriosData: CriteriaNode[] = [
               },
               {
                 label: "≥15 cigarrillos al día",
+                values: { AOC: 4, AIC: 3, AVC: 4, AOPS: 1, AMPD: 1, IMP: 1 },
+              },
+              {
+                label: "Vaper",
                 values: { AOC: 4, AIC: 3, AVC: 4, AOPS: 1, AMPD: 1, IMP: 1 },
               },
             ],

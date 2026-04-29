@@ -27,10 +27,12 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       <div class="flex gap-2">
         <div class="flex-1 p-3 rounded text-center">
           <span class="block text-2xl font-extrabold text-black">0,3</span>
+          <span class="block text-xs font-bold text-purple-abbott">99.7% de efectividad</span>
           <span class="text-xs text-gray-600">Uso Correcto*</span>
         </div>
         <div class="flex-1 p-3 rounded text-center">
-          <span class="block text-2xl font-extrabold text-black">0,3</span>
+          <span class="block text-2xl font-extrabold text-black">7</span>
+          <span class="block text-xs font-bold text-purple-abbott">93% de efectividad</span>
           <span class="text-xs text-gray-600">Uso Típico*</span>
         </div>
       </div>
@@ -122,12 +124,12 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
           <td
             rowspan="4"
             class="hidden md:table-cell text-center border border-purple-abbott p-3 font-extrabold text-xl align-middle"
-            >0,3</td
+            >0,3<span class="block text-xs font-bold text-purple-abbott">99.7% de efectividad</span></td
           >
           <td
             rowspan="4"
             class="hidden md:table-cell text-center border border-purple-abbott p-3 font-extrabold text-xl align-middle"
-            >0,3</td
+            >7<span class="block text-xs font-bold text-purple-abbott">93% de efectividad</span></td
           >
           <td
             rowspan="4"
@@ -177,9 +179,11 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       </tbody>
     </table>
   </div>
-
+  <p class="mt-4 ml-4">
+    *Se recomienda el uso simultáneo de preservativo para evitar el contagio de
+    ITS. <sup>1</sup>
+  </p>
   <div class="mt-4 p-4 text-xs space-y-1">
-    
     <div class="mt-2">
       <ReferenciasPautas />
     </div>
