@@ -135,14 +135,21 @@ import { categorias } from "@/data/Categorias";
         return nodes.every((node) => node.values && !node.children);
       }
 
+      function normalizeText(str) {
+        return str
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+      }
+
       function filterNodes(nodes, term) {
         if (!term) return nodes;
 
+        const normalizedTerm = normalizeText(term);
+
         return nodes
           .map((node) => {
-            const labelMatch = node.label
-              .toLowerCase()
-              .includes(term.toLowerCase());
+            const labelMatch = normalizeText(node.label).includes(normalizedTerm);
 
             if (node.children) {
               const filteredChildren = filterNodes(node.children, term);
