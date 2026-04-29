@@ -2,6 +2,7 @@
 import { criterios } from "@/data/CriteriosEligibilidad";
 import { testScenarios } from "./test-scenarios";
 import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro";
+import { categorias } from "@/data/Categorias";
 ---
 
 <div
@@ -66,7 +67,7 @@ import FixedResult from "@/components/salud-reproductiva/test/FixedResult.astro"
 
 <FixedResult />
 
-<script is:inline data-astro-rerun define:vars={{ criterios, testScenarios }}>
+<script is:inline data-astro-rerun define:vars={{ criterios, testScenarios, categorias }}>
 document.addEventListener(
   "astro:page-load",
   () => {
@@ -503,33 +504,13 @@ document.addEventListener(
       }
 
 function getBadgeColor(num) {
-  switch (num) {
-    case 1:
-      return "bg-[#009A44]";
-    case 2:
-      return "bg-[#8BC53F]";
-    case 3:
-      return "bg-[#FDB913]";
-    case 4:
-      return "bg-[#E30613]";
-    default:
-      return "bg-gray-400";
-  }
+  const cat = categorias.find(c => c.num === num);
+  return cat ? cat.color : "bg-gray-400";
 }
 
 function getCategoryInfo(num) {
-  switch(num) {
-    case 1:
-      return { desc: "Use el método en cualquier circunstancia.", color: getBadgeColor(1) };
-    case 2:
-      return { desc: "En general, use el método.", color: getBadgeColor(2) };
-    case 3:
-      return { desc: "El uso del método generalmente no se recomienda a menos que otros métodos más adecuados no estén disponibles o no sean aceptados.", color: getBadgeColor(3) };
-    case 4:
-      return { desc: "No use el método.", color: getBadgeColor(4) };
-    default:
-      return { desc: "Categoría desconocida.", color: "bg-gray-400" };
-  }
+  const cat = categorias.find(c => c.num === num);
+  return cat ? { desc: cat.desc, color: cat.color } : { desc: "Categoría desconocida.", color: "bg-gray-400" };
 }
 
 // Create reusable category popup

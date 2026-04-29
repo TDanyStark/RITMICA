@@ -1,6 +1,7 @@
 ---
 import BtnKnowPortfolio from "@/components/BtnKnowPortfolio.astro";
 import { URL_BASE } from "@/config";
+import { categorias } from "@/data/Categorias";
 ---
 
 <div
@@ -112,38 +113,16 @@ import { URL_BASE } from "@/config";
 
       <h3 class="text-purple-abbott font-bold text-xl mt-8 mb-4">Categorías</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="flex items-center gap-3">
-          <div
-            class="w-8 h-8 rounded-full bg-[#009A44] text-white flex items-center justify-center font-bold shrink-0"
-          >
-            1
+        {categorias.map(cat => (
+          <div class="flex items-center gap-3">
+            <div
+              class={`w-8 h-8 rounded-full ${cat.color} text-white flex items-center justify-center font-bold shrink-0`}
+            >
+              {cat.num}
+            </div>
+            <span class="text-sm">{cat.desc}</span>
           </div>
-          <span class="text-sm">Use el método en cualquier circunstancia.</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div
-            class="w-8 h-8 rounded-full bg-[#8BC53F] text-white flex items-center justify-center font-bold shrink-0"
-          >
-            2
-          </div>
-          <span class="text-sm">En general, use el método.</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div
-            class="w-8 h-8 rounded-full bg-[#FDB913] text-white flex items-center justify-center font-bold shrink-0"
-          >
-            3
-          </div>
-          <span class="text-sm">El uso del método generalmente no se recomienda a menos que otros métodos más adecuados no estén disponibles o no sean aceptados.</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div
-            class="w-8 h-8 rounded-full bg-[#E30613] text-white flex items-center justify-center font-bold shrink-0"
-          >
-            4
-          </div>
-          <span class="text-sm">No use el método.</span>
-        </div>
+        ))}
       </div>
 
       <!-- preferencias de uso acordion -->
