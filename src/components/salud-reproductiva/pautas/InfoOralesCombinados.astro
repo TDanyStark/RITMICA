@@ -2,13 +2,8 @@
 import ReferenciasPautas from "./ReferenciasPautas.astro";
 ---
 
-<div
-  id="info-orales-combinados"
-  class="info-content hidden rounded-t-3xl"
->
-  <div
-    class="md:hidden bg-white rounded-lg overflow-hidden mb-6 "
-  >
+<div id="info-orales-combinados" class="info-content hidden rounded-t-3xl">
+  <div class="md:hidden bg-white rounded-lg overflow-hidden mb-6">
     <div
       class="bg-purple-abbott text-white p-4 text-center font-bold uppercase tracking-wide"
     >
@@ -29,10 +24,12 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       <div class="flex gap-2">
         <div class="flex-1 p-3 rounded text-center">
           <span class="block text-2xl font-extrabold text-black">0,3</span>
+          <span class="block text-xs font-bold text-purple-abbott">99.7% de efectividad</span>
           <span class="text-xs text-gray-600">Uso Correcto*</span>
         </div>
         <div class="flex-1 p-3 rounded text-center">
-          <span class="block text-2xl font-extrabold text-black">9</span>
+          <span class="block text-2xl font-extrabold text-black">7</span>
+          <span class="block text-xs font-bold text-purple-abbott">93% de efectividad</span>
           <span class="text-xs text-gray-600">Uso Típico*</span>
         </div>
       </div>
@@ -44,7 +41,9 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       >
       <p>
         En cualquier momento del mes.<br /><span class="text-xs text-gray-500"
-          >>5 días desde el inicio de la menstruación, necesita método de respaldo por 7 días.</span>
+          >>5 días desde el inicio de la menstruación, necesita método de
+          respaldo por 7 días.</span
+        >
       </p>
     </div>
 
@@ -54,15 +53,20 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       >
       <p class="mb-2">Una píldora diaria a la misma hora.</p>
       <div class="text-xs text-gray-600 space-y-1">
-        <p>• <strong>21 píldoras:</strong> descansa 7 días antes de iniciar el nuevo envase.</p>
+        <p>
+          • <strong>21 píldoras:</strong> descansa 7 días antes de iniciar el nuevo
+          envase.
+        </p>
         <p>• <strong>28 píldoras:</strong> uso continuo.</p>
       </div>
     </div>
   </div>
 
-  <div class="overflow-x-auto px-2 md:px-0 rounded-t-3xl md:border md:border-purple-abbott">
+  <div
+    class="overflow-x-auto px-2 md:px-0 rounded-t-3xl md:border md:border-purple-abbott"
+  >
     <table
-      class="w-full border-collapse bg-white  md:rounded-none rounded-lg overflow-hidden"
+      class="w-full border-collapse bg-white md:rounded-none rounded-lg overflow-hidden"
     >
       <thead class="hidden md:table-header-group text-white">
         <tr>
@@ -74,20 +78,40 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
           </th>
         </tr>
         <tr class="bg-purple-abbott/70 text-xs uppercase">
-          <th rowspan="2" class="border border-white p-2 border-b-purple-abbott border-l-purple-abbott">Cómo actúan</th>
+          <th
+            rowspan="2"
+            class="border border-white p-2 border-b-purple-abbott border-l-purple-abbott"
+            >Cómo actúan</th
+          >
           <th colspan="2" class="border border-white p-2"
             >Efectividad<sup>1</sup></th
           >
-          <th rowspan="2" class="border border-white p-2 border-b-purple-abbott">Cuándo iniciar</th>
-          <th rowspan="2" class="border border-white p-2 border-b-purple-abbott w-1/6">Modo / Frecuencia</th>
-          <th rowspan="2" class="border border-white p-2 border-b-purple-abbott w-1/6">Opciones</th>
-          <th rowspan="2" class="border border-white p-2 border-b-purple-abbott w-1/4"
+          <th rowspan="2" class="border border-white p-2 border-b-purple-abbott"
+            >Cuándo iniciar</th
+          >
+          <th
+            rowspan="2"
+            class="border border-white p-2 border-b-purple-abbott w-1/6"
+            >Modo / Frecuencia</th
+          >
+          <th
+            rowspan="2"
+            class="border border-white p-2 border-b-purple-abbott w-1/6"
+            >Opciones</th
+          >
+          <th
+            rowspan="2"
+            class="border border-white p-2 border-b-purple-abbott w-1/4"
             >Beneficios Adicionales</th
           >
         </tr>
         <tr class="bg-purple-abbott/70 text-xs uppercase">
-          <th class="border border-white p-2 border-b-purple-abbott">Uso Correcto*</th>
-          <th class="border border-white p-2 border-b-purple-abbott">Uso Típico*</th>
+          <th class="border border-white p-2 border-b-purple-abbott"
+            >Uso Correcto*</th
+          >
+          <th class="border border-white p-2 border-b-purple-abbott"
+            >Uso Típico*</th
+          >
         </tr>
       </thead>
 
@@ -104,12 +128,12 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
           <td
             rowspan="13"
             class="hidden md:table-cell text-center border border-purple-abbott p-3 font-extrabold text-xl align-middle"
-            >0,3</td
+            >0,3<span class="block text-xs font-bold text-purple-abbott">99,9% de efectividad</span></td
           >
           <td
             rowspan="13"
             class="hidden md:table-cell text-center border border-purple-abbott p-3 font-extrabold text-xl align-middle"
-            >9</td
+            >7<span class="block text-xs font-bold text-purple-abbott">93% de efectividad</span></td
           >
           <td
             rowspan="13"
@@ -117,7 +141,8 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
           >
             <strong>En cualquier momento del mes:</strong><br /><br />
             <span class="text-xs"
-              >>5 días desde el inicio de la menstruación, necesita método de respaldo por 7 días.</span
+              >>5 días desde el inicio de la menstruación, necesita método de
+              respaldo por 7 días.</span
             >
           </td>
           <td
@@ -126,7 +151,8 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
           >
             <strong>Una píldora diaria a la misma hora.</strong><br /><br />
             <span class="text-xs block mb-2"
-              ><strong>21 píldoras:</strong> descansa 7 días antes de iniciar el nuevo envase.</span
+              ><strong>21 píldoras:</strong> descansa 7 días antes de iniciar el nuevo
+              envase.</span
             >
             <span class="text-xs block"
               ><strong>28 píldoras:</strong> no descansa entre un envase y otro.</span
@@ -143,17 +169,22 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
               >Beneficios:</span
             >
-            <strong class="text-xs md:text-sm">Estrógeno bioidéntico al natural:</strong>
+            <strong class="text-xs md:text-sm"
+              >Estrógeno bioidéntico al natural:</strong
+            >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
               <li>Menor riesgo de eventos adversos.<sup>2</sup></li>
               <li>Menor impacto metabólico.<sup>2</sup></li>
-              <li>Potente actividad antiandrogénica (mejoría de acné, hirsutismo, piel y cabello grasos).<sup>3</sup></li>
+              <li>
+                Potente actividad antiandrogénica (mejoría de acné, hirsutismo,
+                piel y cabello grasos).<sup>3</sup>
+              </li>
             </ul>
           </td>
         </tr>
@@ -171,7 +202,7 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
@@ -179,7 +210,10 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
               <li>Actividad antiandrogénica.<sup>3</sup></li>
-              <li>Reducción de la intensidad y duración del sangrado menstrual.<sup>4</sup></li>
+              <li>
+                Reducción de la intensidad y duración del sangrado menstrual.<sup
+                  >4</sup>
+              </li>
               <li>Mejoría dismenorrea.<sup>5</sup></li>
             </ul>
           </td>
@@ -198,7 +232,7 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
@@ -206,8 +240,7 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
               <li>
-                Actividad antiandrogénica con menos carga hormonal.<sup
-                  >6</sup>
+                Actividad antiandrogénica con menos carga hormonal.<sup>6</sup>
               </li>
             </ul>
           </td>
@@ -226,14 +259,17 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
               >Beneficios:</span
             >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
-              <li>Mejoría de los síntomas del síndrome disfórico premenstrual (SDPM).<sup>7</sup></li>
+              <li>
+                Mejoría de los síntomas del síndrome disfórico premenstrual
+                (SDPM).<sup>7</sup>
+              </li>
               <li>Mejoría de la dismenorrea.<sup>7</sup></li>
               <li>Actividad antiandrogénica.<sup>7</sup></li>
               <li>Actividad antimineralocorticoide.<sup>5</sup></li>
@@ -254,13 +290,15 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
               >Beneficios:</span
             >
-            <strong class="text-xs md:text-sm">Propiedades antimineralocorticoides:</strong>
+            <strong class="text-xs md:text-sm"
+              >Propiedades antimineralocorticoides:</strong
+            >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
               <li>Sin impacto sobre el peso corporal.<sup>5</sup></li>
               <li>Mejoría de la dismenorrea.<sup>7</sup></li>
@@ -281,14 +319,17 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
               >Beneficios:</span
             >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
-              <li>Mejoría de los síntomas del síndrome disfórico premenstrual (SDPM).<sup>7</sup></li>
+              <li>
+                Mejoría de los síntomas del síndrome disfórico premenstrual
+                (SDPM).<sup>7</sup>
+              </li>
               <li>Mejoría de la dismenorrea.<sup>7</sup></li>
               <li>Actividad antiandrogénica.<sup>7</sup></li>
               <li>Actividad antimineralocorticoide.<sup>5</sup></li>
@@ -309,15 +350,21 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
               >Beneficios:</span
             >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
-              <li>Efecto neuroendocrino que promueve sensación de bienestar.<sup>8</sup></li>
-              <li>Mejoría del estado de ánimo, reducción de molestias emocionales y físicas.<sub>8</sub></li>
+              <li>
+                Efecto neuroendocrino que promueve sensación de bienestar.<sup
+                  >8</sup>
+              </li>
+              <li>
+                Mejoría del estado de ánimo, reducción de molestias emocionales
+                y físicas.<sub>8</sub>
+              </li>
             </ul>
           </td>
         </tr>
@@ -335,15 +382,21 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
               >Beneficios:</span
             >
             <ul class="list-disc marker:text-[10px] text-xs md:text-sm">
-              <li>Efecto neuroendocrino que promueve sensación de bienestar.<sup>8</sup></li>
-              <li>Mejoría del estado de ánimo, reducción de molestias emocionales y físicas.<sup>8</sup></li>
+              <li>
+                Efecto neuroendocrino que promueve sensación de bienestar.<sup
+                  >8</sup>
+              </li>
+              <li>
+                Mejoría del estado de ánimo, reducción de molestias emocionales
+                y físicas.<sup>8</sup>
+              </li>
             </ul>
           </td>
         </tr>
@@ -361,7 +414,7 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
             >
           </td>
           <td
-            class="block md:table-cell p-4 border border-purple-abbott  align-middle"
+            class="block md:table-cell p-4 border border-purple-abbott align-middle"
           >
             <span
               class="md:hidden text-black font-bold text-xs uppercase mb-2 block"
@@ -375,7 +428,10 @@ import ReferenciasPautas from "./ReferenciasPautas.astro";
       </tbody>
     </table>
   </div>
-
+  <p class="mt-4 ml-4">
+    *Se recomienda el uso simultáneo de preservativo para evitar el contagio de
+    ITS. <sup>1</sup>
+  </p>
   <div class="mt-4 p-4 text-xs space-y-1">
     <div class="mt-2">
       <ReferenciasPautas />
